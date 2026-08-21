@@ -2,15 +2,27 @@
 
   den.aspects.sh4dow = {
     includes = [
+      # Den batteries
       den.batteries.define-user
       den.batteries.primary-user
       den.batteries.host-aspects
       (den.batteries.user-shell "bash")
+
+      # Den aspects
+      den.aspects.ssh.client-config
+      den.aspects.shell.fish
+      den.aspects.vesktop
+      den.aspects.localsend
+      den.aspects.gpg
     ];
     
     user.extraGroups = [ "i2c" ];
 
     homeManager = { pkgs, ... }: {
+      home.sessionVariables = {
+        EDITOR = "vim";
+      };
+      
       programs.git = {
         enable = true;
         settings = {

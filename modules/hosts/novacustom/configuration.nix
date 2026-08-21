@@ -14,15 +14,10 @@
       # DE/WM
       gnome
       #kde
-      
-      ssh.client-config
-      gpg
-      thermald
-      vesktop
-      localsend
-      shell.fish
-      #noctalia
       #hyprland
+      #noctalia
+      
+      thermald
     ];
     
     nixos = { pkgs, ... }: {

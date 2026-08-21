@@ -1,6 +1,6 @@
-{ den, ... }: {
+{
   den.aspects.nh = {
-    nixos = {
+    homeManager = {
       programs.nh = {
         enable = true;
         clean = {

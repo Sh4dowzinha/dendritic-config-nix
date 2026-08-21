@@ -1,5 +1,9 @@
-{
+{ den, ... }: {
   den.aspects.gnome = {
+    includes = with den.aspects; [
+      shell.fish
+    ];
+    
     nixos = {
       services.displayManager.gdm.enable = true;
       services.desktopManager.gnome.enable = true;
