@@ -62,7 +62,10 @@
     };
 
     provides.to-users = {
-      includes = [ den.aspects.preservation.provides.for-users ];
+      includes = with den.aspects; [ 
+        preservation.provides.for-users
+        gnome
+      ];
       
       homeManager = { pkgs, ... }: {
         home.packages = with pkgs; [ 

@@ -1,14 +1,8 @@
 { den, ... }: {
   den.aspects.gnome = {
-    includes = with den.aspects; [
-      shell.fish
-    ];
-    
     nixos = {
       services.displayManager.gdm.enable = true;
       services.desktopManager.gnome.enable = true;
-      
-      programs.dconf.enable = true;
     };
     
     homeManager = { pkgs, ... }: {
@@ -16,12 +10,8 @@
         gnomeExtensions.caffeine
         gnomeExtensions.appindicator
       ];
-      
-      dconf.settings = {
-        "org/gnome/Console" = {
-          shell = [ "fish" ];
-        };
 
+      dconf.settings = {
         "org/gnome/desktop/interface" = {
           enable-hot-corners = true;
           color-scheme = "prefer-dark";

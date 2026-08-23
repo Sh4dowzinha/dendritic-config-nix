@@ -3,18 +3,19 @@
   den.aspects.sh4dow = {
     includes = [
       # Den batteries
-      den.batteries.define-user
       den.batteries.primary-user
-      den.batteries.host-aspects
-      (den.batteries.user-shell "bash")
+      (den.batteries.user-shell "fish")
 
       # Den aspects
+      den.aspects.trusted-user
       den.aspects.ssh.client-config
       den.aspects.shell.fish
       den.aspects.vesktop
       den.aspects.localsend
+      den.aspects.nh
+      #den.aspects.steam
+      #den.aspects.claude-code
       den.aspects.gpg
-      den.aspects.claude-code
     ];
     
     user.extraGroups = [ "i2c" ];

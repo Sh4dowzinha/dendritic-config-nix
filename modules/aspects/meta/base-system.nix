@@ -5,7 +5,6 @@
       zram
       firmware
       pipewire
-      nh
       firewall
       dns
       networkManager
