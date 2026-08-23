@@ -19,15 +19,12 @@
       };
 
       nixpkgs.config.allowUnfree = true;
-      system.stateVersion = "26.05";
       
       programs.appimage = {
         enable = true;
         binfmt = true;
       };
     };
-
-    homeManager.home.stateVersion = "26.05";
   };
 
   # Enable hm by default

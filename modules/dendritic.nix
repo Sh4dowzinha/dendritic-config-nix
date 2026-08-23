@@ -6,8 +6,17 @@
   ];
 
   flake-file.inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-#    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    home-manager = {
+      url = "github:nix-community/home-manager"; 
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     den.url = "github:denful/den";
     flake-file.url = "github:vic/flake-file";
@@ -16,11 +25,6 @@
 #      url = "github:Mic92/sops-nix";
 #      inputs.nixpkgs.follows = "nixpkgs";
 #    };
-    
-    home-manager = {
-      url = "github:nix-community/home-manager/release-26.05"; 
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     
 #    plasma-manager = {
 #      url = "github:nix-community/plasma-manager";

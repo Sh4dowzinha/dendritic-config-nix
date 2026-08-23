@@ -9,7 +9,6 @@
       intel
       intel.laptop-adl
       bluetooth
-      nitrokey3
 
       # DE/WM
       gnome
@@ -19,6 +18,10 @@
     ];
     
     nixos = { pkgs, ... }: {
+      
+      system.stateVersion = "26.05";
+      
+      boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
       
       time.timeZone = "Europe/Lisbon";
 
@@ -68,6 +71,8 @@
       ];
       
       homeManager = { pkgs, ... }: {
+        home.stateVersion = "26.05";
+        
         home.packages = with pkgs; [ 
           brave
           keepassxc

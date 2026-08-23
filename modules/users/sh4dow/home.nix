@@ -9,11 +9,13 @@
       # Den aspects
       den.aspects.trusted-user
       den.aspects.ssh.client-config
-      den.aspects.shell.fish
+      den.aspects.git
+      den.aspects.nitrokey3
+      den.aspects.fish
       den.aspects.vesktop
       den.aspects.localsend
       den.aspects.nh
-      #den.aspects.steam
+      den.aspects.steam
       #den.aspects.claude-code
       den.aspects.gpg
     ];
@@ -21,12 +23,12 @@
     user.extraGroups = [ "i2c" ];
 
     homeManager = { pkgs, ... }: {
+      
       home.sessionVariables = {
         EDITOR = "vim";
       };
       
       programs.git = {
-        enable = true;
         settings = {
           core.editor = "vim";
           user = {
@@ -34,7 +36,6 @@
             email = "andrematosf727@gmail.com";
           };
           
-          init.defaultBranch = "main";
           commit.gpgsign = true;
           tag.gpgsign = true;
         };
