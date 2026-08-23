@@ -16,8 +16,6 @@
       #kde
       #hyprland
       #noctalia
-      
-      thermald
     ];
     
     nixos = { pkgs, ... }: {

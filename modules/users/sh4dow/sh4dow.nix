@@ -14,6 +14,7 @@
       den.aspects.vesktop
       den.aspects.localsend
       den.aspects.gpg
+      den.aspects.claude-code
     ];
     
     user.extraGroups = [ "i2c" ];

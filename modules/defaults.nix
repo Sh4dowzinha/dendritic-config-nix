@@ -39,9 +39,6 @@
       nixos.home-manager = {
         useUserPackages = true;
         useGlobalPkgs = true;
-        backupFileExtension = "backup";
-        backupCommand = "rm";
-        overwriteBackup = true;
       };
     }  
   ];

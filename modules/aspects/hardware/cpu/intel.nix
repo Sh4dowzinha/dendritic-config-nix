@@ -1,10 +1,9 @@
 {
   den.aspects.intel = {
-    nixos = {
-      hardware.cpu.intel.updateMicrocode = true;
-    };
-    
+  
     provides.laptop-kbl.nixos = { pkgs, ... }: {
+      hardware.cpu.intel.updateMicrocode = true;
+      services.thermald.enable = true;
       hardware.graphics = {
         enable = true;
         enable32Bit = true;
@@ -14,9 +13,15 @@
           intel-ocl
         ];
       };
+      
+      environment.sessionVariables = {
+        LIBVA_DRIVER_NAME = "iHD";
+      };
     };
     
     provides.laptop-adl.nixos = { pkgs, ... }: {
+      hardware.cpu.intel.updateMicrocode = true;
+      services.thermald.enable = true;
       hardware.graphics = {
         enable = true;
         enable32Bit = true;
