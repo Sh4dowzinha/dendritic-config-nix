@@ -19,8 +19,6 @@
     
     nixos = { pkgs, ... }: {
       
-      system.stateVersion = "26.05";
-      
       boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
       
       time.timeZone = "Europe/Lisbon";
@@ -52,7 +50,6 @@
         vim
         btop
         htop
-        fastfetch
       ];
       
       fonts.packages = with pkgs; [
@@ -71,7 +68,6 @@
       ];
       
       homeManager = { pkgs, ... }: {
-        home.stateVersion = "26.05";
         
         home.packages = with pkgs; [ 
           brave

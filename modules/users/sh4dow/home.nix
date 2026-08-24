@@ -16,8 +16,9 @@
       den.aspects.localsend
       den.aspects.nh
       den.aspects.steam
-      #den.aspects.claude-code
+      den.aspects.claude-code
       den.aspects.gpg
+      den.aspects.fastfetch
     ];
     
     user.extraGroups = [ "i2c" ];
