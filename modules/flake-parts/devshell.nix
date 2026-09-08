@@ -1,0 +1,65 @@
+{ inputs, ... }:
+{
+  flake-file.inputs.devshell = {
+    url = "github:numtide/devshell";
+    inputs.nixpkgs.follows = "nixpkgs-unstable";
+  };
+
+  imports = [
+    inputs.devshell.flakeModule
+  ];
+
+  perSystem =
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
+    {
+      devshells.default = {
+        packages = [
+          pkgs.git
+          pkgs.gh
+          pkgs.nix # Always use the nix version from this flake's nixpkgs version, so that nix-plugins (below) doesn't fail because of different nix versions.
+          pkgs.nixos-rebuild # Ensure nixos-rebuild is available for darwin systems
+          pkgs.nix-output-monitor
+          pkgs.nix-fast-build
+          pkgs.nil
+          pkgs.nixd
+        ]
+        ++ lib.optionals pkgs.stdenv.buildPlatform.isDarwin [
+          pkgs.coreutils-full # Include GNU coreutils for darwin systems
+        ];
+
+        commands = [
+          {
+            package = pkgs.nh;
+            help = "Nix helper for nixpkgs development";
+          }
+          {
+            package = config.treefmt.build.wrapper;
+            help = "Format all files";
+          }
+          {
+            package = pkgs.nix-tree;
+            help = "Interactively browse dependency graphs of Nix derivations";
+          }
+          {
+            package = pkgs.nvd;
+            help = "Diff two nix toplevels and show which packages were upgraded";
+          }
+          {
+            package = pkgs.nix-diff;
+            help = "Explain why two Nix derivations differ";
+          }
+          {
+            package = pkgs.nix-output-monitor;
+            help = "Nix Output Monitor (a drop-in alternative for `nix` which shows a build graph)";
+          }
+        ];
+
+        devshell.startup.pre-commit.text = config.pre-commit.installationScript;
+      };
+    };
+}
