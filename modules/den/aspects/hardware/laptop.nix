@@ -1,14 +1,9 @@
 {
   den.aspects.hardware.laptop = {
 
-    # Laptops use NetworkManager for userspace WiFi (roaming, multiple
-    # networks). Standalone wpa_supplicant (network.wireless) is opt-in
-    # per-host and conflicts with NM over the interface if both manage it.
-
     persist = {
       directories = [
         "/var/lib/upower"
-        "/var/lib/power-profiles-daemon"
       ];
     };
 

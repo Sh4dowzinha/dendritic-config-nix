@@ -22,9 +22,8 @@
         systemd.services.NetworkManager-wait-online.enable = false;
       };
 
-    cache.directories = [
+    persist.directories = [
       "/etc/NetworkManager/system-connections"
-      "/var/lib/NetworkManager"
     ];
   };
 }

@@ -43,7 +43,7 @@
               "/var/log"
             ];
 
-            users = lib.mapAttrs (userName: _: {
+            users.sh4dow = {
               commonMountOptions = [
                 "x-gvfs-hide"
                 "x-gdu.hide"
@@ -55,7 +55,7 @@
                 ".local/state/nix"
                 ".cache"
               ];
-            }) host.users;
+            };
           };
 
           "/persist" = {
@@ -73,7 +73,7 @@
               }
             ];
 
-            users = lib.mapAttrs (userName: _: {
+            users.sh4dow = {
               commonMountOptions = [
                 "x-gvfs-hide"
                 "x-gdu.hide"
@@ -89,15 +89,11 @@
                 "Templates"
                 "Videos"
                 {
-                  directory = ".ssh";
-                  mode = "0700";
-                }
-                {
                   directory = ".local/share/keyrings";
                   mode = "0700";
                 }
               ];
-            }) host.users;
+            };
           };
         };
       };

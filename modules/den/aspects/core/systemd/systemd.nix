@@ -6,14 +6,22 @@
       ];
 
       services.journald.settings.Journal = {
-        SystemMaxUse="100M";
+        SystemMaxUse = "100M";
       };
     };
-    
+
     persist = {
       files = [
-        { file = "/var/lib/systemd/random-seed"; how = "symlink"; inInitrd = true; configureParent = true; }
+        {
+          file = "/var/lib/systemd/random-seed";
+          how = "symlink";
+          inInitrd = true;
+          configureParent = true;
+        }
         #"/var/lib/systemd/credential.secret"
+      ];
+      directories = [
+        "/var/lib/systemd/timers"
       ];
     };
 
@@ -23,14 +31,6 @@
       ];
       directories = [
         "/var/lib/systemd/coredump"
-        "/var/lib/systemd/timers"
-        "/var/lib/systemd/catalog"
-        {
-          directory = "/var/lib/systemd/network";
-          mode = "0755";
-          user = "systemd-network";
-          group = "systemd-network";
-        }
       ];
     };
   };

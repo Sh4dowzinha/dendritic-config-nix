@@ -18,14 +18,14 @@
         };
       };
 
-    persistHome = {
-      directories = [
-        ".config/VSCodium"
-        ".config/Code"
-        ".vscode"
-        ".vscode-oss"
-        ".vscode-shared"
-      ];
-    };
+    #    persistHome = {
+    #      directories = [
+    #        ".config/VSCodium"
+    #        ".config/Code"
+    #        ".vscode"
+    #        ".vscode-oss"
+    #        ".vscode-shared"
+    #      ];
+    #    };
   };
 }
