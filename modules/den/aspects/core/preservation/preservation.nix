@@ -13,15 +13,10 @@
     ];
 
     settings = {
-      wipeRootOnBoot = lib.mkOption {
+      enable = lib.mkOption {
         type = lib.types.bool;
         default = true;
-        description = "Roll the root filesystem back to a pristine state on boot";
-      };
-      wipeHomeOnBoot = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Roll the home filesystem back to a pristine state on boot";
+        description = "Enable preservation on the host";
       };
     };
 
@@ -30,7 +25,7 @@
         inputs.preservation.nixosModules.preservation
       ];
 
-      config = lib.mkIf (host.settings.core.preservation.wipeRootOnBoot or false) {
+      config = lib.mkIf (host.settings.core.preservation.enable or false) {
         preservation.enable = true;
         preservation.preserveAt = {
           "/cache" = {
@@ -41,12 +36,14 @@
             ];
 
             directories = [
-              { directory = "/var/lib/nixos"; inInitrd = true; }
-              "/var/tmp"
+              {
+                directory = "/var/lib/nixos";
+                inInitrd = true;
+              }
               "/var/log"
             ];
-            
-            users = lib.mapAttrs (userName: _: lib.mkIf (host.settings.core.preservation.wipeHomeOnBoot or false) {
+
+            users = lib.mapAttrs (userName: _: {
               commonMountOptions = [
                 "x-gvfs-hide"
                 "x-gdu.hide"
@@ -70,11 +67,13 @@
             directories = [ ];
 
             files = [
-              { file = "/etc/machine-id"; inInitrd = true; }
-              "/etc/adjtime"
+              {
+                file = "/etc/machine-id";
+                inInitrd = true;
+              }
             ];
 
-            users = lib.mapAttrs (userName: _: lib.mkIf (host.settings.core.preservation.wipeHomeOnBoot or false) {
+            users = lib.mapAttrs (userName: _: {
               commonMountOptions = [
                 "x-gvfs-hide"
                 "x-gdu.hide"

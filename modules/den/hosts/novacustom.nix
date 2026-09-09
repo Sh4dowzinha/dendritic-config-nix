@@ -8,10 +8,7 @@
     settings = {
       disk.btrfs-luks-tmpfs-single.device_id = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNL0X119308M";
       core.system.linux-kernel.optimization = "x86_64-v3";
-      core.preservation = {
-        wipeRootOnBoot = true;
-        wipeHomeOnBoot = true;
-      };
+      core.preservation.enable = true;
     };
   };
 
