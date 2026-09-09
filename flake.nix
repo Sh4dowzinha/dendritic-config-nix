@@ -89,7 +89,13 @@
       url = "github:BirdeeHub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    nixcord.url = "github:4evy/nixcord";
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs-unstable";
+      };
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-stable-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";

@@ -126,7 +126,13 @@
         inputs.nixpkgs.follows = "nixpkgs-unstable";
       };
 
-      nixcord.url = "github:4evy/nixcord";
+      nixcord = {
+        url = "github:kaylorben/nixcord";
+        inputs = {
+          flake-parts.follows = "flake-parts";
+          nixpkgs.follows = "nixpkgs-unstable";
+        };
+      };
     
       nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     

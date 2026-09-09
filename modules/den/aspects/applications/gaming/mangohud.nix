@@ -9,7 +9,7 @@
         };
 
         # TODO: only set this if stylix is enabled
-        # stylix.targets.mangohud.enable = false;
+        stylix.targets.mangohud.enable = false;
 
         xdg.configFile."MangoHud/MangoHud.conf".text =
           # conf

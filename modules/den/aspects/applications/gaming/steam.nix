@@ -35,9 +35,9 @@
 
           steam = {
             enable = true;
-#            remotePlay.openFirewall = true;
-#            dedicatedServer.openFirewall = true;
-#            localNetworkGameTransfers.openFirewall = true;
+            #            remotePlay.openFirewall = true;
+            #            dedicatedServer.openFirewall = true;
+            #            localNetworkGameTransfers.openFirewall = true;
             protontricks.enable = true;
 
             package = pkgs.steam.override {
@@ -45,10 +45,10 @@
                 MANGOHUD = true;
                 OBS_VKCAPTURE = true;
                 PROTON_ENABLE_WAYLAND = true;
-#                PROTON_ENABLE_HDR = true;
+                #                PROTON_ENABLE_HDR = true;
                 PROTON_USE_NTSYNC = true;
                 PROTON_USE_WOW64 = true;
-#                RADV_TEX_ANISO = 16;
+                #                RADV_TEX_ANISO = 16;
                 PULSE_SINK = "Game";
               }
               // lib.optionalAttrs hasNvidiaPrimeOnLaptop {
@@ -104,21 +104,21 @@
 
             extraCompatPackages = [
               pkgs.proton-ge-bin
-              pkgs.proton-cachyos-x86_64_v3
+              pkgs."proton-cachyos-${host.settings.core.system.linux-kernel.optimization}"
             ];
 
             gamescopeSession = {
               enable = true;
 
               env = {
-#                DXVK_HDR = "1";
+                #                DXVK_HDR = "1";
               };
 
               args = [
-#                "--rt"
-#                "--hdr-enabled"
-#                "--hdr-itm-enabled"
-#                "--hdr-debug-force-output"
+                #                "--rt"
+                #                "--hdr-enabled"
+                #                "--hdr-itm-enabled"
+                #                "--hdr-debug-force-output"
                 "--xwayland-count 2"
                 "-W 1920"
                 "-H 1080"
@@ -143,10 +143,10 @@
               MANGOHUD = true;
               OBS_VKCAPTURE = true;
               PROTON_ENABLE_WAYLAND = true;
-#              PROTON_ENABLE_HDR = true;
+              #              PROTON_ENABLE_HDR = true;
               PROTON_USE_NTSYNC = true;
               PROTON_USE_WOW64 = true;
-#              RADV_TEX_ANISO = 16;
+              #              RADV_TEX_ANISO = 16;
               PULSE_SINK = "Game";
             };
             extraPkgs =

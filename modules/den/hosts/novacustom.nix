@@ -19,7 +19,7 @@
     includes = with den.aspects; [
       roles.default
       roles.workstation
-      #      roles.gaming
+      roles.gaming
       roles.dev
       roles.dev-gui
       roles.messaging

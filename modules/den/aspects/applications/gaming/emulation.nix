@@ -14,7 +14,7 @@
 
         programs.wine = {
           enable = true;
-          package = inputs'.nix-gaming.packages.wine-ge;
+          package = inputs'.nix-gaming.packages.wine-tkg;
           binfmt = true;
           ntsync = true;
         };
