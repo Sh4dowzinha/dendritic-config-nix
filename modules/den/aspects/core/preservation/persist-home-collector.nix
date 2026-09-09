@@ -2,8 +2,7 @@
   den.aspects.core.preservation.persist-home-collector = {
     nixos =
       {
-        host,
-        user,
+        #user,
         persistHome,
         cacheHome,
         lib,
@@ -15,12 +14,11 @@
           files = lib.unique (lib.concatMap (e: e.files or [ ]) entries);
         };
       in
-      if !((host.preservation.enable or false) && (host.preservation.home or false)) then
-        { }
-      else
-        {
-          preservation.preserveAt."/persist".users.${user.userName} = mergePersist persistHome;
-          preservation.preserveAt."/cache".users.${user.userName} = mergePersist cacheHome;
-        };
+      {
+        #preservation.preserveAt."/persist".users.${user.userName} = mergePersist persistHome;
+        #preservation.preserveAt."/cache".users.${user.userName} = mergePersist cacheHome;
+        preservation.preserveAt."/persist".users.sh4dow = mergePersist persistHome;
+        preservation.preserveAt."/cache".users.sh4dow = mergePersist cacheHome;
+      };
   };
 }

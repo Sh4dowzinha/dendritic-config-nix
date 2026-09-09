@@ -5,12 +5,13 @@
     system-owner = "sh4dow";
     keyboard.layout = "pt";
 
-    preservation.enable = true;
-    preservation.home = true;
-
     settings = {
       disk.btrfs-luks-tmpfs-single.device_id = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNL0X119308M";
       core.system.linux-kernel.optimization = "x86_64-v3";
+      core.preservation = {
+        wipeRootOnBoot = true;
+        wipeHomeOnBoot = true;
+      };
     };
   };
 
@@ -18,7 +19,7 @@
     includes = with den.aspects; [
       roles.default
       roles.workstation
-#      roles.gaming
+      #      roles.gaming
       roles.dev
       roles.dev-gui
       roles.messaging

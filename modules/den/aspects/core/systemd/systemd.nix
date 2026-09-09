@@ -9,6 +9,13 @@
         SystemMaxUse="100M";
       };
     };
+    
+    persist = {
+      files = [
+        { file = "/var/lib/systemd/random-seed"; how = "symlink"; inInitrd = true; configureParent = true; }
+        #"/var/lib/systemd/credential.secret"
+      ];
+    };
 
     cache = {
       files = [
@@ -24,7 +31,6 @@
           user = "systemd-network";
           group = "systemd-network";
         }
-        "/var/log"
       ];
     };
   };

@@ -1,5 +1,5 @@
 # Dummy persistence options for Darwin so modules that reference
-# osConfig.environment.persistence don't error out.
+# osConfig.preservation.preserveAt don't error out.
 { lib, ... }:
 {
   den.aspects.core.preservation = {

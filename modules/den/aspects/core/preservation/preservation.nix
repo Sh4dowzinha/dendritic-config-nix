@@ -12,39 +12,53 @@
       den.aspects.core.preservation.tmpfs
     ];
 
-    nixos = { user, ... }: {
+    settings = {
+      wipeRootOnBoot = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Roll the root filesystem back to a pristine state on boot";
+      };
+      wipeHomeOnBoot = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Roll the home filesystem back to a pristine state on boot";
+      };
+    };
+
+    nixos = { host, ... }: {
       imports = [
         inputs.preservation.nixosModules.preservation
       ];
 
-      preservation = {
-        preserveAt = {
+      config = lib.mkIf (host.settings.core.preservation.wipeRootOnBoot or false) {
+        preservation.enable = true;
+        preservation.preserveAt = {
           "/cache" = {
             persistentStoragePath = "/cache";
             commonMountOptions = [
               "x-gvfs-hide"
               "x-gdu.hide"
             ];
-            
+
             directories = [
-              "/var/lib/nixos"
+              { directory = "/var/lib/nixos"; inInitrd = true; }
               "/var/tmp"
-              "/srv"
+              "/var/log"
             ];
-              
-            users.${user.userName} = {
+            
+            users = lib.mapAttrs (userName: _: lib.mkIf (host.settings.core.preservation.wipeHomeOnBoot or false) {
               commonMountOptions = [
                 "x-gvfs-hide"
                 "x-gdu.hide"
               ];
-                
+
               directories = [
                 "Downloads"
                 ".local/share/direnv"
                 ".local/state/nix"
                 ".cache"
               ];
-            };
+            }) host.users;
           };
 
           "/persist" = {
@@ -52,24 +66,20 @@
               "x-gvfs-hide"
               "x-gdu.hide"
             ];
-              
+
             directories = [ ];
-              
+
             files = [
-              "/etc/machine-id"
+              { file = "/etc/machine-id"; inInitrd = true; }
               "/etc/adjtime"
-              # Host key for systemd LoadCredentialEncrypted. Must persist so
-              # blobs encrypted against it (e.g. libvirt's secrets-encryption-key
-              # under the persisted /var/lib/libvirt) stay decryptable across boots.
-              "/var/lib/systemd/credential.secret"
             ];
-              
-            users.${user.userName} = {
+
+            users = lib.mapAttrs (userName: _: lib.mkIf (host.settings.core.preservation.wipeHomeOnBoot or false) {
               commonMountOptions = [
                 "x-gvfs-hide"
                 "x-gdu.hide"
               ];
-                
+
               directories = [
                 "Desktop"
                 "Documents"
@@ -80,15 +90,15 @@
                 "Templates"
                 "Videos"
                 {
-                directory = ".ssh";
-                mode = "0700";
+                  directory = ".ssh";
+                  mode = "0700";
                 }
                 {
-                directory = ".local/share/keyrings";
-                mode = "0700";
+                  directory = ".local/share/keyrings";
+                  mode = "0700";
                 }
               ];
-            };    
+            }) host.users;
           };
         };
       };

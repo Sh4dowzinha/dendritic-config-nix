@@ -2,7 +2,6 @@
   den.aspects.core.preservation.persist-collector = {
     nixos =
       {
-        host,
         persist,
         cache,
         lib,
@@ -14,13 +13,9 @@
           files = lib.unique (lib.concatMap (e: e.files or [ ]) entries);
         };
       in
-      if !(host.preservation.enable or false) then
-        { }
-      else
-        {
-          preservation.enable = true;
-          preservation.preserveAt."/persist" = mergePersist persist;
-          preservation.preserveAt."/cache" = mergePersist cache;
-        };
+      {
+        preservation.preserveAt."/persist" = mergePersist persist;
+        preservation.preserveAt."/cache" = mergePersist cache;
+      };
   };
 }
