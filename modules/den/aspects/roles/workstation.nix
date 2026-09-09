@@ -19,8 +19,6 @@
       # Desktop
       desktop.xserver
       desktop.xwayland
-      desktop.gdm
-      desktop.gnome
       desktop.xdg-portal
 
       # Apps

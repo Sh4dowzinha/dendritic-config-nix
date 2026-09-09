@@ -111,8 +111,6 @@
     persistHome = {
       directories = [
         ".local/state/wireplumber"
-        ".config/rncbc.org"
-        ".config/pulse"
       ];
     };
   };

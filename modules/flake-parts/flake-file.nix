@@ -78,19 +78,16 @@
         inputs.nixpkgs.follows = "nixpkgs-unstable";
       };
 
-      #      hyprland.url = "github:hyprwm/Hyprland";
+      hyprland.url = "github:hyprwm/Hyprland";
 
-      #      hyprland-plugins = {
-      #        url = "github:hyprwm/hyprland-plugins";
-      #        inputs.hyprland.follows = "hyprland";
-      #      };
+      hyprland-plugins = {
+        url = "github:hyprwm/hyprland-plugins";
+        inputs.hyprland.follows = "hyprland";
+      };
 
       import-tree.url = "github:vic/import-tree";
 
-      #      noctalia = {
-      #        url = "github:noctalia-dev/noctalia-shell";
-      #        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      #      };
+      noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
       nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 

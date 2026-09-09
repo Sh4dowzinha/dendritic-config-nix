@@ -47,7 +47,7 @@
           extraPortals = [
             pkgs.xdg-desktop-portal-gtk
             pkgs.xdg-desktop-portal-gnome
-            #    inputs'.hyprland.packages.xdg-desktop-portal-hyprland
+            #            inputs'.hyprland.packages.xdg-desktop-portal-hyprland
             pkgs.kdePackages.xdg-desktop-portal-kde
           ];
         };

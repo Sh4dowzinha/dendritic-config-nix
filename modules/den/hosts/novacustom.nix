@@ -21,13 +21,13 @@
       roles.dev-gui
       roles.messaging
       roles.media
+      roles.music-production
 
       hardware.cpu.intel
       hardware.gpu.intel
       hardware.laptop
 
-      # desktop.hyprland
-      # desktop.uwsm
+      desktop.hyprland
       desktop.gdm
       desktop.gnome
 
