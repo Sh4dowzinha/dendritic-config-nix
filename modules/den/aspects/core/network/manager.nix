@@ -8,7 +8,7 @@
       {
         networking.networkmanager = {
           enable = true;
-          wifi.powersave = true;
+          dns = "systemd-resolved";
           settings = {
             connectivity = {
               enabled = false;
@@ -18,8 +18,6 @@
             pkgs.networkmanager-openvpn
           ];
         };
-
-        systemd.services.NetworkManager-wait-online.enable = false;
       };
 
     persist.directories = [

@@ -87,7 +87,7 @@
               bash.enable = true;
               python.enable = true;
               css.enable = true;
-              
+
               rust.enable = false;
               assembly.enable = false;
               astro.enable = false;

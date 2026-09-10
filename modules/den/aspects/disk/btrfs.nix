@@ -3,10 +3,10 @@
     nixos = {
       boot.supportedFilesystems.btrfs = true;
 
-#      services.btrfs.autoScrub = {
-#        enable = true;
-#        fileSystems = [ "/" ];
-#      };
+      #      services.btrfs.autoScrub = {
+      #        enable = true;
+      #        fileSystems = [ "/" ];
+      #      };
     };
   };
 }

@@ -24,7 +24,7 @@
           pkgs.game-devices-udev-rules
         ];
 
-#        programs.ns-usbloader.enable = true;
+        #        programs.ns-usbloader.enable = true;
       };
 
     homeManager =
@@ -40,7 +40,7 @@
           # pkgs.azahar # TODO: Safe to re-enable
           pkgs.dolphin-emu
           pkgs.cemu
-#          pkgs.ryubing
+          #          pkgs.ryubing
           # pkgs.local.citron # TODO: Safe to re-enable
           # pkgs.local.eden
           # pkgs.moonlight-qt

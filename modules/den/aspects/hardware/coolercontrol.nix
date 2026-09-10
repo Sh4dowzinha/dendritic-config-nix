@@ -3,7 +3,7 @@
     nixos =
       { pkgs, ... }:
       {
-        environment.systemPackages = [ 
+        environment.systemPackages = [
           pkgs.liquidctl
           pkgs.lm_sensors
         ];

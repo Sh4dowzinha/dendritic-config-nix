@@ -22,24 +22,24 @@
             proc_per_core = true;
             proc_info_smaps = true;
             proc_filter_kernel = true;
-#            disks_filter =
-#              let
-#                excludeDirectories =
-#                  (lib.flatten (
-#                    map (persistenceConfig: map (dir: dir.dirPath) persistenceConfig.directories) (
-#                      builtins.attrValues (osConfig.preservation.preserveAt or { })
-#                    )
-#                  ))
-#                  ++ (lib.flatten (
-#                    map (persistenceConfig: map (f: f.file) persistenceConfig.files) (
-#                      builtins.attrValues (osConfig.preservation.preserveAt or { })
-#                    )
-#                  ))
-#                  ++ [
-#                    "/boot"
-#                  ];
-#              in
-#              "exclude=${lib.concatStringsSep " " excludeDirectories}";
+            #            disks_filter =
+            #              let
+            #                excludeDirectories =
+            #                  (lib.flatten (
+            #                    map (persistenceConfig: map (dir: dir.dirPath) persistenceConfig.directories) (
+            #                      builtins.attrValues (osConfig.preservation.preserveAt or { })
+            #                    )
+            #                  ))
+            #                  ++ (lib.flatten (
+            #                    map (persistenceConfig: map (f: f.file) persistenceConfig.files) (
+            #                      builtins.attrValues (osConfig.preservation.preserveAt or { })
+            #                    )
+            #                  ))
+            #                  ++ [
+            #                    "/boot"
+            #                  ];
+            #              in
+            #              "exclude=${lib.concatStringsSep " " excludeDirectories}";
             swap_disk = false;
             only_physical = false;
             gpu_mirror_graph = false;

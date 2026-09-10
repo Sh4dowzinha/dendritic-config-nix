@@ -8,8 +8,6 @@
 # Ported from main:modules/core/users/default.nix
 {
   lib,
-  self,
-  config,
   ...
 }:
 let
@@ -17,31 +15,11 @@ let
     { host, user }:
     let
       inherit (user) userName;
-      # POSIX group membership is resolved by the scope-engine ACL graph
-      # (config.fleet.acl): transitive closure of the user's registry groups
-      # over the den.groups membership graph, filtered to posix-scoped groups.
-      uid = user.system.uid or null;
-      gid = if user.system.gid or null != null then user.system.gid else uid;
-      subUidStart = if uid != null then 100000 + ((uid - 1000) * 65536) else null;
     in
     {
       name = "user-enrich/${userName}@${host.name}";
 
       nixos = {
-        users.deterministicIds.${userName} = lib.optionalAttrs (uid != null) {
-          inherit uid gid;
-          subUidRanges = lib.optional (subUidStart != null) {
-            startUid = subUidStart;
-            count = 65536;
-          };
-          subGidRanges = lib.optional (subUidStart != null) {
-            startGid = subUidStart;
-            count = 65536;
-          };
-        };
-
-        users.groups.${userName} = lib.optionalAttrs (gid != null) { inherit gid; };
-
         users.users.${userName} = {
           openssh.authorizedKeys.keys = map (k: k.key) (user.identity.sshKeys or [ ]);
           linger = user.system.linger or false;

@@ -7,7 +7,6 @@
   lib,
   inputs,
   den,
-  self,
   rootPath,
   ...
 }:

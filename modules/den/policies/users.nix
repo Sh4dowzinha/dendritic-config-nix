@@ -58,17 +58,14 @@ in
 
     den.policies.host-users =
       { host, ... }:
-      lib.optional (
-        host.system-owner != null
-        && config.den.users.registry ? ${host.system-owner}
-      ) (
+      lib.optional (host.system-owner != null && config.den.users.registry ? ${host.system-owner}) (
         resolve.to "user" {
           user = config.den.users.registry.${host.system-owner};
         }
       );
-      
-      den.schema.host.includes = [
-        den.policies.host-users
-      ];
+
+    den.schema.host.includes = [
+      den.policies.host-users
+    ];
   };
 }

@@ -44,8 +44,8 @@ in
         # reliably merge multiple occurrences of the flag.
         enabledFeatures = [
           # Wayland
-#          "UseOzonePlatform"
-#          "WaylandWindowDecorations"
+          #          "UseOzonePlatform"
+          #          "WaylandWindowDecorations"
 
           # Hardware video acceleration (mirrors firefox media.ffmpeg.vaapi.enabled)
           "VaapiVideoDecoder"
@@ -108,7 +108,7 @@ in
 
           commandLineArgs = [
             # Wayland
-#            "--ozone-platform=wayland"
+            #            "--ozone-platform=wayland"
 
             # GPU acceleration is left to Chromium's own driver detection. The
             # force-on switches (--ignore-gpu-blocklist, --enable-gpu-rasterization,

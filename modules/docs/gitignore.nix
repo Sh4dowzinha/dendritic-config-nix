@@ -5,8 +5,6 @@
       /result.*
       .direnv
       .cache
-      .claude
-      CLAUDE.md
       .pre-commit-config.yaml
     '';
   };

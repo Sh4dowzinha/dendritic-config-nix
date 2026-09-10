@@ -9,12 +9,13 @@
       core.nix.stateVersion
       core.systemd
       core.users.shell
+      core.network.firewall
+      core.network.dns
       core.utils
       core.system.firmware
       core.security
       core.system.facter
       core.users.home-manager-shared
-      core.users.deterministic-uids
       core.security.sudo
       core.localization.time
       core.perf.ssd

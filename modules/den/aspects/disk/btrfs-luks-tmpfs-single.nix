@@ -19,13 +19,13 @@
           If not set, auto-detects a single non-USB disk via facter.
         '';
       };
-      
+
       swap_size = lib.mkOption {
         type = lib.types.int;
         default = 0;
         description = "Size of swap in MiB, 0 disables swap.";
       };
-      
+
       tmpfsSize = lib.mkOption {
         type = lib.types.str;
         default = "25%";
@@ -63,7 +63,7 @@
                 "Multiple disks found. Please set settings.disk.btrfs-disko.device_id. Found: "
                 + toString disk-labels
               );
-          
+
         defaultESPOpts = [
           "defaults"
           "nodev"

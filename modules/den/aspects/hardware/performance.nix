@@ -15,9 +15,7 @@
         systemd.packages = [ pkgs.lact ];
         systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
-        powerManagement.cpuFreqGovernor = lib.mkIf (!isLaptop) ( 
-          lib.mkDefault "performance" 
-        );
+        powerManagement.cpuFreqGovernor = lib.mkIf (!isLaptop) (lib.mkDefault "performance");
 
         services = {
           irqbalance.enable = true;
