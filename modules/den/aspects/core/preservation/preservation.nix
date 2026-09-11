@@ -36,10 +36,6 @@
             ];
 
             directories = [
-              {
-                directory = "/var/lib/nixos";
-                inInitrd = true;
-              }
               "/var/log"
             ];
 
@@ -51,8 +47,8 @@
 
               directories = [
                 "Downloads"
-                ".local/share/direnv"
                 ".local/state/nix"
+                ".local/share/Trash"
                 ".cache"
               ];
             };
@@ -64,7 +60,12 @@
               "x-gdu.hide"
             ];
 
-            directories = [ ];
+            directories = [
+              {
+                directory = "/var/lib/nixos";
+                inInitrd = true;
+              }
+            ];
 
             files = [
               {
@@ -88,6 +89,7 @@
                 "Public"
                 "Templates"
                 "Videos"
+                ".local/share/direnv"
                 {
                   directory = ".local/share/keyrings";
                   mode = "0700";

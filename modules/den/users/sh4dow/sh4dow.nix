@@ -2,6 +2,15 @@
 {
   den.aspects.sh4dow = {
     includes = [ den.batteries.host-aspects ];
+
+    homeManager = {
+      programs.gpg.publicKeys = [
+        {
+          source = ./pubkeys/sh4dow.asc;
+          trust = 5;
+        }
+      ];
+    };
   };
 
   den.users.registry.sh4dow = {

@@ -17,6 +17,7 @@
 
     os =
       {
+        pkgs,
         host,
         inputs',
         self',
@@ -25,7 +26,8 @@
       {
         home-manager.useGlobalPkgs = host.settings.core.users.home-manager-shared.useGlobalPkgs;
         home-manager.useUserPackages = true;
-        home-manager.backupFileExtension = ".hm-backup";
+        home-manager.backupFileExtension = ".hm-bak";
+        home-manager.backupCommand = "${pkgs.trash-cli}/bin/trash";
 
         home-manager.extraSpecialArgs = {
           inherit inputs' self';

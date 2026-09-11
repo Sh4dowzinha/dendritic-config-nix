@@ -5,9 +5,7 @@
       # Hardware
       hardware.audio
       hardware.bluetooth
-      hardware.coolercontrol
       hardware.ddcutil
-      hardware.keyboard
 
       # Theming
       desktop.style.stylix
@@ -22,12 +20,8 @@
       desktop.xdg-portal
 
       # Apps
-      applications.terminals.alacritty
       applications.terminals.kitty
       applications.browsers.firefox
-      applications.browsers.chromium
-
-      applications.mail.protonmail
 
       applications.productivity.obs-studio
       applications.productivity.obsidian

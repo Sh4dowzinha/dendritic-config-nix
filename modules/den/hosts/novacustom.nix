@@ -27,6 +27,7 @@
       hardware.cpu.intel
       hardware.gpu.intel
       hardware.laptop
+      hardware.nitrokey3
 
       desktop.hyprland
       desktop.gdm
@@ -40,6 +41,7 @@
     sh4dow = {
       includes = with den.aspects; [
         applications.browsers.firefox
+        applications.security.keepassxc
       ];
     };
   };
