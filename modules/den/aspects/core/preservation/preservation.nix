@@ -26,6 +26,8 @@
       ];
 
       config = lib.mkIf (host.settings.core.preservation.enable or false) {
+        systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
+
         preservation.enable = true;
         preservation.preserveAt = {
           "/cache" = {

@@ -16,10 +16,11 @@
         LC_TELEPHONE = "pt_PT.UTF-8";
         LC_TIME = "pt_PT.UTF-8";
       };
+      services.xserver.xkb.layout = host.keyboard.layout or "us";
 
       console = {
-        keyMap = host.keyboard.layout or "us";
-        font = lib.mkDefault "Lat2-Terminus16";
+        font = lib.mkDefault "ter-124b";
+        useXkbConfig = true;
         earlySetup = true;
         packages = with pkgs; [
           terminus_font
