@@ -1,3 +1,3 @@
 {
-  den.quirks.age-secrets.description = "Age secret declarations collected from aspects";
+  den.quirks.secrets.description = "Secret declarations collected from aspects";
 }

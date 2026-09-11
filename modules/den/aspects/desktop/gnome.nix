@@ -140,16 +140,16 @@
 
           "org/gnome/desktop/wm/keybindings" = {
             close = [ "<Super>q" ];
-            move-to-workspace-1 = [ "<Shift><Super>1" ];
-            move-to-workspace-2 = [ "<Shift><Super>2" ];
-            move-to-workspace-3 = [ "<Shift><Super>3" ];
-            move-to-workspace-4 = [ "<Shift><Super>4" ];
-            move-to-workspace-5 = [ "<Shift><Super>5" ];
-            move-to-workspace-6 = [ "<Shift><Super>6" ];
-            move-to-workspace-7 = [ "<Shift><Super>7" ];
-            move-to-workspace-8 = [ "<Shift><Super>8" ];
-            move-to-workspace-9 = [ "<Shift><Super>9" ];
-            move-to-workspace-10 = [ "<Shift><Super>0" ];
+            move-to-workspace-1 = [ "<Alt><Super>1" ];
+            move-to-workspace-2 = [ "<Alt><Super>2" ];
+            move-to-workspace-3 = [ "<Alt><Super>3" ];
+            move-to-workspace-4 = [ "<Alt><Super>4" ];
+            move-to-workspace-5 = [ "<Alt><Super>5" ];
+            move-to-workspace-6 = [ "<Alt><Super>6" ];
+            move-to-workspace-7 = [ "<Alt><Super>7" ];
+            move-to-workspace-8 = [ "<Alt><Super>8" ];
+            move-to-workspace-9 = [ "<Alt><Super>9" ];
+            move-to-workspace-10 = [ "<Alt><Super>0" ];
             switch-to-workspace-1 = [ "<Super>1" ];
             switch-to-workspace-2 = [ "<Super>2" ];
             switch-to-workspace-3 = [ "<Super>3" ];

@@ -5,6 +5,10 @@
     system-owner = "sh4dow";
     keyboard.layout = "pt";
     timezone = "Europe/Lisbon";
+    gpu.intel = {
+      pci-id = "46a6";
+      driver = "xe";
+    };
 
     settings = {
       disk.btrfs-luks-tmpfs-single.device_id = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNL0X119308M";

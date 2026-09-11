@@ -4,17 +4,32 @@
     includes = [
       den.aspects.desktop.xdg
     ];
+    
     homeManager = {
       programs.keepassxc = {
         enable = true;
         autostart = true;
+        settings = {
+          Browser = {
+            Enabled = true;
+            UpdateBinaryPath = false;
+          };
+          GUI = {
+            AdvancedSettings = true;
+            ApplicationTheme = "dark";
+            HidePasswords = true;
+          };
+          SSHAgent = {
+            Enabled = false;
+          };
+        };
       };
     };
 
-    persistHome = {
+    cacheHome = {
       directories = [
         {
-          directory = ".config/keepassxc";
+          directory = ".cache/keepassxc";
         }
       ];
     };

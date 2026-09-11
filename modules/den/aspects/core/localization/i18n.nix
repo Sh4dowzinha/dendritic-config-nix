@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   den.aspects.core.localization.i18n = {
-    nixos = { host, ... }: {
+    nixos = { host, pkgs, ... }: {
       i18n.defaultLocale = "en_US.UTF-8";
       i18n.extraLocales = [ "pt_PT.UTF-8/UTF-8" ];
 
@@ -20,6 +20,10 @@
       console = {
         keyMap = host.keyboard.layout or "us";
         font = lib.mkDefault "Lat2-Terminus16";
+        earlySetup = true;
+        packages = with pkgs; [
+          terminus_font
+        ];
       };
     };
   };
