@@ -48,8 +48,8 @@
               directories = [
                 "Downloads"
                 ".local/state/nix"
-                ".local/share/Trash"
-                ".cache"
+                ".cache/nix"
+                ".cache/mesa_shader_cache"
               ];
             };
           };
