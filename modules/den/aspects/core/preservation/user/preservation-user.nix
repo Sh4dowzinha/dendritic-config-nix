@@ -1,21 +1,5 @@
-{ den, ... }:
 {
-  den.aspects.core.preservation.user = {
-    policies.require-host-preservation =
-      { host, user, ... }:
-      if host.hasAspect den.aspects.core.preservation then
-        [ ]
-      else
-        throw ''
-          Preservation user aspect used for '${user.userName}', but
-          host '${host.name}' does not include
-          den.aspects.core.preservation.
-        '';
-
-    includes = [
-      den.aspects.core.preservation.user-emitter
-    ];
-
+  den.aspects.core.preservation-user = {
     persistHome = {
       commonMountOptions = [
         "x-gvfs-hide"

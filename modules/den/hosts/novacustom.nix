@@ -47,6 +47,8 @@
         applications.browsers.firefox
         applications.security.keepassxc
         applications.gaming.osu-lazer
+
+        core.preservation-user
       ];
     };
   };

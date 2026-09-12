@@ -8,7 +8,6 @@
   den.aspects.core.preservation = {
     includes = [
       den.aspects.core.preservation.collector
-      den.aspects.core.preservation.user-collector
       den.aspects.core.preservation.tmpfs
     ];
 
@@ -26,12 +25,16 @@
       ];
 
       config = lib.mkIf (host.settings.core.preservation.enable or false) {
-        systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
+        systemd.suppressedSystemUnits = [
+          "systemd-machine-id-commit.service"
+        ];
 
         preservation.enable = true;
+
         preservation.preserveAt = {
           "/cache" = {
             persistentStoragePath = "/cache";
+
             commonMountOptions = [
               "x-gvfs-hide"
               "x-gdu.hide"

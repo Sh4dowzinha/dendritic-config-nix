@@ -1,9 +1,12 @@
+# Pipe collection policies for cross-scope discovery.
+#
 # Pipe collection policies for cross-host discovery.
 #
 # Declares collection policies for all quirks that need cross-host
 # aggregation, wired into host schema so every host collects pipe
 # entries from peers.
-{ den, lib, ... }:
+{ den, ... }:
+
 let
   inherit (den.lib.policy) pipe;
 in
@@ -12,14 +15,6 @@ in
     { host, ... }:
     [
       (pipe.from "host-addrs" [
-        (pipe.collectAll ({ host, ... }: true))
-      ])
-    ];
-
-  den.policies.collect-preservation-users =
-    { host, ... }:
-    [
-      (pipe.from "preservation-users" [
         (pipe.collectAll ({ host, ... }: true))
       ])
     ];
@@ -39,21 +34,26 @@ in
       ])
     ];
 
-  den.policies.expose-preservation-users =
+  # User-side persistence values are exposed upward to the host so
+  # the preservation user collector can consume them in user context.
+  den.policies.expose-preservation-user =
     { user, ... }:
     [
-      (pipe.from "preservation-users" [
+      (pipe.from "persistHome" [
+        pipe.expose
+      ])
+
+      (pipe.from "cacheHome" [
         pipe.expose
       ])
     ];
 
   den.schema.host.includes = [
     den.policies.collect-host-addrs
-    den.policies.collect-preservation-users
   ];
 
   den.schema.user.includes = [
     den.policies.expose-resolved-users
-    den.policies.expose-preservation-users
+    den.policies.expose-preservation-user
   ];
 }
