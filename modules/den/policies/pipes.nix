@@ -16,6 +16,14 @@ in
       ])
     ];
 
+  den.policies.collect-preservation-users =
+    { host, ... }:
+    [
+      (pipe.from "preservation-users" [
+        (pipe.collectAll ({ host, ... }: true))
+      ])
+    ];
+
   # Bottom-up dual of the collect policies. `resolved-users` is emitted per user
   # at user scope (core/users/resolved-user-emitter.nix) and must bubble up the
   # P edge to the host so host aspects (wireshark, adb, ddcutil, razer,
@@ -31,11 +39,21 @@ in
       ])
     ];
 
+  den.policies.expose-preservation-users =
+    { user, ... }:
+    [
+      (pipe.from "preservation-users" [
+        pipe.expose
+      ])
+    ];
+
   den.schema.host.includes = [
     den.policies.collect-host-addrs
+    den.policies.collect-preservation-users
   ];
 
   den.schema.user.includes = [
     den.policies.expose-resolved-users
+    den.policies.expose-preservation-users
   ];
 }

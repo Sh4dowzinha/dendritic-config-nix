@@ -7,8 +7,8 @@
 {
   den.aspects.core.preservation = {
     includes = [
-      den.aspects.core.preservation.persist-collector
-      den.aspects.core.preservation.persist-home-collector
+      den.aspects.core.preservation.collector
+      den.aspects.core.preservation.user-collector
       den.aspects.core.preservation.tmpfs
     ];
 
@@ -40,20 +40,6 @@
             directories = [
               "/var/log"
             ];
-
-            users.sh4dow = {
-              commonMountOptions = [
-                "x-gvfs-hide"
-                "x-gdu.hide"
-              ];
-
-              directories = [
-                "Downloads"
-                ".local/state/nix"
-                ".cache/nix"
-                ".cache/mesa_shader_cache"
-              ];
-            };
           };
 
           "/persist" = {
@@ -75,29 +61,6 @@
                 inInitrd = true;
               }
             ];
-
-            users.sh4dow = {
-              commonMountOptions = [
-                "x-gvfs-hide"
-                "x-gdu.hide"
-              ];
-
-              directories = [
-                "Desktop"
-                "Documents"
-                "Music"
-                "Pictures"
-                "Projects"
-                "Public"
-                "Templates"
-                "Videos"
-                ".local/share/direnv"
-                {
-                  directory = ".local/share/keyrings";
-                  mode = "0700";
-                }
-              ];
-            };
           };
         };
       };

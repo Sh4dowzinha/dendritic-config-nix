@@ -1,5 +1,5 @@
 {
-  den.aspects.core.preservation.persist-collector = {
+  den.aspects.core.preservation.collector = {
     nixos =
       {
         persist,
