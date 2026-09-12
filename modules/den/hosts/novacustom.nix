@@ -46,6 +46,7 @@
       includes = with den.aspects; [
         applications.browsers.firefox
         applications.security.keepassxc
+        applications.gaming.osu-lazer
       ];
     };
   };
