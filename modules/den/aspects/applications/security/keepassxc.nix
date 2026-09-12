@@ -4,7 +4,7 @@
     includes = [
       den.aspects.desktop.xdg
     ];
-    
+
     homeManager = {
       programs.keepassxc = {
         enable = true;
