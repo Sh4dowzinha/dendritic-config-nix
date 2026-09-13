@@ -66,7 +66,12 @@
       }:
       {
         services.gpg-agent.pinentry.package =
-          if (host.hasAspect den.aspects.roles.workstation) then pkgs.pinentry-gnome3 else pkgs.pinentry-tty;
+          if (host.hasAspect den.aspects.desktop.gnome) then
+            pkgs.pinentry-gnome3
+          else if (host.hasAspect den.aspects.desktop.kde) then
+            pkgs.pinentry-qt
+          else
+            pkgs.pinentry-tty;
       };
 
     homeDarwin =
