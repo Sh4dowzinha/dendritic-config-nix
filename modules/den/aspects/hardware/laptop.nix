@@ -16,7 +16,7 @@
 
         networking.networkmanager.wifi = {
           powersave = true;
-          macAddress = "preserve";
+          macAddress = "stable-ssid";
         };
 
         services = {
@@ -32,8 +32,6 @@
             HibernateKeyIgnoreInhibited = "yes";
           };
 
-          power-profiles-daemon.enable = false;
-
           scx = {
             enable = true;
             package = lib.mkForce pkgs.scx.full;
@@ -42,24 +40,6 @@
               "--autopower"
             ];
           };
-
-          auto-cpufreq = {
-            enable = true;
-            settings = {
-              battery = {
-                governor = "powersave";
-                energy_performance_preference = lib.mkDefault "balance_power";
-                turbo = "never";
-              };
-              charger = {
-                governor = "powersave";
-                energy_performance_preference = lib.mkDefault "balance_performance";
-                turbo = "auto";
-              };
-            };
-          };
-
-          thermald.enable = true;
         };
       };
   };
