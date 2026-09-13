@@ -43,11 +43,6 @@
 
       files.url = "github:sini/files";
 
-      firefox-addons = {
-        url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
-
       flake-compat = {
         url = "github:edolstra/flake-compat";
       };
@@ -136,11 +131,6 @@
 
       proton-cachyos.url = "github:powerofthe69/proton-cachyos-nix";
 
-      shimmer = {
-        url = "github:nuclearcodecat/shimmer";
-        flake = false;
-      };
-
       steam-config-nix = {
         url = "github:different-name/steam-config-nix";
         inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -154,14 +144,6 @@
       treefmt-nix = {
         url = "github:numtide/treefmt-nix";
         inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
-
-      zen-browser = {
-        url = "github:0xc000022070/zen-browser-flake";
-        inputs = {
-          nixpkgs.follows = "nixpkgs-unstable";
-          home-manager.follows = "home-manager-unstable";
-        };
       };
     };
   };

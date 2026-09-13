@@ -31,6 +31,8 @@
       ];
       directories = [
         "/var/lib/systemd/coredump"
+        "/var/lib/systemd/rfkill"
+        "/var/lib/systemd/backlight"
       ];
     };
   };

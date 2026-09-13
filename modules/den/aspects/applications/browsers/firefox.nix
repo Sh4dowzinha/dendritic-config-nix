@@ -1,48 +1,52 @@
 { inputs, ... }:
 let
-  inherit (inputs) betterfox shimmer;
+  inherit (inputs) betterfox;
 in
 {
   den.aspects.applications.browsers.firefox = {
     homeManager =
-      {
-        pkgs,
-        inputs',
-        ...
-      }:
-      let
-        inherit (inputs'.firefox-addons.packages)
-          ublock-origin
-          sponsorblock
-          darkreader
-          return-youtube-dislikes
-          firefox-color
-          mal-sync
-          sidebery
-          ;
-      in
+      { pkgs, inputs', ... }:
       {
         programs.firefox = {
           enable = true;
+          policies = {
+            ExtensionSettings = {
+              "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
+
+              # uBlock Origin:
+              "uBlock0@raymondhill.net" = {
+                default_area = "menupanel";
+                install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+                installation_mode = "force_installed";
+                private_browsing = true;
+              };
+
+              # Dark Reader:
+              "addon@darkreader.org" = {
+                install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
+                installation_mode = "force_installed";
+              };
+
+              # Sponsor Block:
+              "sponsorBlocker@ajay.app" = {
+                install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
+                installation_mode = "force_installed";
+              };
+
+              # Return youtube dislike:
+              "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = {
+                install_url = "https://addons.mozilla.org/firefox/downloads/latest/return-youtube-dislikes/latest.xpi";
+                installation_mode = "force_installed";
+              };
+            };
+          };
 
           profiles = {
             default = {
               id = 0;
               isDefault = true;
 
-              extensions.packages = [
-                ublock-origin
-                sponsorblock
-                darkreader
-                return-youtube-dislikes
-                firefox-color
-                mal-sync
-                sidebery
-              ];
-
               preConfig = builtins.readFile "${betterfox.outPath}/user.js";
-              userChrome = builtins.readFile "${shimmer.outPath}/userChrome.css";
-              userContent = builtins.readFile "${shimmer.outPath}/userContent.css";
 
               extraConfig = builtins.concatStringsSep "\n" [
                 (builtins.readFile "${betterfox.outPath}/Securefox.js")
@@ -76,13 +80,9 @@ in
                 "media.rdd-vpx.enabled" = true;
                 "media.rdd-process.enabled" = true;
 
-                "shimmer.remove-winctr-buttons" = true;
                 "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
                 "svg.context-properties.content.enabled" = true;
                 "browser.search.suggest.enabled" = true;
-                "captivedetect.canonicalURL" = "http://detectportal.firefox.com/canonical.html";
-                "network.captive-portal-service.enabled" = true;
-                "network.connectivity-service.enabled" = true;
                 "extensions.autoDisableScopes" = 0;
 
                 "app.normandy.enabled" = false;
@@ -129,6 +129,7 @@ in
 
               search = {
                 force = true;
+                default = "Brave";
                 engines = {
                   "Nix Packages" = {
                     urls = [
@@ -194,7 +195,6 @@ in
                     definedAliases = [ "@nw" ];
                   };
                 };
-                default = "Brave";
               };
             };
           };
