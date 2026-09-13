@@ -98,6 +98,13 @@
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     nvf.url = "github:notashelf/nvf";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs = {
+        home-manager.follows = "home-manager-unstable";
+        nixpkgs.follows = "nixpkgs-unstable";
+      };
+    };
     preservation.url = "github:nix-community/preservation";
     proton-cachyos.url = "github:powerofthe69/proton-cachyos-nix";
     shimmer = {

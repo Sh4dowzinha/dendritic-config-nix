@@ -11,7 +11,7 @@
           enable = true;
           autostart = {
             enable = true;
-            readOnly = true;
+            # readOnly = true;   # Keep disabled for now
           };
           userDirs.enable = true;
         };
