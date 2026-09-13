@@ -21,10 +21,19 @@
         inputs'.plasma-manager.homeModules.plasma-manager
       ];
 
-    homeManager = {
+    homeManager = { host, ... }; {
       programs.plasma = {
         enable = true;
         overrideConfig = true;
+
+        input = {
+          touchpads = [
+            {
+              name = host.touchpadName or null;
+              naturalScroll = true;
+            };
+          ];
+        };
 
         workspace = {
           lookAndFeel = "org.kde.breezedark.desktop";
