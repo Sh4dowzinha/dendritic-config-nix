@@ -34,7 +34,6 @@
       hardware.nitrokey3
 
       desktop.hyprland
-      desktop.gdm
       desktop.gnome
 
       disk.btrfs-luks-tmpfs-single

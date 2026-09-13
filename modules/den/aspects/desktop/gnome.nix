@@ -27,6 +27,7 @@
         };
 
         services = {
+          displayManager.gdm.enable = true;
           desktopManager.gnome.enable = true;
           udev.packages = [ pkgs.gnome-settings-daemon ];
         };
