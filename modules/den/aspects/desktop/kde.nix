@@ -21,7 +21,7 @@
         inputs'.plasma-manager.homeModules.plasma-manager
       ];
 
-    homeManager = { host, ... }; {
+    homeManager = { host, ... }: {
       programs.plasma = {
         enable = true;
         overrideConfig = true;
@@ -31,7 +31,7 @@
             {
               name = host.touchpadName or null;
               naturalScroll = true;
-            };
+            }
           ];
         };
 

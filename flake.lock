@@ -314,28 +314,6 @@
         "type": "github"
       }
     },
-    "firefox-addons": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "dir": "pkgs/firefox-addons",
-        "lastModified": 1789185767,
-        "narHash": "sha256-jaWL9beN3ifjNzNEBxo0abA+TSi0n7Q8LRQvZTxEqaM=",
-        "owner": "rycee",
-        "repo": "nur-expressions",
-        "rev": "811170bb74b11f3b9489618ce77487cc58c79067",
-        "type": "gitlab"
-      },
-      "original": {
-        "dir": "pkgs/firefox-addons",
-        "owner": "rycee",
-        "repo": "nur-expressions",
-        "type": "gitlab"
-      }
-    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -1987,7 +1965,6 @@
         "devshell": "devshell",
         "disko": "disko",
         "files": "files",
-        "firefox-addons": "firefox-addons",
         "flake-compat": "flake-compat",
         "flake-file": "flake-file",
         "flake-parts": "flake-parts",
@@ -2019,13 +1996,11 @@
         "plasma-manager": "plasma-manager",
         "preservation": "preservation",
         "proton-cachyos": "proton-cachyos",
-        "shimmer": "shimmer",
         "sops-nix": "sops-nix",
         "steam-config-nix": "steam-config-nix",
         "stylix": "stylix",
         "systems": "systems_4",
-        "treefmt-nix": "treefmt-nix_2",
-        "zen-browser": "zen-browser"
+        "treefmt-nix": "treefmt-nix_2"
       }
     },
     "scss-reset": {
@@ -2126,22 +2101,6 @@
       "original": {
         "type": "file",
         "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg"
-      }
-    },
-    "shimmer": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1781718586,
-        "narHash": "sha256-z3yEiKFkuQNOzdaAt7vGsB3V/7XgcaFN48uihjSFoz8=",
-        "owner": "nuclearcodecat",
-        "repo": "shimmer",
-        "rev": "c346a3744bcbe49cce33ec2b82754ed0621ebbb7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nuclearcodecat",
-        "repo": "shimmer",
-        "type": "github"
       }
     },
     "sops-nix": {
@@ -2445,29 +2404,6 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
-        "type": "github"
-      }
-    },
-    "zen-browser": {
-      "inputs": {
-        "home-manager": [
-          "home-manager-unstable"
-        ],
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1789239533,
-        "narHash": "sha256-x6LDRbyl+trEnwrFth2SAdDf8x4SM7DWcjmR2JUxtAg=",
-        "owner": "0xc000022070",
-        "repo": "zen-browser-flake",
-        "rev": "b66d03970382d5185e040110b24ecb7a39df0e80",
-        "type": "github"
-      },
-      "original": {
-        "owner": "0xc000022070",
-        "repo": "zen-browser-flake",
         "type": "github"
       }
     }
