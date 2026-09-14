@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 let
   inherit (inputs) betterfox;
 in
@@ -9,13 +9,14 @@ in
       {
         programs.firefox = {
           enable = true;
+
           policies = {
             ExtensionSettings = {
               "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
 
               # uBlock Origin:
               "uBlock0@raymondhill.net" = {
-                default_area = "menupanel";
+                default_area = "navbar"; # Pin the extension to the navigation bar
                 install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
                 installation_mode = "force_installed";
                 private_browsing = true;
@@ -23,20 +24,26 @@ in
 
               # Dark Reader:
               "addon@darkreader.org" = {
+                default_area = "navbar";
                 install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
                 installation_mode = "force_installed";
+                private_browsing = false;
               };
 
               # Sponsor Block:
               "sponsorBlocker@ajay.app" = {
+                default_area = "menupanel"; # Don't pin the extension
                 install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
                 installation_mode = "force_installed";
+                private_browsing = false;
               };
 
               # Return youtube dislike:
               "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = {
+                default_area = "menupanel";
                 install_url = "https://addons.mozilla.org/firefox/downloads/latest/return-youtube-dislikes/latest.xpi";
                 installation_mode = "force_installed";
+                private_browsing = false;
               };
             };
           };
@@ -222,8 +229,9 @@ in
     # home-manager ≥ the nixpkgs bump migrated firefox to the XDG path
     # (~/.config/mozilla/firefox). Firefox prefers legacy ~/.mozilla when it
     # exists, so persist the XDG path and let ~/.mozilla get wiped on boot.
+    # Will change to .config/mozilla eventually.
     persistHome.directories = [
-      ".config/mozilla/firefox"
+      ".mozilla"
     ];
   };
 }
