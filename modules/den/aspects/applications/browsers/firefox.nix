@@ -22,6 +22,14 @@ in
                 private_browsing = true;
               };
 
+              # KeepassXC:
+              "keepassxc-browser@keepassxc.net" = {
+                default_area = "navbar";
+                install_url = "https://addons.mozilla.org/firefox/downloads/latest/keepassxc-browser/latest.xpi";
+                installation_mode = "force_installed";
+                private_browsing = true;
+              };
+
               # Dark Reader:
               "addon@darkreader.org" = {
                 default_area = "navbar";
@@ -231,7 +239,7 @@ in
     # exists, so persist the XDG path and let ~/.mozilla get wiped on boot.
     # Will change to .config/mozilla eventually.
     persistHome.directories = [
-      ".mozilla"
+      ".config/mozilla/firefox"
     ];
   };
 }
