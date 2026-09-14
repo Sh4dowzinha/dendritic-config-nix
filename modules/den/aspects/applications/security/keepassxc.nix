@@ -20,7 +20,7 @@
             HidePasswords = true;
             MinimizeOnClose = true;
             ShowTrayIcon = true;
-            TrayIconAppearance = "monochrome-light"
+            TrayIconAppearance = "monochrome-light";
           };
           PasswordGenerator = {
             Length = 64;
