@@ -23,7 +23,7 @@ in
               };
 
               # KeepassXC:
-              "keepassxc-browser@keepassxc.net" = {
+              "keepassxc-browser@keepassxc.org" = {
                 default_area = "navbar";
                 install_url = "https://addons.mozilla.org/firefox/downloads/latest/keepassxc-browser/latest.xpi";
                 installation_mode = "force_installed";
