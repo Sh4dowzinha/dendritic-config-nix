@@ -18,8 +18,7 @@
       core.users.home-manager-shared
       core.security.sudo
       core.localization.time
-      core.perf.ssd
-      core.perf.zram-swap
+      core.system.zram-swap
       core.system.linux-kernel
       core.users
 

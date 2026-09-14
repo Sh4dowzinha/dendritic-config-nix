@@ -1,5 +1,5 @@
 {
-  den.aspects.core.perf.zram-swap = {
+  den.aspects.core.system.zram-swap = {
     nixos = {
       zramSwap.enable = true;
       # zram pages are held in RAM, so the device is not spare capacity — it is

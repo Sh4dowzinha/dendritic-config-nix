@@ -1,8 +1,7 @@
-{ inputs, ... }:
 {
   den.aspects.hardware.cpu.amd = {
     nixos =
-      { config, pkgs, ... }:
+      { pkgs, ... }:
       {
 
         environment.systemPackages = [ pkgs.amdctl ];

@@ -3,9 +3,27 @@
     homeManager =
       { pkgs, ... }:
       {
-        home.packages = [
-          pkgs.brave-origin
-        ];
+        programs.brave-origin = {
+          enable = true;
+          nativeMessagingHosts = [
+            pkgs.keepassxc
+          ];
+
+          extensions = [
+            {
+              id = "mnjggcdmjocbbbhaepdhchncahnbgone"; # Youtube SponsorBlock
+            }
+            {
+              id = "gebbhagfogifgggkldgodflihgfeippi"; # Return Youtube Dislikes
+            }
+            {
+              id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; # Dark Reader
+            }
+            {
+              id = "oboonakemofpalcgghocfoadofidjkkk"; # KeepassXC Browser
+            }
+          ];
+        };
       };
 
     homeLinux = {

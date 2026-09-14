@@ -21,7 +21,6 @@
 
       # Apps
       applications.terminals.kitty
-      applications.browsers.firefox
 
       applications.productivity.obs-studio
       applications.productivity.obsidian
