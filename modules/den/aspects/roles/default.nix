@@ -11,6 +11,7 @@
       core.users.shell
       core.network.firewall
       core.network.dns
+      core.network.avahi
       core.utils
       core.system.firmware
       core.security

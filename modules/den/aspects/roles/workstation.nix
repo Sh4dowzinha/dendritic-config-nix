@@ -6,6 +6,7 @@
       hardware.audio
       hardware.bluetooth
       hardware.ddcutil
+      hardware.printers
 
       # Theming
       desktop.style.stylix
