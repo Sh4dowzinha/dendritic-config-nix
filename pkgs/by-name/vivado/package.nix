@@ -195,7 +195,6 @@ let
 
     dontConfigure = true;
     dontBuild = true;
-    dontCheckForBrokenSymlinks = true;
 
     sourceRoot = "FPGAs_AdaptiveSoCs_Unified_SDI_${version}_${release}";
 
@@ -229,38 +228,35 @@ let
     installPhase = ''
       runHook preInstall
 
-      cp ${./install_config.txt} install-config.txt
+      # Keep the checked-in AMD configuration immutable.
+      cp ${./install_config.txt} install_config.txt
 
-      installRoot="$PWD/vivado-install"
-
-      substituteInPlace install-config.txt \
+      # The actual output path is a Nix build detail, so inject it here.
+      substituteInPlace install_config.txt \
         --replace-fail \
           'Destination=' \
-          "Destination=$installRoot"
+          'Destination=$PWD/vivado-install'
+
+      installRoot="$PWD/vivado-install"
 
       rm -rf "$installRoot"
       mkdir -p "$installRoot"
 
+
+      #  Run xsetup inside the FHS environment, but have it write to the
+      #  writable Nix build directory rather than /nix/store.
+
       ${installerFHS}/bin/vivado-installer \
         "$PWD" \
         "$installRoot" \
-        "$PWD/install-config.txt"
+        "$PWD/install_config.txt"
 
-      # AMD's installer generates settings files containing the temporary
-      # installation path. Relocate those paths into the final Nix output.
-      installedRoot="$out/2026.1"
+
+      #  AMD has finished installing. Now copy the resulting tree into
+      #  the immutable Nix output.
 
       mkdir -p "$out"
       cp -a "$installRoot/." "$out/"
-
-      substituteInPlace \
-        "$out/2026.1/Vivado/.settings64-Vivado.sh" \
-        "$out/2026.1/Vivado/.settings64-Vivado.csh" \
-        "$out/2026.1/Vivado/settings64.sh" \
-        "$out/2026.1/Vivado/settings64.csh" \
-        --replace-fail \
-          "$installRoot/2026.1" \
-          "$installedRoot"
 
       runHook postInstall
     '';
