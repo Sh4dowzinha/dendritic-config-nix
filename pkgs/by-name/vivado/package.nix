@@ -241,6 +241,9 @@ let
       rm -rf "$installRoot"
       mkdir -p "$installRoot"
 
+      #  Run xsetup inside the FHS environment, but have it write to the
+      #  writable Nix build directory rather than /nix/store.
+
       ${installerFHS}/bin/vivado-installer \
         "$PWD" \
         "$installRoot" \
@@ -249,6 +252,9 @@ let
       # AMD's installer generates settings files containing the temporary
       # installation path. Relocate those paths into the final Nix output.
       installedRoot="$out/2026.1"
+
+      #  AMD has finished installing. Now copy the resulting tree into
+      #  the immutable Nix output.
 
       mkdir -p "$out"
       cp -a "$installRoot/." "$out/"
