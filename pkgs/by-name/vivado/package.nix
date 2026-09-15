@@ -228,32 +228,24 @@ let
     installPhase = ''
       runHook preInstall
 
-      # Keep the checked-in AMD configuration immutable.
       cp ${./install_config.txt} install_config.txt
-
-      # The actual output path is a Nix build detail, so inject it here.
-      substituteInPlace install_config.txt \
-        --replace-fail \
-          'Destination=' \
-          'Destination=$PWD/vivado-install'
 
       installRoot="$PWD/vivado-install"
 
+      # AMD's configuration parser expects an actual filesystem path.
+      # Do not leave shell variables such as $PWD in the config file.
+      substituteInPlace install_config.txt \
+        --replace-fail \
+          'Destination=' \
+          "Destination=$installRoot"
+
       rm -rf "$installRoot"
       mkdir -p "$installRoot"
-
-
-      #  Run xsetup inside the FHS environment, but have it write to the
-      #  writable Nix build directory rather than /nix/store.
 
       ${installerFHS}/bin/vivado-installer \
         "$PWD" \
         "$installRoot" \
         "$PWD/install_config.txt"
-
-
-      #  AMD has finished installing. Now copy the resulting tree into
-      #  the immutable Nix output.
 
       mkdir -p "$out"
       cp -a "$installRoot/." "$out/"
