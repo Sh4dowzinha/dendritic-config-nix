@@ -104,6 +104,7 @@ let
     stays inside the Nix build directory instead of your system /tmp
     tmpfs.
   */
+
   installerScript = writeShellScript "vivado-installer" ''
     set -euo pipefail
 
@@ -198,27 +199,26 @@ let
     sourceRoot = "FPGAs_AdaptiveSoCs_Unified_SDI_${version}_${release}";
 
     postUnpack = ''
-      /*
-        AMD uses /bin/bash in all of its shell scripts, while NixOS
-        deliberately doesn't provide a traditional /bin/bash.
-      */
+      #  AMD uses /bin/bash in all of its shell scripts, while NixOS
+      #  deliberately doesn't provide a traditional /bin/bash.
+
       patchShebangs "$sourceRoot"
 
-      /*
-        xsetup contains one hard-coded /bin/rm rather than relying on
-        PATH, so patch that explicitly.
-      */
+
+      #  xsetup contains one hard-coded /bin/rm rather than relying on
+      #  PATH, so patch that explicitly.
+
       substituteInPlace "$sourceRoot/xsetup" \
         --replace-fail \
           '/bin/rm' \
           '${coreutils}/bin/rm'
 
-      /*
-        AMD's setup-boot-loader.sh hard-codes its temporary native-library
-        directory below /tmp. Put it below the Nix build directory instead.
 
-        xsetup is invoked with the source tree as $PWD.
-      */
+      #  AMD's setup-boot-loader.sh hard-codes its temporary native-library
+      #  directory below /tmp. Put it below the Nix build directory instead.
+      #
+      #  xsetup is invoked with the source tree as $PWD.
+
       substituteInPlace "$sourceRoot/bin/setup-boot-loader.sh" \
         --replace-fail \
           '/tmp/TMP_LD_LIB_PATH' \
@@ -242,19 +242,19 @@ let
       rm -rf "$installRoot"
       mkdir -p "$installRoot"
 
-      /*
-        Run xsetup inside the FHS environment, but have it write to the
-        writable Nix build directory rather than /nix/store.
-      */
+
+      #  Run xsetup inside the FHS environment, but have it write to the
+      #  writable Nix build directory rather than /nix/store.
+
       ${installerFHS}/bin/vivado-installer \
         "$PWD" \
         "$installRoot" \
         "$PWD/install_config.txt"
 
-      /*
-        AMD has finished installing. Now copy the resulting tree into
-        the immutable Nix output.
-      */
+
+      #  AMD has finished installing. Now copy the resulting tree into
+      #  the immutable Nix output.
+
       mkdir -p "$out"
       cp -a "$installRoot/." "$out/"
 
