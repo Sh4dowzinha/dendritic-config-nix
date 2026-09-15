@@ -195,6 +195,7 @@ let
 
     dontConfigure = true;
     dontBuild = true;
+    dontCheckForBrokenSymlinks = true;
 
     sourceRoot = "FPGAs_AdaptiveSoCs_Unified_SDI_${version}_${release}";
 
@@ -228,13 +229,11 @@ let
     installPhase = ''
       runHook preInstall
 
-      cp ${./install_config.txt} install_config.txt
+      cp ${./install_config.txt} install-config.txt
 
       installRoot="$PWD/vivado-install"
 
-      # AMD's configuration parser expects an actual filesystem path.
-      # Do not leave shell variables such as $PWD in the config file.
-      substituteInPlace install_config.txt \
+      substituteInPlace install-config.txt \
         --replace-fail \
           'Destination=' \
           "Destination=$installRoot"
@@ -245,10 +244,23 @@ let
       ${installerFHS}/bin/vivado-installer \
         "$PWD" \
         "$installRoot" \
-        "$PWD/install_config.txt"
+        "$PWD/install-config.txt"
+
+      # AMD's installer generates settings files containing the temporary
+      # installation path. Relocate those paths into the final Nix output.
+      installedRoot="$out/2026.1"
 
       mkdir -p "$out"
       cp -a "$installRoot/." "$out/"
+
+      substituteInPlace \
+        "$out/2026.1/Vivado/.settings64-Vivado.sh" \
+        "$out/2026.1/Vivado/.settings64-Vivado.csh" \
+        "$out/2026.1/Vivado/settings64.sh" \
+        "$out/2026.1/Vivado/settings64.csh" \
+        --replace-fail \
+          "$installRoot/2026.1" \
+          "$installedRoot"
 
       runHook postInstall
     '';
