@@ -1,12 +1,7 @@
 {
   den.aspects.desktop.uwsm = {
     nixos =
-      {
-        config,
-        pkgs,
-        lib,
-        ...
-      }:
+      { pkgs, ... }:
       {
         programs.uwsm.enable = true;
 
@@ -16,16 +11,6 @@
             APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
             APP2UNIT_TYPE = "scope";
           };
-        };
-
-        systemd.user.services.fumon = {
-          enable = true;
-          wantedBy = [ "graphical-session.target" ];
-          path = lib.mkForce [ ];
-          serviceConfig.ExecStart = [
-            ""
-            (lib.getExe' config.programs.uwsm.package "fumon")
-          ];
         };
       };
   };
