@@ -18,10 +18,9 @@
           trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
         };
 
-        environment.systemPackages = [
-          pkgs.wine
-          pkgs.winetricks
-          pkgs.wineWow64Packages.waylandFull
+        environment.systemPackages = with pkgs; [
+          winetricks
+          wineWow64Packages.waylandFull
         ];
 
         hardware = {
@@ -35,9 +34,6 @@
 
           steam = {
             enable = true;
-            #            remotePlay.openFirewall = true;
-            #            dedicatedServer.openFirewall = true;
-            #            localNetworkGameTransfers.openFirewall = true;
             protontricks.enable = true;
 
             package = pkgs.steam.override {
@@ -45,10 +41,8 @@
                 MANGOHUD = true;
                 OBS_VKCAPTURE = true;
                 PROTON_ENABLE_WAYLAND = true;
-                #                PROTON_ENABLE_HDR = true;
                 PROTON_USE_NTSYNC = true;
                 PROTON_USE_WOW64 = true;
-                #                RADV_TEX_ANISO = 16;
                 PULSE_SINK = "Game";
               }
               // lib.optionalAttrs hasNvidiaPrimeOnLaptop {
@@ -110,15 +104,7 @@
             gamescopeSession = {
               enable = true;
 
-              env = {
-                #                DXVK_HDR = "1";
-              };
-
               args = [
-                #                "--rt"
-                #                "--hdr-enabled"
-                #                "--hdr-itm-enabled"
-                #                "--hdr-debug-force-output"
                 "--xwayland-count 2"
                 "-W 1920"
                 "-H 1080"
@@ -143,10 +129,8 @@
               MANGOHUD = true;
               OBS_VKCAPTURE = true;
               PROTON_ENABLE_WAYLAND = true;
-              #              PROTON_ENABLE_HDR = true;
               PROTON_USE_NTSYNC = true;
               PROTON_USE_WOW64 = true;
-              #              RADV_TEX_ANISO = 16;
               PULSE_SINK = "Game";
             };
             extraPkgs =

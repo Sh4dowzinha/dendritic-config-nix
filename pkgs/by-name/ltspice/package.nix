@@ -3,12 +3,13 @@
   stdenv,
   fetchurl,
   replaceVars,
+  makeDesktopItem,
   copyDesktopItems,
   wineWow64Packages,
 }:
 
 let
-  launcher = replaceVars ./ltspice {
+  launcher = replaceVars ./ltspice.sh {
     wine = "${wineWow64Packages.waylandFull}/bin/wine";
   };
 in
@@ -38,8 +39,27 @@ stdenv.mkDerivation (finalAttrs: {
     install -Dm755 ${launcher} \
       "$out/bin/ltspice"
 
+    install -Dm644 ${./ltspice.png} \
+      "$out/share/icons/hicolor/256x256/apps/ltspice.png"
+
     runHook postInstall
   '';
+
+  desktopItems = [
+    (makeDesktopItem {
+      name = "ltspice";
+      desktopName = "LTspice";
+      exec = "ltspice %F";
+      icon = "ltspice";
+      terminal = false;
+
+      categories = [
+        "Science"
+        "Engineering"
+        "Electronics"
+      ];
+    })
+  ];
 
   meta = {
     description = "Analog Devices LTspice circuit simulator";

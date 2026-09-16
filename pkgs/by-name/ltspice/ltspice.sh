@@ -2,31 +2,30 @@
 
 set -euo pipefail
 
-export WINEPREFIX="${XDG_DATA_HOME:-"$HOME/.local/share/wineprefixes"}/ltspice"
+export WINEPREFIX="${XDG_DATA_HOME:-"$HOME/.local/share"}/wineprefixes/ltspice"
+export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 
 wine="@wine@"
 
-# The launcher lives in $out/bin, so the MSI lives two levels below it:
-# $out/bin/ltspice
-# $out/share/ltspice/LTspice64.msi
+# The launcher lives in $out/bin, so the MSI lives in $out/share/ltspice.
 prefix="$(cd -- "$(dirname -- "$0")/.." && pwd)"
-msi="$prefix/share/ltspice/wineprefixes/LTspice64.msi"
+msi="$prefix/share/ltspice/LTspice64.msi"
 
 ltspice_exe='C:\Program Files\ADI\LTspice\LTspice.exe'
 installed_exe="$WINEPREFIX/drive_c/Program Files/ADI/LTspice/LTspice.exe"
 
 # Initialize the dedicated prefix on first launch.
 if [[ ! -d "$WINEPREFIX" ]]; then
-  mkdir -p "$WINEPREFIX"
-  "$wine" wineboot -u
+    mkdir -p "$WINEPREFIX"
+    "$wine" wineboot -u
 fi
 
 # Install LTspice if it is not present in the prefix.
 if [[ ! -f "$installed_exe" ]]; then
-  "$wine" msiexec \
-    /i "$msi" \
-    /qn \
-    /norestart
+    "$wine" msiexec \
+        /i "$msi" \
+        /qn \
+        /norestart
 fi
 
 exec "$wine" "$ltspice_exe" "$@"
