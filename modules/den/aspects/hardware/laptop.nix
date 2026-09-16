@@ -39,6 +39,7 @@
             enable = true;
             pd.enable = true;
             settings = {
+              MAX_LOST_WORK_SECS_ON_BAT = 15;
               USB_AUTOSUSPEND = 0;
             };
           };
