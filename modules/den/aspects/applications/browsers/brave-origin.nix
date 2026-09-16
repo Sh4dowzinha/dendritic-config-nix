@@ -35,6 +35,10 @@
       };
     };
 
+    cacheHome.directories = [
+      ".cache/BraveSoftware/Brave-Origin"
+    ];
+
     persistHome.directories = [
       ".config/BraveSoftware/Brave-Origin"
     ];

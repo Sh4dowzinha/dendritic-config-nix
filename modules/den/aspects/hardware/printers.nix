@@ -3,7 +3,7 @@
     include = [ den.aspects.core.network.avahi ];
     nixos = { pkgs, ... }: {
       services.printing = {
-        enabled = true;
+        enable = true;
         startWhenNeeded = true;
         stateless = true;
         drivers = with pkgs; [

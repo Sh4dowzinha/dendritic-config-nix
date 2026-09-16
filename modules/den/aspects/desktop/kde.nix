@@ -21,18 +21,17 @@
         inputs'.plasma-manager.homeModules.plasma-manager
       ];
 
-    homeManager = { host, ... }: {
+    homeManager = {
       programs.plasma = {
         enable = true;
         overrideConfig = true;
 
         input = {
-          touchpads = [
-            {
-              name = host.touchpadName or null;
-              naturalScroll = true;
-            }
-          ];
+          #touchpads = [
+          #  {
+          #    naturalScroll = true;
+          # }
+          #];
         };
 
         workspace = {

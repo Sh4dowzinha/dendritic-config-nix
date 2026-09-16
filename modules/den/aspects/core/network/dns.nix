@@ -10,7 +10,7 @@
       services.resolved = {
         enable = true;
         settings.Resolve = {
-          LLMMR = "false";
+          LLMNR = "false";
           MulticastDNS = "false";
           DNSSEC = "true";
           Domains = [ "~." ];
