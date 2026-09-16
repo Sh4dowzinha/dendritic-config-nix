@@ -12,6 +12,7 @@
       {
         environment.systemPackages = [
           pkgs.brightnessctl
+          pkgs.powertop
         ];
 
         networking.networkmanager.wifi = {
@@ -30,6 +31,16 @@
             PowerKeyIgnoreInhibited = "yes";
             SuspendKeyIgnoreInhibited = "yes";
             HibernateKeyIgnoreInhibited = "yes";
+          };
+
+          power-profiles-daemon.enable = false;
+
+          tlp = {
+            enable = true;
+            pd.enable = true;
+            settings = {
+              USB_AUTOSUSPEND = 0;
+            };
           };
 
           scx = {

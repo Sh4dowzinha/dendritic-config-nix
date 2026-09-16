@@ -42,7 +42,6 @@
 
             directories = [
               "/var/log"
-              "/var/lib/power-profiles-daemon"
             ];
           };
 

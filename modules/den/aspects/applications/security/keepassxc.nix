@@ -19,6 +19,7 @@
             ApplicationTheme = "dark";
             HidePasswords = true;
             MinimizeOnClose = true;
+            MinimizeOnStartup = true;
             ShowTrayIcon = true;
             TrayIconAppearance = "monochrome-light";
           };

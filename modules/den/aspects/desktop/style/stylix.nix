@@ -199,10 +199,6 @@ in
 
               polarity = "dark";
 
-              targets = {
-                qt.enable = false;
-              };
-
               fonts = {
                 sizes = {
                   terminal = 12;

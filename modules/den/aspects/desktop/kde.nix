@@ -47,6 +47,10 @@
           mode = "0700";
         }
       ];
+
+      files = [
+        ".config/kwinoutputconfig.json" # Preserve monitor settings
+      ];
     };
 
     cacheHome = {
