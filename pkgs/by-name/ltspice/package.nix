@@ -3,7 +3,6 @@
   stdenv,
   fetchurl,
   replaceVars,
-  makeDesktopItem,
   copyDesktopItems,
   wineWow64Packages,
 }:
@@ -41,21 +40,6 @@ stdenv.mkDerivation (finalAttrs: {
 
     runHook postInstall
   '';
-
-  desktopItems = [
-    (makeDesktopItem {
-      name = "ltspice";
-      desktopName = "LTspice";
-      exec = "ltspice %F";
-      terminal = false;
-
-      categories = [
-        "Science"
-        "Engineering"
-        "Electronics"
-      ];
-    })
-  ];
 
   meta = {
     description = "Analog Devices LTspice circuit simulator";
