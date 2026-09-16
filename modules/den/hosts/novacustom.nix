@@ -45,7 +45,8 @@
         applications.browsers.brave-origin
         applications.security.keepassxc
         applications.gaming.osu-lazer
-        applications.dev.vivado
+        applications.engineering.vivado
+        applications.engineering.ltspice
 
         core.preservation-user
       ];
