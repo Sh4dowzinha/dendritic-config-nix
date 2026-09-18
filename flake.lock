@@ -814,11 +814,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789482455,
-        "narHash": "sha256-pD3qVlQ4mUCFoTWrYtxecpSitQMsgJvJIN0FUIDZoEU=",
+        "lastModified": 1789652175,
+        "narHash": "sha256-OVgwnH7e/GlJRscTPXnJ8wwy6Mh+hk0MedEw360o8U8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "efa3ccb4c3cc90d832eab232976379058fa75aa3",
+        "rev": "f2785222a14e90f8c5ad2ff62474ce88453c3421",
         "type": "github"
       },
       "original": {
@@ -924,11 +924,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1789498188,
-        "narHash": "sha256-ykKwxJs6PcI+Nxhx35a5Gz2XT08OCQkFmvADNZ7c1SE=",
+        "lastModified": 1789653023,
+        "narHash": "sha256-6BBWoaIXic8TfWaDIFDKF0WL3yNgep4gKuXIBE04nLU=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "92b82c0c1e4168d93903ec42a2276843bbd84821",
+        "rev": "d50ca8950ac8753c54e50b6d44f4461df14bfabb",
         "type": "github"
       },
       "original": {
@@ -1000,11 +1000,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789463653,
-        "narHash": "sha256-s3mSIx13ef/sOkg4tnNkfRZNOFAQwqRI6++Hp8/Tu6E=",
+        "lastModified": 1789632126,
+        "narHash": "sha256-e9m5MGnP0Z/W+SDuE8LFU4rHnfUF+0O2JKiR9meJDUY=",
         "owner": "hyprwm",
         "repo": "hyprland-plugins",
-        "rev": "d2e7231ca5f796766d1f21ffd403d4fe01a41c59",
+        "rev": "d464baf209a313c3d66d771a4b24e7a6596f8f4c",
         "type": "github"
       },
       "original": {
@@ -1361,11 +1361,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1789532029,
-        "narHash": "sha256-vIbrycTP28uQ/EmryP1eWVzG1w0yHDS4c8WYGuCbZfs=",
+        "lastModified": 1789618849,
+        "narHash": "sha256-I/p5GaDzDmosRo1PVDea4eRA1CneIUWTshEQr7WHnCY=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "d7a2b818fd185c772039f9e437da2601321b8145",
+        "rev": "f9796fab806c065bd13e5452486d5f76683611f9",
         "type": "github"
       },
       "original": {
@@ -1428,11 +1428,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789532447,
-        "narHash": "sha256-4+A+2fDVxHC83CAh6gJAX6A0whCcaO4wdOxwjXvCvd8=",
+        "lastModified": 1789619231,
+        "narHash": "sha256-RayC+RGOQpMH9uvPzQ3sLJqwCtZHhVsBN2rDcU/hHtE=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "71d01d8255807d1d0c2ed2b92875aa0fdfad8654",
+        "rev": "7b52f3fb0853c36e0b28778bceb9791dc016e39c",
         "type": "github"
       },
       "original": {
@@ -1470,11 +1470,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1789564321,
-        "narHash": "sha256-i/ZiJtfhx9hL6CqPadzoN5LHxUB+pJXKFMu4mI4Q8dw=",
+        "lastModified": 1789635917,
+        "narHash": "sha256-o8AQKmjmTE/wWZ1eTTzCSG9ZUzWUq71ChL0nCycW1bI=",
         "owner": "kaylorben",
         "repo": "nixcord",
-        "rev": "46aff5799b922c9a61cc4c85d8edbf971ed50bb6",
+        "rev": "65485f4b335e9a0e8a77d88a1595c70341919ac3",
         "type": "github"
       },
       "original": {
@@ -1790,11 +1790,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1789564155,
-        "narHash": "sha256-lguWt1Tp9URnh5lbD/OjKZeWRkFQZqxJP07dznmFXBE=",
+        "lastModified": 1789611680,
+        "narHash": "sha256-obiNV+juEjUYDDusgYQukjLyoVsJJPmYppmjvIEfkSg=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "9c936446a9cbee712d76891c0cb2d625a6bc5411",
+        "rev": "8c52cb71b5bcafbf67bfb8e659f1fc45f882a008",
         "type": "github"
       },
       "original": {
@@ -1863,11 +1863,11 @@
     },
     "pkgs-by-name-for-flake-parts": {
       "locked": {
-        "lastModified": 1769286518,
-        "narHash": "sha256-F7VlUICvYp2wJKyQqM6d46BNEZCzMQ6dMH9zbmjuybc=",
+        "lastModified": 1789628227,
+        "narHash": "sha256-PC+g00FlwHgA/MyejBAEtQLRnrZLiA/Eo7i0rEkZ7bE=",
         "owner": "drupol",
         "repo": "pkgs-by-name-for-flake-parts",
-        "rev": "7ba1cd4a9a72c9c6c272018a63f090f2c912a171",
+        "rev": "da796090e8b34326a4aaf0c173df514f135b3907",
         "type": "github"
       },
       "original": {

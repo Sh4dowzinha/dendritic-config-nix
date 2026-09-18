@@ -53,10 +53,12 @@
   libxrender,
   libxscrnsaver,
   libxtst,
+  ncurses,
   ncurses5,
   nettools,
   openssl,
   pango,
+  pixman,
   stdenv,
   unzip,
   which,
@@ -316,6 +318,7 @@ let
         gtk3
         hicolor-icon-theme
         pango
+        pixman
 
         # OpenGL
         libGL
@@ -344,6 +347,7 @@ let
         libsecret
         libusb1
         libuuid
+        ncurses
         ncurses5
         openssl
         stdenv.cc.cc.lib
@@ -354,6 +358,10 @@ let
       set -euo pipefail
 
       vivadoRoot="${vivadoUnwrapped}/${version}/Vivado"
+
+      # Vivado's loader reconstructs LD_LIBRARY_PATH but preserves an
+      # existing value. Keep the FHS compatibility libraries visible.
+      export LD_LIBRARY_PATH="/usr/lib64:''${LD_LIBRARY_PATH:-}"
 
       source "$vivadoRoot/settings64.sh"
 

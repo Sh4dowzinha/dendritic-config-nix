@@ -5,5 +5,9 @@
         pkgs.local.vivado
       ];
     };
+    
+    persistHome.directories = [
+      ".Xilinx/Vivado/2026.1"
+    ];
   };
 }

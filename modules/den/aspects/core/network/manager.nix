@@ -9,6 +9,12 @@
         networking.networkmanager = {
           enable = true;
           dns = "systemd-resolved";
+          ethernet.macAddress = "stable";
+          wifi = {
+            backend = "wpa_supplicant";
+            macAddress = "stable-ssid";
+          };
+
           settings = {
             connectivity = {
               enabled = false;
