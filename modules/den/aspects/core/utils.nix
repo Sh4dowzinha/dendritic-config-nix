@@ -3,19 +3,19 @@
     os =
       { pkgs, ... }:
       {
-        environment.systemPackages = [
-          pkgs.btop
-          pkgs.coreutils
-          pkgs.curl
-          pkgs.fd
-          pkgs.file
-          pkgs.findutils
-          pkgs.killall
-          pkgs.unzip
-          pkgs.wget
-          pkgs.netcat
-          pkgs.tcpdump
-          pkgs.fastfetch
+        environment.systemPackages = with pkgs; [
+          btop
+          coreutils
+          curl
+          fd
+          file
+          findutils
+          killall
+          unzip
+          wget
+          netcat
+          tcpdump
+          fastfetch
         ];
       };
 
@@ -37,16 +37,6 @@
           pkgs.nh
         ]
         ++ lib.optional config.hardware.nvidia.modesetting.enable pkgs.btop-cuda;
-
-        # Log diff when system update is applied
-        system.activationScripts.diff = {
-          supportsDryActivation = true;
-          text = ''
-            if [[ -e /run/current-system ]]; then
-              ${lib.getExe pkgs.nvd} --color=always --nix-bin-dir=${config.nix.package}/bin diff /run/current-system "$systemConfig" || echo "FAILED TO GENERATE DIFF"
-            fi
-          '';
-        };
       };
   };
 }
