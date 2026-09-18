@@ -148,32 +148,31 @@ let
   installerFHS = buildFHSEnv {
     name = "vivado-installer";
 
-    targetPkgs =
-      pkgs: with pkgs; [
-        bash
-        coreutils
-        findutils
-        gawk
-        gnugrep
-        gnused
-        getconf
-        lsb-release
+    targetPkgs = pkgs: [
+      bash
+      coreutils
+      findutils
+      gawk
+      gnugrep
+      gnused
+      getconf
+      lsb-release
 
-        glib
-        gtk2
-        gtk3
+      glib
+      gtk2
+      gtk3
 
-        libx11
-        libxext
-        libxi
-        libxrender
-        libxtst
-        libxcb
+      libx11
+      libxext
+      libxi
+      libxrender
+      libxtst
+      libxcb
 
-        fontconfig
-        freetype
-        zlib
-      ];
+      fontconfig
+      freetype
+      zlib
+    ];
 
     runScript = installerScript;
   };
@@ -294,65 +293,64 @@ let
     pname = "vivado";
     inherit version;
 
-    targetPkgs =
-      pkgs: with pkgs; [
-        bash
-        coreutils
-        unzip
-        which
-        nettools
-        xdg-utils
+    targetPkgs = pkgs: [
+      bash
+      coreutils
+      unzip
+      which
+      nettools
+      xdg-utils
 
-        # GUI
-        alsa-lib
-        at-spi2-atk
-        cairo
-        cups
-        dbus
-        expat
-        fontconfig
-        freetype
-        glib
-        gsettings-desktop-schemas
-        gtk2
-        gtk3
-        hicolor-icon-theme
-        pango
-        pixman
+      # GUI
+      alsa-lib
+      at-spi2-atk
+      cairo
+      cups
+      dbus
+      expat
+      fontconfig
+      freetype
+      glib
+      gsettings-desktop-schemas
+      gtk2
+      gtk3
+      hicolor-icon-theme
+      pango
+      pixman
 
-        # OpenGL
-        libGL
-        libdrm
+      # OpenGL
+      libGL
+      libdrm
 
-        # X11
-        libx11
-        libxcb
-        libxcomposite
-        libxcursor
-        libxdamage
-        libxext
-        libxfixes
-        libxi
-        libxinerama
-        libxkbcommon
-        libxrandr
-        libxrender
-        libxscrnsaver
-        libxtst
+      # X11
+      libx11
+      libxcb
+      libxcomposite
+      libxcursor
+      libxdamage
+      libxext
+      libxfixes
+      libxi
+      libxinerama
+      libxkbcommon
+      libxrandr
+      libxrender
+      libxscrnsaver
+      libxtst
 
-        # Other runtime dependencies
-        graphviz
-        libgcrypt
-        libpng
-        libsecret
-        libusb1
-        libuuid
-        ncurses
-        ncurses5
-        openssl
-        stdenv.cc.cc.lib
-        zlib
-      ];
+      # Other runtime dependencies
+      graphviz
+      libgcrypt
+      libpng
+      libsecret
+      libusb1
+      libuuid
+      ncurses
+      ncurses5
+      openssl
+      stdenv.cc.cc.lib
+      zlib
+    ];
 
     runScript = writeShellScript "vivado" ''
       set -euo pipefail

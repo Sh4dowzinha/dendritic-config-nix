@@ -33,9 +33,9 @@
       applications.dev.git.lazygit
       applications.dev.git.mergiraf
 
-      applications.dev.lang.go
-      applications.dev.lang.python
-      applications.dev.lang.nix
+      #applications.dev.lang.go
+      #applications.dev.lang.python
+      #applications.dev.lang.nix
     ];
   };
 }
