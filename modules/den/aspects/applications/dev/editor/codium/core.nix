@@ -17,19 +17,9 @@
 
     codium-settings = [
       {
-        "editor.bracketPairColorization.independentColorPoolPerBracketType" = true;
         "editor.fontFamily" = "'Fira Code', monospace";
         "editor.fontLigatures" = true;
         "editor.fontWeight" = "400";
-        "editor.guides.bracketPairs" = true;
-        "editor.guides.bracketPairsHorizontal" = true;
-        "editor.inlineSuggest.enabled" = true;
-        "editor.renderWhitespace" = "all";
-        "editor.rulers" = [
-          80
-          120
-        ];
-        "editor.semanticHighlighting.enabled" = true;
         "explorer.confirmDragAndDrop" = false;
         "extensions.autoCheckUpdates" = false;
         "extensions.ignoreRecommendations" = true;
