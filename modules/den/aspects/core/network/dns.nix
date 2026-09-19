@@ -7,11 +7,12 @@
         "2620:fe::fe"
         "2620:fe::9"
       ];
+
       services.resolved = {
         enable = true;
         settings.Resolve = {
           LLMNR = "false";
-          MulticastDNS = "false";
+          MulticastDNS = "true";
           DNSSEC = "true";
           Domains = [ "~." ];
           DNSOverTLS = "true";

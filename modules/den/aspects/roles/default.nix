@@ -11,7 +11,6 @@
       core.users.shell
       core.network.firewall
       core.network.dns
-      core.network.avahi
       core.utils
       core.system.firmware
       core.security
@@ -20,6 +19,7 @@
       core.security.sudo
       core.localization.time
       core.system.zram-swap
+      core.system.plymouth
       core.system.linux-kernel
       core.users
 
