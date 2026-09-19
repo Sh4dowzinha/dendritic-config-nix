@@ -26,7 +26,7 @@
 
       core.preservation
 
-      applications.shell.zsh
+      applications.shell.fish
 
       core.security.openssh
     ];
