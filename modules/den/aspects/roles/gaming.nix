@@ -6,6 +6,7 @@
       applications.gaming.nix-ld
       applications.gaming.steam
       applications.gaming.mangohud
+      applications.gaming.umu-launcher
     ];
   };
 }
