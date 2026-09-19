@@ -19,6 +19,7 @@
       core.security.sudo
       core.localization.time
       core.system.zram-swap
+      core.system.appimage
       core.system.plymouth
       core.system.linux-kernel
       core.users

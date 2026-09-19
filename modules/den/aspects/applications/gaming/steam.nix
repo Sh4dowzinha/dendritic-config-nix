@@ -29,9 +29,6 @@
         };
 
         programs = {
-          appimage.enable = true;
-          appimage.binfmt = true;
-
           steam = {
             enable = true;
             protontricks.enable = true;
@@ -40,6 +37,7 @@
               extraEnv = {
                 MANGOHUD = true;
                 OBS_VKCAPTURE = true;
+                RADV_TEX_ANISO = 16;
                 PROTON_ENABLE_WAYLAND = true;
                 PROTON_USE_NTSYNC = true;
                 PROTON_USE_WOW64 = true;
@@ -101,78 +99,22 @@
               pkgs."proton-cachyos-${host.settings.core.system.linux-kernel.optimization}"
             ];
 
-            gamescopeSession = {
-              enable = true;
-
-              args = [
-                "--xwayland-count 2"
-                "-W 1920"
-                "-H 1080"
-                "-r 60"
-              ];
-            };
+            #gamescopeSession = {
+            #  enable = true;
+            #
+            #  args = [
+            #    "-W 1920"
+            #    "-H 1080"
+            #    "-r 60"
+            #  ];
+            #};
           };
         };
       };
 
-    homeManager =
-      {
-        host,
-        pkgs,
-        lib,
-        ...
-      }:
-      lib.mkIf (!host.hasAspect den.aspects.applications.gaming.steam) {
-        home.packages = [
-          (pkgs.steam.override {
-            extraEnv = {
-              MANGOHUD = true;
-              OBS_VKCAPTURE = true;
-              PROTON_ENABLE_WAYLAND = true;
-              PROTON_USE_NTSYNC = true;
-              PROTON_USE_WOW64 = true;
-              PULSE_SINK = "Game";
-            };
-            extraPkgs =
-              pkgs': with pkgs'; [
-                qt6.qtwayland
-                xdg-utils
-                libx11
-                libxext
-                libxrender
-                libxi
-                libxinerama
-                libxcursor
-                libxscrnsaver
-                libsm
-                libice
-                libxcb
-                libxrandr
-                libxkbcommon
-                freetype
-                fontconfig
-                glib
-                libpng
-                libpulseaudio
-                libvorbis
-                libkrb5
-                keyutils
-                libglvnd
-                libdrm
-                vulkan-tools
-                vulkan-loader
-                vulkan-validation-layers
-                vulkan-extension-layer
-                (lib.getLib stdenv.cc.cc)
-              ];
-            extraLibraries = p: with p; [ atk ];
-          })
-        ];
-      };
-
-    nixpkgs-overlays =
-      { inputs', ... }:
-      [ inputs'.proton-cachyos.overlays.default ];
+    nixpkgs-overlays = { inputs', ... }: [
+      inputs'.proton-cachyos.overlays.default
+    ];
 
     persistHome.directories = [
       ".local/share/Steam"
