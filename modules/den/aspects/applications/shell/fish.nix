@@ -7,7 +7,6 @@
           set fish_greeting # Disable greeting
         '';
         generateCompletions = true;
-        preferAbbrs = true;
         shellAbbrs = {
           ns = "nix shell nixpkgs#%";
         };
