@@ -42,10 +42,6 @@
               src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
             }
             {
-              name = "auto-notify";
-              src = "${pkgs.local.zsh-auto-notify}/share/zsh-auto-notify/zsh-auto-notify.plugin.zsh";
-            }
-            {
               name = "fast-syntax-highlighting";
               src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
             }
@@ -53,14 +49,6 @@
               name = "zsh-autosuggestions";
               file = "zsh-autosuggestions.zsh";
               src = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
-            }
-            {
-              name = "zsh-histdb";
-              src = "${pkgs.local.zsh-histdb}/share/zsh-histdb";
-            }
-            {
-              name = "zsh-skim-histdb";
-              src = "${pkgs.local.zsh-skim-histdb}/share/zsh-skim-histdb";
             }
           ];
 

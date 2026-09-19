@@ -1,18 +1,16 @@
 {
   den.aspects.core.users.shell = {
     os = {
-      programs.zsh = {
+      programs.fish = {
         enable = true;
-        enableCompletion = true;
+        generateCompletions = true;
       };
     };
 
-    nixos =
-      { pkgs, ... }:
-      {
-        environment.enableAllTerminfo = true;
-        users.users.root.shell = pkgs.bashInteractive;
-        users.defaultUserShell = pkgs.zsh;
-      };
+    nixos = { pkgs, ... }: {
+      environment.enableAllTerminfo = true;
+      users.users.root.shell = pkgs.bashInteractive;
+      users.defaultUserShell = pkgs.fish;
+    };
   };
 }

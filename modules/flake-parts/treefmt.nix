@@ -58,6 +58,7 @@
             "*.asc"
             "*.org"
             "*.zsh"
+            "*.fish"
             "*.kdl"
             "*.txt"
             "*.tmpl"

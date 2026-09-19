@@ -33,8 +33,8 @@
       # pinned nix-on-droid release (stateVersion enum max is 24.05 at rev 55b6449).
       system.stateVersion = "24.05";
 
-      # Login shell. zsh HM config arrives via applications.shell.zsh (homeManager).
-      user.shell = "${pkgs.zsh}/bin/zsh";
+      # Login shell. fish HM config arrives via applications.shell.fish (homeManager).
+      user.shell = "${pkgs.fish}/bin/fish";
 
       # nix-on-droid does not pass osConfig into its home-manager modules, so the
       # bridged home-manager.config needs an explicit home.stateVersion. The droid
