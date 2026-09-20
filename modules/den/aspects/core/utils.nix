@@ -15,7 +15,6 @@
           wget
           netcat
           tcpdump
-          fastfetch
         ];
       };
 

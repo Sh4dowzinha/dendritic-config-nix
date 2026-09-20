@@ -27,6 +27,7 @@
       core.preservation
 
       applications.shell.fish
+      applications.shell.fastfetch
 
       core.security.openssh
     ];
