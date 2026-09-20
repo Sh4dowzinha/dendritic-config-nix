@@ -47,6 +47,7 @@
         pkgs.vscode-marketplace.editorconfig.editorconfig
         pkgs.vscode-marketplace.esbenp.prettier-vscode
         pkgs.vscode-marketplace.streetsidesoftware.code-spell-checker
+        pkgs.vscode-marketplace.tomoki1207.pdf
         pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
       ];
   };
