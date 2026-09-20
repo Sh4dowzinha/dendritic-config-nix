@@ -40,5 +40,11 @@
         };
       };
     };
+
+    cacheHome = {
+      directories = [
+        ".cache/fastfetch"
+      ];
+    };
   };
 }
