@@ -19,6 +19,7 @@
         {
           file = ".local/share/fish/fish_history";
           mode = "0600";
+          how = "symlink";
         }
       ];
     };

@@ -5,6 +5,10 @@
         enable = true;
         package = pkgs.gcc;
       };
+      home.packages = with pkgs; [
+        gnumake
+      ];
+
     };
 
     codium-extensions =
