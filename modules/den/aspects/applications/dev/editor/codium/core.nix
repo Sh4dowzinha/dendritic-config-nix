@@ -42,9 +42,11 @@
     codium-extensions =
       { pkgs, ... }:
       [
+        pkgs.vscode-marketplace.aaron-bond.better-comments
         pkgs.vscode-marketplace.catppuccin.catppuccin-vsc-icons
         pkgs.vscode-marketplace.editorconfig.editorconfig
         pkgs.vscode-marketplace.esbenp.prettier-vscode
+        pkgs.vscode-marketplace.streetsidesoftware.code-spell-checker
         pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
       ];
   };

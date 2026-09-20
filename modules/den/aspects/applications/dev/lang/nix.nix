@@ -49,7 +49,6 @@
     codium-extensions =
       { pkgs, ... }:
       [
-        pkgs.vscode-marketplace.jeff-hykin.better-nix-syntax
         pkgs.vscode-marketplace.jnoortheen.nix-ide
         pkgs.vscode-marketplace.pinage404.nix-extension-pack
       ];

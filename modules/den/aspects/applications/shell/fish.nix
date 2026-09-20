@@ -8,14 +8,18 @@
         '';
         generateCompletions = true;
         shellAbbrs = {
-          ns = "nix shell nixpkgs#%";
+          c = "clear";
+          gs = "git switch";
         };
       };
     };
 
     persistHome = {
-      directories = [
-        ".local/share/fish"
+      files = [
+        {
+          file = ".local/share/fish/fish_history";
+          mode = "0600";
+        }
       ];
     };
   };
