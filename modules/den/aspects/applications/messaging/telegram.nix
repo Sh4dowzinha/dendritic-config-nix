@@ -1,4 +1,8 @@
 {
+  flake-file.inputs.ayugram-desktop = {
+    url = "github:ndfined-crp/ayugram-desktop";
+  };
+
   den.aspects.applications.messaging.telegram = {
     nixos = {
       nix.settings = {
@@ -11,12 +15,17 @@
       };
     };
 
-    homeManager =
-      { inputs', ... }:
+    homeManager = { inputs', ... }: {
+      home.packages = [
+        inputs'.ayugram-desktop.packages.ayugram-desktop
+      ];
+    };
+
+    persistHome.directories = [
       {
-        home.packages = [
-          inputs'.ayugram-desktop.packages.ayugram-desktop
-        ];
-      };
+        directory = ".local/share/AyuGramDesktop";
+        mode = "0700";
+      }
+    ];
   };
 }

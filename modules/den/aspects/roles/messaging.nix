@@ -4,6 +4,7 @@
     includes = with den.aspects; [
       applications.messaging.discord
       applications.messaging.telegram
+      applications.messaging.zapzap
     ];
   };
 }

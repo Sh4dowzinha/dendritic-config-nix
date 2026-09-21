@@ -13,7 +13,7 @@
       directories = [
         {
           directory = ".config/vesktop";
-          mode = "700";
+          mode = "0700";
         }
       ];
     };
