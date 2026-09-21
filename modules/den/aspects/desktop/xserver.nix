@@ -2,7 +2,17 @@
   den.aspects.desktop.xserver = {
     nixos = { host, ... }: {
       services = {
-        libinput.enable = true;
+        libinput = {
+          enable = true;
+          mouse = {
+            accelProfile = "flat";
+          };
+
+          touchpad = {
+            naturalScrolling = true;
+          };
+        };
+
         xserver = {
           enable = true;
           xkb = {
