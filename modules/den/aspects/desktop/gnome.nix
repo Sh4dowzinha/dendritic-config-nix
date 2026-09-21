@@ -12,6 +12,7 @@
             pkgs.gnome-tweaks
             pkgs.dconf-editor
             pkgs.gnomeExtensions.pop-shell
+            pkgs.gnomeExtensions.caffeine
             pkgs.gnomeExtensions.appindicator
             pkgs.gnomeExtensions.pip-on-top
             pkgs.gnomeExtensions.gamemode-shell-extension
@@ -82,7 +83,7 @@
 
           "org/gnome/shell" = {
             favorite-apps = [
-              "firefox.desktop"
+              "brave-origin.desktop"
               "kitty.desktop"
               "steam.desktop"
               "org.gnome.Nautilus.desktop"
@@ -126,6 +127,7 @@
               "pip-on-top@rafostar.github.com"
               "appindicatorsupport@rgcjonas.gmail.com"
               "gamemodeshellextension@trsnaqe.com"
+              "caffeine@patapon.info"
             ];
           };
 
