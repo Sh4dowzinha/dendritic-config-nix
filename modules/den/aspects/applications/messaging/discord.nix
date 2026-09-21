@@ -1,21 +1,21 @@
 {
   den.aspects.applications.messaging.discord = {
-    homeManagerModules = { inputs', ... }: [
-      inputs'.nixcord.homeModules.nixcord
-    ];
-
     homeManager = {
-      programs.nixcord = {
+      programs.vesktop = {
         enable = true;
-        discord.vencord.enable = true;
-
-        config = {
-          plugins = {
-            fakeNitro.enable = true;
-            noTypingAnimation.enable = true;
-          };
+        vencord = {
+          useSystem = true;
         };
       };
+    };
+
+    persistHome = {
+      directories = [
+        {
+          directory = ".config/vesktop";
+          mode = "700";
+        }
+      ];
     };
   };
 }

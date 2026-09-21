@@ -115,8 +115,6 @@
         inputs.nixpkgs.follows = "nixpkgs-unstable";
       };
 
-      nixcord.url = "github:kaylorben/nixcord";
-
       nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
       nixpkgs-stable-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
