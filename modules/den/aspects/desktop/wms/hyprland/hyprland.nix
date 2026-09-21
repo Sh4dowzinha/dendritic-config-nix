@@ -32,12 +32,12 @@
         portalPackage = null;
         systemd.enable = false;
 
-        extraLuaFiles = {
-          "default" = {
-            content = ./default.lua;
-            autoLoad = true;
-          };
-        };
+        #extraLuaFiles = {
+        #  "default" = {
+        #    content = ./default.lua;
+        #    autoLoad = true;
+        #  };
+        #};
       };
     };
   };
