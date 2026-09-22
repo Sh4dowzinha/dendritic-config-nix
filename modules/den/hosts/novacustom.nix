@@ -29,7 +29,7 @@
       hardware.laptop
       hardware.nitrokey3
 
-      desktop.hyprland
+      desktop.kde
 
       disk.btrfs-luks-tmpfs-single
 

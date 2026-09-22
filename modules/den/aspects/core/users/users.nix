@@ -19,12 +19,20 @@ let
     {
       name = "user-enrich/${userName}@${host.name}";
 
-      nixos = {
+      nixos = { config, ... }: {
         users.users.${userName} = {
           openssh.authorizedKeys.keys = map (k: k.key) (user.identity.sshKeys or [ ]);
           linger = user.system.linger or false;
           description = lib.mkDefault (user.identity.displayName or "");
-          initialPassword = "12345";
+          hashedPasswordFile = config.sops.secrets."user-${userName}-password".path;
+        };
+
+        sops.secrets = {
+          "user-${userName}-password" = {
+            key = "passwordHash/${userName}";
+            neededForUsers = true;
+            mode = "0400";
+          };
         };
       };
 

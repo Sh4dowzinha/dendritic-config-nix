@@ -1,0 +1,15 @@
+keys:
+  - &sh4dow_gpg 57B947A6375A93BFE0489ACFC71894C085934296
+  - &novacustom age17aqufzqevnx0n6svpq7w9e4drgck9ewnfawr6rcglkzzsyxq2djqu958zj
+
+creation_rules:
+  - path_regex: ^secrets/hosts/novacustom\.yaml$
+    key_groups:
+      - pgp:
+          - *sh4dow_gpg
+        age:
+          - *novacustom
+
+  - path_regex: ^secrets/users/[^/]+\.yaml$
+    pgp:
+      - *sh4dow_gpg
