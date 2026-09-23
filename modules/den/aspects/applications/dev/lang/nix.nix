@@ -1,56 +1,38 @@
 {
   den.aspects.applications.dev.lang.nix = {
-    homeManager =
-      { pkgs, ... }:
+    homeManager = { pkgs, ... }: {
+      home.packages = with pkgs; [
+        nixd
+        nixfmt
+      ];
+
+      programs.nix-your-shell.enable = true;
+    };
+
+    codium-settings = [
       {
-        home.packages = with pkgs; [
-          nix-unit
-          nix-eval-jobs
-          nil
-          nixfmt
-          nixpkgs-review
-          npins
-        ];
-
-        programs.nix-your-shell.enable = true;
-
-      };
-
-    codium-settings =
-      { pkgs, lib, ... }:
-      [
-        {
-          "nix.enableLanguageServer" = true;
-          "nix.serverPath" = lib.getExe pkgs.nil;
-          "nix.serverSettings" = {
-            "nil" = {
-              "nix" = {
-                "flake" = {
-                  "autoArchive" = true;
-                  "autoEvalInputs" = true;
-                  "nixpkgsInputName" = "nixpkgs";
-                };
-              };
-              "formatting" = {
-                "command" = [ (lib.getExe pkgs.nixfmt) ];
-              };
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nixd";
+        "nix.serverSettings" = {
+          "nixd" = {
+            "formatting" = {
+              "command" = [ "nixfmt" ];
             };
           };
+        };
 
-          "[nix]" = {
-            "editor.defaultFormatter" = "jnoortheen.nix-ide";
-            "editor.formatOnSave" = true;
-            "editor.formatOnPaste" = true;
-            "editor.tabSize" = 2;
-          };
-        }
-      ];
+        "[nix]" = {
+          "editor.defaultFormatter" = "jnoortheen.nix-ide";
+          "editor.formatOnSave" = true;
+          "editor.formatOnPaste" = true;
+          "editor.tabSize" = 2;
+        };
+      }
+    ];
 
-    codium-extensions =
-      { pkgs, ... }:
-      [
-        pkgs.vscode-marketplace.jnoortheen.nix-ide
-        pkgs.vscode-marketplace.pinage404.nix-extension-pack
-      ];
+    codium-extensions = { pkgs, ... }: [
+      pkgs.vscode-marketplace.jnoortheen.nix-ide
+      pkgs.vscode-marketplace.pinage404.nix-extension-pack
+    ];
   };
 }
