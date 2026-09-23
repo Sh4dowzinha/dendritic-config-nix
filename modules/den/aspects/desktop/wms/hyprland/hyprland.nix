@@ -1,5 +1,14 @@
 { den, ... }:
 {
+  flake-file.inputs = {
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+  };
+
   den.aspects.desktop.hyprland = {
     includes = [
       den.aspects.desktop.uwsm

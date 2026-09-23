@@ -45,13 +45,6 @@
         url = "github:edolstra/flake-compat";
       };
 
-      flake-file.url = "github:vic/flake-file";
-
-      flake-parts = {
-        url = "github:hercules-ci/flake-parts";
-        inputs.nixpkgs-lib.follows = "nixpkgs-unstable";
-      };
-
       gen-schema.url = "github:sini/gen-schema";
 
       git-hooks-nix.url = "github:cachix/git-hooks.nix";

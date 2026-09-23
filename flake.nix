@@ -31,10 +31,10 @@
     };
     files.url = "github:sini/files";
     flake-compat.url = "github:edolstra/flake-compat";
-    flake-file.url = "github:vic/flake-file";
+    flake-file.url = "github:denful/flake-file";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs-unstable";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     flake-root.url = "github:srid/flake-root";
     gen-schema.url = "github:sini/gen-schema";
