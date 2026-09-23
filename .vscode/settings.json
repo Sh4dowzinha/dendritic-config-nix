@@ -1,0 +1,14 @@
+{
+  "nix.serverSettings": {
+    "nixd": {
+      "options": {
+        "nixos": {
+          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.novacustom.options"
+        },
+        "home-manager": {
+          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.novacustom.options.home-manager.users.type.getSubOptions []"
+        }
+      }
+    }
+  }
+}
