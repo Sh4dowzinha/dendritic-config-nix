@@ -11,7 +11,7 @@
             "pipe-operators"
           ];
 
-          allow-import-from-derivation = true;
+          allow-import-from-derivation = false;
           max-jobs = "auto";
           use-xdg-base-directories = true;
           max-substitution-jobs = 16;
