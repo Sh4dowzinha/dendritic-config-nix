@@ -13,8 +13,15 @@
       {
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
+
         "nix.serverSettings" = {
           "nixd" = {
+            "nixpkgs" = {
+              "expr" = ''
+                import (builtins.getFlake "''${workspaceFolder}").inputs.nixpkgs { }
+              '';
+            };
+
             "formatting" = {
               "command" = [ "nixfmt" ];
             };
