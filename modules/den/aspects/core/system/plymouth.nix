@@ -7,12 +7,14 @@
         initrd.verbose = false;
         kernelParams = [
           "quiet"
-          "splash"
-          "intremap=on"
-          "boot.shell_on_fail"
-          "udev.log_priority=3"
+          "rd.udev.log_level=3"
           "rd.systemd.show_status=auto"
         ];
+
+        # Hide the OS choice for bootloaders.
+        # It's still possible to open the bootloader list by pressing any key
+        # It will just not appear on screen unless a key is pressed
+        loader.timeout = 0;
       };
     };
 
