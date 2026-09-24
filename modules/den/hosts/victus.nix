@@ -1,8 +1,8 @@
 { den, ... }:
 {
-  den.hosts.x86_64-linux.novacustom = {
+  den.hosts.x86_64-linux.victus = {
     channel = "nixos-unstable";
-    system-owner = "sh4dow";
+    system-owner = "dani";
     keyboard.layout = "pt";
     timezone = "Europe/Lisbon";
 
@@ -13,7 +13,7 @@
     };
   };
 
-  den.aspects.novacustom = {
+  den.aspects.victus = {
     includes = with den.aspects; [
       roles.default
       roles.workstation
@@ -22,29 +22,23 @@
       roles.dev-gui
       roles.messaging
       roles.media
-      roles.music-production
 
-      hardware.cpu.intel
-      hardware.gpu.intel
+      hardware.cpu.amd
+      hardware.gpu.amd
+      hardware.gpu.nvidia
       hardware.laptop
-      hardware.nitrokey3
 
       desktop.gnome
 
-      disk.btrfs-luks-tmpfs-single
+      disk.btrfs-luks-root-tmpfs-single
 
       core.network.manager
     ];
 
-    sh4dow = {
+    dani = {
       includes = with den.aspects; [
         applications.browsers.brave-origin
         applications.security.keepassxc
-        applications.gaming.osu-lazer
-        applications.engineering.vivado
-        applications.engineering.ltspice
-
-        core.preservation-user
       ];
     };
   };

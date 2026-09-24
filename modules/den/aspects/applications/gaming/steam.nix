@@ -97,7 +97,6 @@
 
             extraCompatPackages = [
               pkgs.proton-ge-bin
-              pkgs."proton-cachyos-${host.settings.core.system.linux-kernel.optimization}"
             ];
 
             #gamescopeSession = {
@@ -112,10 +111,6 @@
           };
         };
       };
-
-    nixpkgs-overlays = { inputs', ... }: [
-      inputs'.proton-cachyos.overlays.default
-    ];
 
     persistHome.directories = [
       ".local/share/Steam"

@@ -33,12 +33,10 @@
         };
 
         hardware.nvidia = {
-          forceFullCompositionPipeline = true;
           modesetting.enable = true;
           powerManagement.enable = true;
           open = true;
           nvidiaSettings = false;
-          nvidiaPersistenced = true;
           package = config.boot.kernelPackages.nvidiaPackages.latest;
         };
 
