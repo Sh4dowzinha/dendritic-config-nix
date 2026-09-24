@@ -1,5 +1,5 @@
 {
-  den.aspects.hardware.gpu.nvidia = {
+  den.aspects.hardware.gpu.nvidia-legacy = {
     nixos =
       {
         config,
@@ -13,7 +13,7 @@
             "options nvidia "
             + lib.concatStringsSep " " [
               "NVreg_UsePageAttributeTable=1"
-              "nvidia.NVreg_EnableGpuFirmware=1"
+              "nvidia.NVreg_EnableGpuFirmware=0"
             ];
         };
 
@@ -33,13 +33,11 @@
         };
 
         hardware.nvidia = {
-          forceFullCompositionPipeline = true;
           modesetting.enable = true;
           powerManagement.enable = true;
-          open = true;
+          open = false;
           nvidiaSettings = false;
-          nvidiaPersistenced = true;
-          package = config.boot.kernelPackages.nvidiaPackages.latest;
+          package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
         };
 
         environment = {

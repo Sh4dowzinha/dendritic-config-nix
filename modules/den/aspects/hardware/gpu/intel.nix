@@ -1,6 +1,6 @@
-{ lib, ... }: {
+{
   den.aspects.hardware.gpu.intel = {
-    nixos = { host, pkgs, ... }: {
+    nixos = { pkgs, ... }: {
       services.xserver.videoDrivers = [ "modesetting" ];
 
       hardware.graphics = {
