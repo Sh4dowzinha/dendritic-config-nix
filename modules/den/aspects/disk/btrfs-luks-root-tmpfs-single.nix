@@ -41,7 +41,7 @@
         ...
       }:
       let
-        cfg = host.settings.disk.btrfs-luks-tmpfs-single;
+        cfg = host.settings.disk.btrfs-luks-root-tmpfs-single;
 
         disk-device =
           if cfg.device_id != "" then

@@ -4,7 +4,7 @@
     includes = [ den.batteries.host-aspects ];
   };
 
-  den.users.registry.sh4dow = {
+  den.users.registry.dani = {
     system.uid = 1000;
     groups = [
       "admins"
