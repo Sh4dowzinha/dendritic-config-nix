@@ -75,8 +75,6 @@
 
       noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
-      nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-
       nix-darwin = {
         url = "github:LnL7/nix-darwin/nix-darwin-26.05";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -117,8 +115,6 @@
       pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
 
       preservation.url = "github:nix-community/preservation";
-
-      proton-cachyos.url = "github:powerofthe69/proton-cachyos-nix";
 
       steam-config-nix = {
         url = "github:different-name/steam-config-nix";

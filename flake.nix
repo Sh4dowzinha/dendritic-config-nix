@@ -57,7 +57,6 @@
       inputs.hyprland.follows = "hyprland";
     };
     import-tree.url = "github:vic/import-tree";
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-darwin = {
       url = "github:LnL7/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -101,7 +100,6 @@
       };
     };
     preservation.url = "github:nix-community/preservation";
-    proton-cachyos.url = "github:powerofthe69/proton-cachyos-nix";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
