@@ -55,7 +55,7 @@ writeShellApplication {
       #  HOST_IS_DARWIN+=("false")
         HOSTS+=(".#nixosConfigurations.$h.config.system.build.toplevel")
       #fi
-    #done
+    done
 
     nom build --keep-going --no-link --print-out-paths --show-trace ''${OPTIONS[@]} "''${HOSTS[@]}"
 
