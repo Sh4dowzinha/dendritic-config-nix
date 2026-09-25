@@ -22,6 +22,9 @@
             {
               id = "oboonakemofpalcgghocfoadofidjkkk"; # KeepassXC Browser
             }
+            {
+              id = "npapjbliocdhineglcjkmmmaddpgeono"; # Google drive preview exporter
+            }
           ];
         };
       };

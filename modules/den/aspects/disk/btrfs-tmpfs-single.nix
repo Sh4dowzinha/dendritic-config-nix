@@ -5,7 +5,7 @@
   ...
 }:
 {
-  den.aspects.disk.btrfs-luks-root-tmpfs-single = {
+  den.aspects.disk.btrfs-tmpfs-single = {
     includes = [
       den.aspects.disk.btrfs
     ];
@@ -41,7 +41,7 @@
         ...
       }:
       let
-        cfg = host.settings.disk.btrfs-luks-root-tmpfs-single;
+        cfg = host.settings.disk.btrfs-tmpfs-single;
 
         disk-device =
           if cfg.device_id != "" then
@@ -111,49 +111,35 @@
                         mountOptions = defaultESPOpts;
                       };
                     };
-                    luks = {
+                    nixos = {
                       size = "100%";
-                      label = "luks";
                       content = {
-                        type = "luks";
-                        name = "cryptroot";
-                        passwordFile = "/tmp/secret.key";
-                        settings = {
-                          allowDiscards = true;
-                          bypassWorkqueues = true;
-                        };
-                        content = {
-                          type = "btrfs";
-                          extraArgs = [
-                            "-L"
-                            "nixos"
-                            "-f"
-                            "-O"
-                            "bgt"
-                          ];
-                          subvolumes = {
-                            "/nix" = {
-                              mountpoint = "/nix";
-                              mountOptions = defaultBtrfsOpts;
-                            };
-                            "/home" = {
-                              mountpoint = "/home";
-                              mountOptions = defaultBtrfsOpts;
-                            };
-                            "/persist" = {
-                              mountpoint = "/persist";
-                              mountOptions = defaultBtrfsOpts;
-                            };
-                            "/cache" = {
-                              mountpoint = "/cache";
-                              mountOptions = defaultBtrfsOpts;
-                            };
-                          }
-                          // lib.optionalAttrs (cfg.swap_size > 0) {
-                            "/swap" = {
-                              mountpoint = "/swap";
-                              swap.swapfile.size = "${toString cfg.swap_size}M";
-                            };
+                        type = "btrfs";
+                        extraArgs = [
+                          "-L"
+                          "nixos"
+                          "-f"
+                          "-O"
+                          "bgt"
+                        ];
+                        subvolumes = {
+                          "/nix" = {
+                            mountpoint = "/nix";
+                            mountOptions = defaultBtrfsOpts;
+                          };
+                          "/persist" = {
+                            mountpoint = "/persist";
+                            mountOptions = defaultBtrfsOpts;
+                          };
+                          "/cache" = {
+                            mountpoint = "/cache";
+                            mountOptions = defaultBtrfsOpts;
+                          };
+                        }
+                        // lib.optionalAttrs (cfg.swap_size > 0) {
+                          "/swap" = {
+                            mountpoint = "/swap";
+                            swap.swapfile.size = "${toString cfg.swap_size}M";
                           };
                         };
                       };

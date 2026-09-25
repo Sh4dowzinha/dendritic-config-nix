@@ -128,6 +128,8 @@
                             "-L"
                             "nixos"
                             "-f"
+                            "-O"
+                            "bgt"
                           ];
                           subvolumes = {
                             "/nix" = {
@@ -144,7 +146,7 @@
                             };
                           }
                           // lib.optionalAttrs (cfg.swap_size > 0) {
-                            "@swap" = {
+                            "/swap" = {
                               mountpoint = "/swap";
                               swap.swapfile.size = "${toString cfg.swap_size}M";
                             };
