@@ -61,7 +61,7 @@
         defaultIdentity = {
           email = userEmail;
           fullName = user.identity.displayName or user.name;
-          githubUser = user.name;
+          githubUser = user.settings.github.username;
           signingKey =
             if signingMethod == "ssh" then
               signingKey
@@ -70,7 +70,7 @@
             else
               null;
           conditions = [
-            "hasconfig:remote.*.url:git@github.com:${user.name}/**"
+            "hasconfig:remote.*.url:git@github.com:${user.settings.github.username}/**"
           ];
         };
 

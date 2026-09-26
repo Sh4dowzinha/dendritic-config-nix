@@ -18,7 +18,11 @@
     groups = [
       "admins"
     ];
-    settings.git.signing.method = "openpgp";
+
+    settings = {
+      git.signing.method = "openpgp";
+      github.username = "Sh4dowzinha";
+    };
 
     identity = {
       displayName = "André Fernandes";

@@ -1,5 +1,5 @@
 {
-  den.aspects.hardware.gpu.intel = {
+  den.aspects.hardware.gpu.intel-legacy = {
     nixos = { pkgs, ... }: {
       services.xserver.videoDrivers = [ "modesetting" ];
 
@@ -8,8 +8,8 @@
         enable32Bit = true;
         extraPackages = with pkgs; [
           intel-media-driver
-          vpl-gpu-rt
-          intel-compute-runtime
+          intel-media-sdk
+          intel-ocl
         ];
       };
 

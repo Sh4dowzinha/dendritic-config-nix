@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   den.aspects.core.security.openssh = {
     nixos =
@@ -8,7 +7,6 @@
       {
         services.openssh = {
           enable = false;
-          generateHostKeys = true;
         };
       };
 
