@@ -17,7 +17,7 @@ let
       # system sops-nix had no identity to decrypt the per-user secrets with.
       hasPreservation = host.hasAspect den.aspects.core.preservation;
       persistPrefix = lib.optionalString (hasPreservation && host.class == "nixos") "/persist";
-      hostSopsFile = rootPath + "/secrets/hosts/${host.name}.yaml";
+      hostSopsFile = rootPath + "/secrets/hosts/${host.name}/${host.name}.yaml";
     in
     {
       name = "sops-nix/${host.name}";
