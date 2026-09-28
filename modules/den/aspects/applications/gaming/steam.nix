@@ -112,6 +112,13 @@
         };
       };
 
+    homeManager = {
+      home.sessionVariables = {
+        MESA_SHADER_CACHE_MAX_SIZE = "12G";
+        __GL_SHADER_DISK_CACHE_SIZE = "12000000000";
+      };
+    };
+
     persistHome.directories = [
       ".local/share/Steam"
     ];

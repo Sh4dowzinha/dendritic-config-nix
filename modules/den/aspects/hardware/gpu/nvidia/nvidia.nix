@@ -52,5 +52,9 @@
           ];
         };
       };
+
+    cacheHome.directories = [
+      ".cache/nvidia/GLCache"
+    ];
   };
 }
