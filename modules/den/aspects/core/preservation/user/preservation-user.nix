@@ -24,6 +24,7 @@
         "Templates"
         "Videos"
         ".config/autostart"
+        ".local/share/applications"
         {
           directory = ".local/share/keyrings";
           mode = "0700";
