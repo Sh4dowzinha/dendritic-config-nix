@@ -30,6 +30,26 @@
           };
         };
 
+        security.pam.services = {
+          gdm.enableGnomeKeyring = true;
+          gdm-password.enableGnomeKeyring = true;
+        };
+
+        xdg.portal = {
+          config = {
+            gnome = {
+              default = [
+                "gnome"
+                "gtk"
+              ];
+            };
+          };
+          extraPortals = with pkgs; [
+            xdg-desktop-portal-gtk
+            xdg-desktop-portal-gnome
+          ];
+        };
+
         services = {
           displayManager.gdm.enable = true;
           desktopManager.gnome.enable = true;

@@ -1,20 +1,37 @@
 {
   den.aspects.desktop.xdg = {
-    homeManager =
-      { pkgs, ... }:
-      {
-        home.packages = [
-          pkgs.xdg-utils
-        ];
-
-        xdg = {
-          enable = true;
-          autostart = {
-            enable = true;
-            # readOnly = true;   # Keep disabled for now
+    nixos = { pkgs, ... }: {
+      xdg.portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+        config = {
+          common = {
+            default = [ "gtk" ];
           };
-          userDirs.enable = true;
+        };
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-gtk
+        ];
+      };
+    };
+
+    homeManager = { pkgs, ... }: {
+      home.packages = with pkgs; [
+        xdg-utils
+      ];
+
+      xdg = {
+        enable = true;
+        userDirs = {
+          enable = true;
+          createDirectories = true;
+        };
+
+        autostart = {
+          enable = true;
+          # readOnly = true;   # Keep disabled for now
         };
       };
+    };
   };
 }

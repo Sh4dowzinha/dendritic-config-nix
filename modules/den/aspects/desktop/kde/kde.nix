@@ -1,9 +1,30 @@
 { den, lib, ... }: {
   den.aspects.desktop.kde = {
-    nixos = { host, ... }: {
+    nixos = { host, pkgs, ... }: {
       environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";
         KWIN_DRM_DEVICES = lib.mkIf (host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-primary-legacy) "/dev/dri/dgpu1:/dev/dri/igpu1";
+      };
+
+      security.pam.services = {
+        plasmalogin.enableKwallet = true;
+      };
+
+      xdg.portal = {
+        config = {
+          kde = {
+            default = [
+              "kde"
+              "gtk"
+            ];
+            "org.freedesktop.portal.FileChooser" = [ "kde" ];
+            "org.freedesktop.portal.OpenURI" = [ "kde" ];
+          };
+        };
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-kde
+        ];
       };
 
       services.desktopManager.plasma6.enable = true;

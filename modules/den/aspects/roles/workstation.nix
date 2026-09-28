@@ -18,7 +18,7 @@
       # Desktop
       desktop.xserver
       desktop.xwayland
-      desktop.xdg-portal
+      desktop.xdg
 
       # Apps
       applications.terminals.kitty

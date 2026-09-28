@@ -15,11 +15,32 @@
       den.aspects.desktop.noctalia
     ];
 
-    nixos = { inputs', ... }: {
+    nixos = { pkgs, inputs', ... }: {
       nix.settings = {
         substituters = [ "https://hyprland.cachix.org" ];
         trusted-substituters = [ "https://hyprland.cachix.org" ];
         trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      };
+
+      security.pam.services = {
+        login.enableGnomeKeyring = true;
+        greetd.enableGnomeKeyring = true;
+      };
+
+      xdg.portal = {
+        config = {
+          hyprland = {
+            default = [
+              "hyprland"
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          };
+        };
+        extraPortals = [
+          pkgs.xdg-desktop-portal-gtk
+          inputs'.hyprland.packages.xdg-desktop-portal-hyprland
+        ];
       };
 
       programs.hyprland = {
@@ -35,6 +56,7 @@
     ];
 
     homeManager = {
+
       wayland.windowManager.hyprland = {
         enable = true;
         package = null;
