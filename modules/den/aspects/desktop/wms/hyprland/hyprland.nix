@@ -37,9 +37,8 @@
             "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
           };
         };
-        extraPortals = [
-          pkgs.xdg-desktop-portal-gtk
-          inputs'.hyprland.packages.xdg-desktop-portal-hyprland
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-gtk
         ];
       };
 

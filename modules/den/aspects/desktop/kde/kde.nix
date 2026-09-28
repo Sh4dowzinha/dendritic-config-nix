@@ -21,10 +21,6 @@
             "org.freedesktop.portal.OpenURI" = [ "kde" ];
           };
         };
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gtk
-          xdg-desktop-portal-kde
-        ];
       };
 
       services.desktopManager.plasma6.enable = true;
