@@ -10,9 +10,14 @@
       "admins"
     ];
 
+    settings = {
+      #git.signing.method = "openpgp";
+      github.username = "daniel0alves";
+    };
+
     identity = {
       displayName = "Daniel Alves";
-      email = "placeholder";
+      email = "daniel.carvalho.alves.06@gmail.com";
 
       # sshKeys = [
       #   {

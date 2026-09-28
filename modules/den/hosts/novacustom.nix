@@ -10,6 +10,7 @@
       disk.btrfs-luks-tmpfs-single.device_id = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNL0X119308M";
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
+      core.preservation-user.enable = true;
     };
   };
 

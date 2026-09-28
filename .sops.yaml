@@ -3,6 +3,7 @@ keys:
   - &novacustom age17aqufzqevnx0n6svpq7w9e4drgck9ewnfawr6rcglkzzsyxq2djqu958zj
   - &acern5 age1wkvweg05qmnaeyd8s22vas72upl0v084g3dhmqzvvysj4wg6t3rqd9ud9g
   - &dell_latitude age1z579jwaf5pcggnlqrh3zwg8d9mh8kyv7a3gxqnc2vlsnp0rq93nsevz253
+  - &victus age1cmpv66kl4m9pt0mx2sassergtcaf6ptn675zvusre2zdsf3u2ekqm9mfhy
 creation_rules:
   - path_regex: ^secrets/hosts/novacustom/novacustom\.yaml$
     key_groups:
@@ -22,6 +23,12 @@ creation_rules:
           - *sh4dow_gpg
         age:
           - *dell_latitude
+  - path_regex: ^secrets/hosts/victus/victus\.yaml$
+    key_groups:
+      - pgp:
+          - *sh4dow_gpg
+        age:
+          - *victus
   - path_regex: ^secrets/users/[^/]+\.yaml$
     pgp:
       - *sh4dow_gpg

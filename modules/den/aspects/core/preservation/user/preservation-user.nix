@@ -1,5 +1,13 @@
-{
+{ lib, ... }: {
   den.aspects.core.preservation-user = {
+    settings = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Enable preservation on the host";
+      };
+    };
+
     persistHome = {
       commonMountOptions = [
         "x-gvfs-hide"

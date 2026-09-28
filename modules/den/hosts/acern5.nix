@@ -10,6 +10,7 @@
       disk.btrfs-tmpfs-single.device_id = "/dev/disk/by-id/ata-SSD_960GB_TD23110000083";
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
+      core.preservation-user.enable = true;
     };
   };
 

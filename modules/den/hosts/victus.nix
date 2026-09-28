@@ -7,9 +7,10 @@
     timezone = "Europe/Lisbon";
 
     settings = {
-      disk.btrfs-luks-tmpfs-single.device_id = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNL0X119308M";
+      disk.btrfs-luks-root-tmpfs-single.device_id = "/dev/disk/by-id/nvme-PHIXERO_BC07985E01071850320";
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
+      core.preservation-user.enable = false;
     };
   };
 
@@ -26,6 +27,7 @@
       hardware.cpu.amd
       hardware.gpu.amd
       hardware.gpu.nvidia
+      hardware.gpu.optimus.nvidia-prime
       hardware.laptop
 
       desktop.gnome
