@@ -3,7 +3,7 @@
     nixos = { host, ... }: {
       environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";
-        KWIN_DRM_DEVICES = lib.mkIf (host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-primary) "/dev/dri/dgpu1:/dev/dri/igpu1";
+        KWIN_DRM_DEVICES = lib.mkIf (host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-primary-legacy) "/dev/dri/dgpu1:/dev/dri/igpu1";
       };
 
       services.desktopManager.plasma6.enable = true;
@@ -27,7 +27,7 @@
 
     cacheHome = {
       directories = [
-        ".local/share/baloo/"
+        ".local/share/baloo"
       ];
     };
   };

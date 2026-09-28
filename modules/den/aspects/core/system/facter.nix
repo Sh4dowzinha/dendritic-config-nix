@@ -1,4 +1,3 @@
-{ inputs, ... }:
 {
   den.aspects.core.system.facter = {
     nixos =

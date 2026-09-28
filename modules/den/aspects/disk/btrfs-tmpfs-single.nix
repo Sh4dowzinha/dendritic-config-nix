@@ -48,9 +48,9 @@
             if lib.hasPrefix "/dev/" cfg.device_id then cfg.device_id else "/dev/disk/by-id/" + cfg.device_id
           else
             let
-              native-disks = builtins.filter (
-                f: f.driver != "usb-storage"
-              ) config.hardware.facter.report.hardware.disk;
+              native-disks = builtins.filter (f: f.driver != "usb-storage") (
+                lib.attrByPath [ "hardware" "disk" ] [ ] config.hardware.facter.report
+              );
               disk-labels = map (
                 disk:
                 builtins.head (

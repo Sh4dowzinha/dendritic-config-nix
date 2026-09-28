@@ -25,6 +25,162 @@
       "low_memory_size": 0,
       "smbios_version": 768
     },
+    "bluetooth": [
+      {
+        "index": 30,
+        "attached_to": 32,
+        "class_list": ["usb", "bluetooth"],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0115",
+          "name": "Bluetooth Device",
+          "value": 277
+        },
+        "vendor": {
+          "hex": "8087",
+          "value": 32903
+        },
+        "device": {
+          "hex": "0a2b",
+          "value": 2603
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "0.10",
+          "value": 0
+        },
+        "model": "Bluetooth Device",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-7/1-7:1.0",
+        "sysfs_bus_id": "1-7:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 12000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "00e0",
+            "name": "wireless",
+            "value": 224
+          },
+          "device_subclass": {
+            "hex": "0001",
+            "name": "audio",
+            "value": 1
+          },
+          "device_protocol": 1,
+          "interface_class": {
+            "hex": "00e0",
+            "name": "wireless",
+            "value": 224
+          },
+          "interface_subclass": {
+            "hex": "0001",
+            "name": "audio",
+            "value": 1
+          },
+          "interface_protocol": 1,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "btusb",
+        "driver_module": "btusb",
+        "drivers": ["btusb"],
+        "driver_modules": ["btusb"],
+        "module_alias": "usb:v8087p0A2Bd0010dcE0dsc01dp01icE0isc01ip01in00"
+      },
+      {
+        "index": 34,
+        "attached_to": 32,
+        "class_list": ["usb", "bluetooth"],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0115",
+          "name": "Bluetooth Device",
+          "value": 277
+        },
+        "vendor": {
+          "hex": "8087",
+          "value": 32903
+        },
+        "device": {
+          "hex": "0a2b",
+          "value": 2603
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "0.10",
+          "value": 0
+        },
+        "model": "Bluetooth Device",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-7/1-7:1.1",
+        "sysfs_bus_id": "1-7:1.1",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 12000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "00e0",
+            "name": "wireless",
+            "value": 224
+          },
+          "device_subclass": {
+            "hex": "0001",
+            "name": "audio",
+            "value": 1
+          },
+          "device_protocol": 1,
+          "interface_class": {
+            "hex": "00e0",
+            "name": "wireless",
+            "value": 224
+          },
+          "interface_subclass": {
+            "hex": "0001",
+            "name": "audio",
+            "value": 1
+          },
+          "interface_protocol": 1,
+          "interface_number": 1,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "btusb",
+        "driver_module": "btusb",
+        "drivers": ["btusb"],
+        "driver_modules": ["btusb"],
+        "module_alias": "usb:v8087p0A2Bd0010dcE0dsc01dp01icE0isc01ip01in01"
+      }
+    ],
     "bridge": [
       {
         "index": 10,
@@ -275,8 +431,8 @@
     ],
     "chip_card": [
       {
-        "index": 29,
-        "attached_to": 30,
+        "index": 31,
+        "attached_to": 32,
         "class_list": ["chip_card", "usb"],
         "bus_type": {
           "hex": "0086",
@@ -508,7 +664,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 29140,
+        "tlb_size": 30294,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -520,6 +676,78 @@
     "disk": [
       {
         "index": 27,
+        "attached_to": 23,
+        "class_list": ["disk", "usb", "scsi", "block_device"],
+        "bus_type": {
+          "hex": "0084",
+          "name": "SCSI",
+          "value": 132
+        },
+        "slot": {
+          "bus": 3,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0106",
+          "name": "Mass Storage Device",
+          "value": 262
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Disk",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "0951",
+          "name": "Kingston",
+          "value": 2385
+        },
+        "device": {
+          "hex": "1666",
+          "name": "DataTraveler 3.0",
+          "value": 5734
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "PMAP",
+          "value": 0
+        },
+        "serial": "1EC71CB00ED9",
+        "model": "Kingston DataTraveler 3.0",
+        "sysfs_id": "/class/block/sdb",
+        "sysfs_bus_id": "3:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb2/2-3/2-3:1.0/host3/target3:0:0/3:0:0:0",
+        "unix_device_names": [
+          "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_1C1B0D6C196DE7C0E9070A92-0:0",
+          "/dev/disk/by-path/pci-0000:00:14.0-usb-0:3:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-path/pci-0000:00:14.0-usbv3-0:3:1.0-scsi-0:0:0:0",
+          "/dev/sdb"
+        ],
+        "unix_device_name2": "/dev/sg1",
+        "resources": [
+          {
+            "type": "disk_geo",
+            "cylinders": 59136,
+            "heads": 64,
+            "sectors": 32,
+            "size": "0x0",
+            "geo_type": "logical"
+          },
+          {
+            "type": "size",
+            "unit": "sectors",
+            "value_1": 121110528,
+            "value_2": 512
+          }
+        ],
+        "driver": "usb-storage",
+        "driver_module": "usb_storage",
+        "drivers": ["sd", "usb-storage"],
+        "driver_modules": ["sd_mod", "usb_storage"],
+        "module_alias": "usb:v0951p1666d0110dc00dsc00dp00ic08isc06ip50in00"
+      },
+      {
+        "index": 28,
         "attached_to": 8,
         "class_list": ["disk", "ide", "block_device"],
         "bus_type": {
@@ -568,7 +796,6 @@
           "/dev/disk/by-path/pci-0000:00:17.0-ata-3.0",
           "/dev/sda"
         ],
-        "rom_id": "0x80",
         "resources": [
           {
             "type": "disk_geo",
@@ -670,7 +897,7 @@
     ],
     "hub": [
       {
-        "index": 30,
+        "index": 32,
         "attached_to": 23,
         "class_list": ["usb", "hub"],
         "bus_type": {
@@ -689,7 +916,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.53 xhci-hcd",
+          "name": "Linux 7.2.7 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -699,11 +926,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.18",
+          "name": "7.02",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.18.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.7 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -747,10 +974,10 @@
         "driver_module": "usbcore",
         "drivers": ["hub"],
         "driver_modules": ["usbcore"],
-        "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0702dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 31,
+        "index": 35,
         "attached_to": 23,
         "class_list": ["usb", "hub"],
         "bus_type": {
@@ -769,7 +996,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.53 xhci-hcd",
+          "name": "Linux 7.2.7 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -779,11 +1006,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.18",
+          "name": "7.02",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.18.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.7 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -817,7 +1044,7 @@
         "driver_module": "usbcore",
         "drivers": ["hub"],
         "driver_modules": ["usbcore"],
-        "module_alias": "usb:v1D6Bp0003d0618dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0702dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "memory": [
@@ -922,7 +1149,7 @@
     ],
     "mouse": [
       {
-        "index": 35,
+        "index": 39,
         "attached_to": 0,
         "bus_type": {
           "hex": "0081",
@@ -947,8 +1174,8 @@
           "hex": "120b",
           "value": 4619
         },
-        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-1/i2c-DLL07A7:01/0018:044E:120B.0001/input/input9",
-        "unix_device_names": ["/dev/input/event10", "/dev/input/ + handler"]
+        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-2/i2c-DLL07A7:01/0018:044E:120B.0001/input/input10",
+        "unix_device_names": ["/dev/input/event11", "/dev/input/ + handler"]
       }
     ],
     "network_controller": [
@@ -1171,58 +1398,7 @@
     ],
     "network_interface": [
       {
-        "index": 32,
-        "attached_to": 13,
-        "class_list": ["network_interface"],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/wlp2s0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.2/0000:02:00.0",
-        "unix_device_names": ["wlp2s0"],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 51
-          },
-          {
-            "type": "phwaddr",
-            "address": 51
-          }
-        ],
-        "driver": "iwlwifi",
-        "driver_module": "iwlwifi",
-        "drivers": ["iwlwifi"],
-        "driver_modules": ["iwlwifi"]
-      },
-      {
-        "index": 33,
-        "attached_to": 0,
-        "class_list": ["network_interface"],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": ["lo"]
-      },
-      {
-        "index": 34,
+        "index": 36,
         "attached_to": 21,
         "class_list": ["network_interface"],
         "base_class": {
@@ -1253,6 +1429,57 @@
         "driver_module": "e1000e",
         "drivers": ["e1000e"],
         "driver_modules": ["e1000e"]
+      },
+      {
+        "index": 37,
+        "attached_to": 0,
+        "class_list": ["network_interface"],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": ["lo"]
+      },
+      {
+        "index": 38,
+        "attached_to": 13,
+        "class_list": ["network_interface"],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/wlp2s0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.2/0000:02:00.0",
+        "unix_device_names": ["wlp2s0"],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 51
+          },
+          {
+            "type": "phwaddr",
+            "address": 51
+          }
+        ],
+        "driver": "iwlwifi",
+        "driver_module": "iwlwifi",
+        "drivers": ["iwlwifi"],
+        "driver_modules": ["iwlwifi"]
       }
     ],
     "pci": [
@@ -1887,8 +2114,8 @@
     },
     "usb": [
       {
-        "index": 28,
-        "attached_to": 30,
+        "index": 29,
+        "attached_to": 32,
         "class_list": ["usb", "unknown"],
         "bus_type": {
           "hex": "0086",

@@ -1,6 +1,7 @@
 keys:
   - &sh4dow_gpg 57B947A6375A93BFE0489ACFC71894C085934296
   - &novacustom age17aqufzqevnx0n6svpq7w9e4drgck9ewnfawr6rcglkzzsyxq2djqu958zj
+  - &acern5 age1wkvweg05qmnaeyd8s22vas72upl0v084g3dhmqzvvysj4wg6t3rqd9ud9g
   - &dell_latitude age1z579jwaf5pcggnlqrh3zwg8d9mh8kyv7a3gxqnc2vlsnp0rq93nsevz253
 creation_rules:
   - path_regex: ^secrets/hosts/novacustom/novacustom\.yaml$
@@ -9,6 +10,12 @@ creation_rules:
           - *sh4dow_gpg
         age:
           - *novacustom
+  - path_regex: ^secrets/hosts/acern5/acern5\.yaml$
+    key_groups:
+      - pgp:
+          - *sh4dow_gpg
+        age:
+          - *acern5
   - path_regex: ^secrets/hosts/dell-latitude/dell-latitude\.yaml$
     key_groups:
       - pgp:

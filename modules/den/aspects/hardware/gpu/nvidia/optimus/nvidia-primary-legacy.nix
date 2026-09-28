@@ -1,6 +1,6 @@
 { den, ... }:
 {
-  den.aspects.hardware.gpu.optimus.nvidia-primary = {
+  den.aspects.hardware.gpu.optimus.nvidia-primary-legacy = {
     includes = [ den.aspects.hardware.gpu.nvidia-legacy ];
 
     nixos =
@@ -11,17 +11,15 @@
         ...
       }:
       let
+        graphicsCards = lib.attrByPath [ "hardware" "graphics_card" ] [ ] config.hardware.facter.report;
+
         nvidiaCard = lib.lists.findFirst (
           card: card.vendor.name == "nVidia Corporation"
-        ) null config.facter.report.hardware.graphics_card;
+        ) null graphicsCards;
 
-        amdCard = lib.lists.findFirst (
-          card: card.vendor.name == "ATI Technologies Inc"
-        ) null config.facter.report.hardware.graphics_card;
+        amdCard = lib.lists.findFirst (card: card.vendor.name == "ATI Technologies Inc") null graphicsCards;
 
-        intelCard = lib.lists.findFirst (
-          card: card.vendor.name == "Intel Corporation"
-        ) null config.facter.report.hardware.graphics_card;
+        intelCard = lib.lists.findFirst (card: card.vendor.name == "Intel Corporation") null graphicsCards;
       in
       {
         services.udev.packages =

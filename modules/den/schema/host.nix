@@ -100,7 +100,12 @@ in
           # (a host config is navigated to reach a nested home config), where
           # `self` self-cycles (registry → self → flake outputs → registry).
           # Same git-tracked source as `self`; mirrors `user.secretPath`.
-          facts = lib.mkDefault (rootPath + "/hosts/${config.name}/facter.json");
+
+          facts =
+            let
+              factsPath = rootPath + "/hosts/${config.name}/facter.json";
+            in
+            lib.mkDefault (if builtins.pathExists factsPath then factsPath else null);
 
           instantiate = lib.mkDefault (
             if config.class == "darwin" then resolvedChannel.darwinSystem else resolvedChannel.nixosSystem

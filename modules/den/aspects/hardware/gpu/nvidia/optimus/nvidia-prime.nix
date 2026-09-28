@@ -11,24 +11,22 @@
         ...
       }:
       let
+        graphicsCards = lib.attrByPath [ "hardware" "graphics_card" ] [ ] config.hardware.facter.report;
+
         formatPciId =
           id: "PCI:" + (lib.strings.replaceStrings [ "." ] [ ":" ] (lib.strings.removePrefix "0000:" id));
 
         nvidiaCard = lib.lists.findFirst (
           card: card.vendor.name == "nVidia Corporation"
-        ) null config.facter.report.hardware.graphics_card;
+        ) null graphicsCards;
 
         nvidiaBusID = if nvidiaCard != null then formatPciId nvidiaCard.sysfs_bus_id else "PCI:1:0:0";
 
-        amdCard = lib.lists.findFirst (
-          card: card.vendor.name == "ATI Technologies Inc"
-        ) null config.facter.report.hardware.graphics_card;
+        amdCard = lib.lists.findFirst (card: card.vendor.name == "ATI Technologies Inc") null graphicsCards;
 
         amdBusID = if amdCard != null then formatPciId amdCard.sysfs_bus_id else "";
 
-        intelCard = lib.lists.findFirst (
-          card: card.vendor.name == "Intel Corporation"
-        ) null config.facter.report.hardware.graphics_card;
+        intelCard = lib.lists.findFirst (card: card.vendor.name == "Intel Corporation") null graphicsCards;
 
         intelBusID = if intelCard != null then formatPciId intelCard.sysfs_bus_id else "";
       in
