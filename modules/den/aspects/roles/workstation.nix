@@ -26,6 +26,7 @@
       applications.productivity.obs-studio
       applications.productivity.obsidian
       applications.productivity.zathura
+      applications.productivity.libreoffice
     ];
   };
 }
