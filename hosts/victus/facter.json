@@ -1384,7 +1384,7 @@
     ],
     "camera": [
       {
-        "index": 72,
+        "index": 71,
         "attached_to": 75,
         "class_list": ["camera", "usb"],
         "bus_type": {
@@ -1747,7 +1747,7 @@
           "[14]",
           "[15]"
         ],
-        "bogo": 7586,
+        "bogo": 7585,
         "cache": 1024,
         "units": 16,
         "page_size": 4096,
@@ -1843,7 +1843,7 @@
       },
       {
         "index": 65,
-        "attached_to": 58,
+        "attached_to": 21,
         "class_list": ["disk", "usb", "scsi", "block_device"],
         "bus_type": {
           "hex": "0084",
@@ -1883,15 +1883,23 @@
         "model": "USB SanDisk 3.2Gen1",
         "sysfs_id": "/class/block/sda",
         "sysfs_bus_id": "0:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:08.1/0000:06:00.3/usb2/2-1/2-1:1.0/host0/target0:0:0/0:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:08.3/0000:08:00.4/usb7/7-1/7-1:1.0/host0/target0:0:0/0:0:0:0",
         "unix_device_names": [
           "/dev/disk/by-id/usb-USB_SanDisk_3.2Gen1_04015ae58bc7a74084a75eb3a789bab82b31431209cbb7b39669184cc9b87e374b2d000000000000000000003c215c550003071881558107ac30c747-0:0",
-          "/dev/disk/by-path/pci-0000:06:00.3-usb-0:1:1.0-scsi-0:0:0:0",
-          "/dev/disk/by-path/pci-0000:06:00.3-usbv3-0:1:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-path/pci-0000:08:00.4-usb-0:1:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-path/pci-0000:08:00.4-usbv2-0:1:1.0-scsi-0:0:0:0",
           "/dev/sda"
         ],
         "unix_device_name2": "/dev/sg0",
         "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          },
           {
             "type": "disk_geo",
             "cylinders": 58680,
@@ -2140,7 +2148,7 @@
         "module_alias": "usb:v1D6Bp0003d0618dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 69,
+        "index": 68,
         "attached_to": 34,
         "class_list": ["usb", "hub"],
         "bus_type": {
@@ -2220,7 +2228,7 @@
         "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 70,
+        "index": 69,
         "attached_to": 21,
         "class_list": ["usb", "hub"],
         "bus_type": {
@@ -2300,7 +2308,7 @@
         "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 73,
+        "index": 72,
         "attached_to": 34,
         "class_list": ["usb", "hub"],
         "bus_type": {
@@ -2796,8 +2804,8 @@
           "hex": "321a",
           "value": 12826
         },
-        "sysfs_id": "/devices/platform/AMDI0010:03/i2c-0/i2c-ELAN07FB:00/0018:04F3:321A.0001/input/input12",
-        "unix_device_names": ["/dev/input/event8", "/dev/input/ + handler"]
+        "sysfs_id": "/devices/platform/AMDI0010:03/i2c-0/i2c-ELAN07FB:00/0018:04F3:321A.0001/input/input11",
+        "unix_device_names": ["/dev/input/event7", "/dev/input/ + handler"]
       }
     ],
     "network_controller": [
@@ -3032,7 +3040,7 @@
     "network_interface": [
       {
         "index": 80,
-        "attached_to": 0,
+        "attached_to": 25,
         "class_list": ["network_interface"],
         "base_class": {
           "hex": "0107",
@@ -3040,13 +3048,28 @@
           "value": 263
         },
         "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
         },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": ["lo"]
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/eno1",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:02:00.0",
+        "unix_device_names": ["eno1"],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 50
+          },
+          {
+            "type": "phwaddr",
+            "address": 50
+          }
+        ],
+        "driver": "r8169",
+        "driver_module": "r8169",
+        "drivers": ["r8169"],
+        "driver_modules": ["r8169"]
       },
       {
         "index": 81,
@@ -3083,7 +3106,7 @@
       },
       {
         "index": 82,
-        "attached_to": 25,
+        "attached_to": 0,
         "class_list": ["network_interface"],
         "base_class": {
           "hex": "0107",
@@ -3091,28 +3114,13 @@
           "value": 263
         },
         "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
         },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno1",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:02:00.0",
-        "unix_device_names": ["eno1"],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 50
-          },
-          {
-            "type": "phwaddr",
-            "address": 50
-          }
-        ],
-        "driver": "r8169",
-        "driver_module": "r8169",
-        "drivers": ["r8169"],
-        "driver_modules": ["r8169"]
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": ["lo"]
       }
     ],
     "pci": [
@@ -3798,7 +3806,7 @@
     },
     "usb": [
       {
-        "index": 71,
+        "index": 70,
         "attached_to": 75,
         "class_list": ["usb", "unknown"],
         "bus_type": {
