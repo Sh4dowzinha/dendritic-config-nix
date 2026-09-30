@@ -42,6 +42,7 @@
         applications.browsers.brave-origin
         applications.security.keepassxc
         applications.creative.prusa-slicer
+        applications.creative.bambu-studio
       ];
     };
   };
