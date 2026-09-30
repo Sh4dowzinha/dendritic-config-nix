@@ -10,9 +10,14 @@
       "admins"
     ];
 
+    settings = {
+      #git.signing.method = "openpgp";
+      github.username = "HugoFona";
+    };
+
     identity = {
       displayName = "Hugo Fona";
-      email = "placeholder";
+      email = "hjfona@gmail.com";
 
       # sshKeys = [
       #   {

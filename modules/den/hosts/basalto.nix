@@ -1,6 +1,6 @@
 { den, ... }:
 {
-  den.hosts.x86_64-linux.dell-latitude = {
+  den.hosts.x86_64-linux.basalto = {
     channel = "nixos-unstable";
     system-owner = "fona";
     keyboard.layout = "us";
@@ -14,7 +14,7 @@
     };
   };
 
-  den.aspects.dell-latitude = {
+  den.aspects.basalto = {
     includes = with den.aspects; [
       roles.default
       roles.workstation
