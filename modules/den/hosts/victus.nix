@@ -29,6 +29,7 @@
       hardware.gpu.nvidia
       hardware.gpu.optimus.nvidia-prime
       hardware.laptop
+      hardware.nbfc
 
       desktop.gnome
 
@@ -43,6 +44,7 @@
         applications.security.keepassxc
         applications.creative.prusa-slicer
         applications.creative.bambu-studio
+        applications.engineering.arduino
       ];
     };
   };
