@@ -1,6 +1,6 @@
 {
   den.aspects.applications.gaming.prismlauncher = {
-    homeLauncher = {
+    homeManager = {
       programs.prismlauncher = {
         enable = true;
       };

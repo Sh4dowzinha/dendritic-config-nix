@@ -44,7 +44,7 @@
         applications.security.keepassxc
         applications.creative.prusa-slicer
         applications.creative.bambu-studio
-        applications.engineering.arduino
+        applications.engineering.arduino-ide
       ];
     };
   };

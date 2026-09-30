@@ -1,7 +1,7 @@
 {
   den.aspects.hardware.nbfc = {
-    homeManager = { pkgs, ... }: {
-      home.packages = with pkgs; [
+    nixos = { pkgs, ... }: {
+      environment.systemPackages = with pkgs; [
         nbfc-linux
       ];
     };
