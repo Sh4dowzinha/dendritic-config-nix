@@ -41,7 +41,6 @@
     sh4dow = {
       includes = with den.aspects; [
         applications.browsers.brave-origin
-        applications.security.keepassxc
         applications.gaming.osu-lazer
 
         core.preservation-user

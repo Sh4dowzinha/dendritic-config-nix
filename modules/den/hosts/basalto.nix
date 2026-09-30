@@ -38,7 +38,6 @@
     fona = {
       includes = with den.aspects; [
         applications.browsers.brave-origin
-        applications.security.keepassxc
         applications.gaming.prismlauncher
       ];
     };

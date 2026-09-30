@@ -16,17 +16,15 @@
       #virtualization.libvirt
 
       # Desktop
+      desktop.wine
       desktop.xserver
       desktop.xwayland
       desktop.xdg
 
       # Apps
-      applications.terminals.kitty
-
-      applications.productivity.obs-studio
       applications.productivity.obsidian
-      applications.productivity.zathura
       applications.productivity.libreoffice
+      applications.security.keepassxc
     ];
   };
 }
