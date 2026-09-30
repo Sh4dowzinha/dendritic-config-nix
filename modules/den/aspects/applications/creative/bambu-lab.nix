@@ -1,7 +1,7 @@
 {
   den.aspects.applications.creative.bambu-studio = {
     homeManager = { pkgs, ... }: {
-      homePackages = with pkgs; [
+      home.packages = with pkgs; [
         bambu-studio
       ];
     };
