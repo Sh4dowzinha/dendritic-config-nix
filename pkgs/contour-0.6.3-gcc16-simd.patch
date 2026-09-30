@@ -1,0 +1,20 @@
+# Backported from Contour upstream.
+# Fixes std::simd feature detection with GCC 16.
+#
+# Upstream:
+# https://github.com/contour-terminal/contour
+#
+# Included in Contour 0.7.0.
+# See the 0.7.0 release notes:
+# https://github.com/contour-terminal/contour/releases/tag/v0.7.0.8982
+
+--- a/src/vtbackend/Image.cpp
++++ b/src/vtbackend/Image.cpp
+@@ -8,7 +8,7 @@
+
+ // clang-format off
+-#if __has_include(<simd>)
++#if (__cpp_lib_simd >= 202411L)
+     #include <simd>
+     namespace simd = std;
+     #define VTBACKEND_SIMD_FOUND 1
