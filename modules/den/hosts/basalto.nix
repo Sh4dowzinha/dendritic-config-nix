@@ -18,7 +18,6 @@
     includes = with den.aspects; [
       roles.default
       roles.workstation
-      roles.gaming
       roles.dev
       roles.dev-gui
       roles.messaging
@@ -39,6 +38,7 @@
       includes = with den.aspects; [
         applications.browsers.brave-origin
         applications.security.keepassxc
+        applications.gaming.prismlauncher
       ];
     };
   };
