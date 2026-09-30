@@ -10,7 +10,7 @@
 
 let
   launcher = replaceVars ./ltspice.sh {
-    wine = "${wineWow64Packages.waylandFull}/bin/wine";
+    wine = "${wineWow64Packages.full}/bin/wine";
   };
 in
 stdenv.mkDerivation (finalAttrs: {

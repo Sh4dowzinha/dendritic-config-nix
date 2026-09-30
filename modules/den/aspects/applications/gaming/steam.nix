@@ -21,7 +21,7 @@
 
         environment.systemPackages = with pkgs; [
           winetricks
-          wineWow64Packages.waylandFull
+          wineWow64Packages.full
         ];
 
         hardware = {
