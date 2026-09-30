@@ -27,8 +27,8 @@
     },
     "bluetooth": [
       {
-        "index": 30,
-        "attached_to": 32,
+        "index": 31,
+        "attached_to": 33,
         "class_list": ["usb", "bluetooth"],
         "bus_type": {
           "hex": "0086",
@@ -105,7 +105,7 @@
       },
       {
         "index": 34,
-        "attached_to": 32,
+        "attached_to": 33,
         "class_list": ["usb", "bluetooth"],
         "bus_type": {
           "hex": "0086",
@@ -431,8 +431,8 @@
     ],
     "chip_card": [
       {
-        "index": 31,
-        "attached_to": 32,
+        "index": 32,
+        "attached_to": 33,
         "class_list": ["chip_card", "usb"],
         "bus_type": {
           "hex": "0086",
@@ -664,7 +664,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 30294,
+        "tlb_size": 32333,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -716,11 +716,11 @@
         "model": "Kingston DataTraveler 3.0",
         "sysfs_id": "/class/block/sdb",
         "sysfs_bus_id": "3:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb2/2-3/2-3:1.0/host3/target3:0:0/3:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb2/2-4/2-4:1.0/host3/target3:0:0/3:0:0:0",
         "unix_device_names": [
           "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_1C1B0D6C196DE7C0E9070A92-0:0",
-          "/dev/disk/by-path/pci-0000:00:14.0-usb-0:3:1.0-scsi-0:0:0:0",
-          "/dev/disk/by-path/pci-0000:00:14.0-usbv3-0:3:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-path/pci-0000:00:14.0-usb-0:4:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-path/pci-0000:00:14.0-usbv3-0:4:1.0-scsi-0:0:0:0",
           "/dev/sdb"
         ],
         "unix_device_name2": "/dev/sg1",
@@ -897,7 +897,7 @@
     ],
     "hub": [
       {
-        "index": 32,
+        "index": 33,
         "attached_to": 23,
         "class_list": ["usb", "hub"],
         "bus_type": {
@@ -1174,7 +1174,7 @@
           "hex": "120b",
           "value": 4619
         },
-        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-2/i2c-DLL07A7:01/0018:044E:120B.0001/input/input10",
+        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-2/i2c-DLL07A7:01/0018:044E:120B.0001/input/input11",
         "unix_device_names": ["/dev/input/event11", "/dev/input/ + handler"]
       }
     ],
@@ -2114,8 +2114,8 @@
     },
     "usb": [
       {
-        "index": 29,
-        "attached_to": 32,
+        "index": 30,
+        "attached_to": 33,
         "class_list": ["usb", "unknown"],
         "bus_type": {
           "hex": "0086",

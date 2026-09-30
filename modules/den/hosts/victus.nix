@@ -41,6 +41,7 @@
       includes = with den.aspects; [
         applications.browsers.brave-origin
         applications.security.keepassxc
+        applications.creative.prusa-slicer
       ];
     };
   };
