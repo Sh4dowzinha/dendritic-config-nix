@@ -121,6 +121,10 @@
             workspaces-only-on-primary = true;
           };
 
+          "org/gnome/mutter/wayland" = {
+            xwayland-scaling-factor = "1";
+          };
+
           "org/gnome/shell/app-switcher" = {
             current-workspace-only = true;
           };

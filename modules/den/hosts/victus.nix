@@ -29,7 +29,7 @@
       hardware.gpu.nvidia
       hardware.gpu.optimus.nvidia-prime
       hardware.laptop
-      hardware.nbfc
+      hardware.nbfc-linux
 
       desktop.gnome
 
