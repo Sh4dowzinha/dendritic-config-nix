@@ -25,6 +25,7 @@
       applications.productivity.obsidian
       applications.productivity.libreoffice
       applications.security.keepassxc
+      applications.terminals.kitty
     ];
   };
 }

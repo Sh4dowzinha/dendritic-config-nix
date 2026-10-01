@@ -10,17 +10,17 @@
         plasmalogin.enableKwallet = true;
       };
 
-      xdg.portal = {
-        config = {
-          kde = {
-            default = [
-              "kde"
-              "gtk"
-            ];
-            "org.freedesktop.portal.FileChooser" = [ "kde" ];
-            "org.freedesktop.portal.OpenURI" = [ "kde" ];
-          };
+      xdg = {
+        portal.config.kde = {
+          default = [
+            "kde"
+            "gtk"
+          ];
+
+          "org.freedesktop.portal.FileChooser" = [ "kde" ];
+          "org.freedesktop.portal.OpenURI" = [ "kde" ];
         };
+        #terminal-exec
       };
 
       services.desktopManager.plasma6.enable = true;

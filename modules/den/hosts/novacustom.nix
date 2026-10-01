@@ -30,7 +30,8 @@
       hardware.laptop
       hardware.nitrokey3
 
-      desktop.gnome
+      desktop.kde
+      desktop.plasma-manager
 
       disk.btrfs-luks-tmpfs-single
 

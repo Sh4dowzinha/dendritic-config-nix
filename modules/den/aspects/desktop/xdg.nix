@@ -1,25 +1,32 @@
 {
   den.aspects.desktop.xdg = {
     nixos = { pkgs, ... }: {
-      xdg.portal = {
-        enable = true;
-        xdgOpenUsePortal = true;
-        config = {
-          common = {
-            default = [ "gtk" ];
+      xdg = {
+        portal = {
+          enable = true;
+          xdgOpenUsePortal = true;
+          config = {
+            common = {
+              default = [ "gtk" ];
+            };
+          };
+          extraPortals = with pkgs; [
+            xdg-desktop-portal-gtk
+          ];
+        };
+
+        terminal-exec = {
+          enable = true;
+          settings = {
+            default = [
+              "kitty.desktop"
+            ];
           };
         };
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gtk
-        ];
       };
     };
 
-    homeManager = { pkgs, ... }: {
-      home.packages = with pkgs; [
-        xdg-utils
-      ];
-
+    homeManager = {
       xdg = {
         enable = true;
         userDirs = {

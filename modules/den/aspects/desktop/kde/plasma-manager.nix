@@ -1,15 +1,30 @@
 {
-  flake-file.inputs.plasma-manager = {
-    url = "github:nix-community/plasma-manager";
-    inputs = {
-      nixpkgs.follows = "nixpkgs-unstable";
-      home-manager.follows = "home-manager-unstable";
+  flake-file.inputs = {
+    plasma-manager-unstable = {
+      url = "github:nix-community/plasma-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-unstable";
+        home-manager.follows = "home-manager-unstable";
+      };
+    };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
   };
 
-  den.aspects.desktop.kde = {
+  den.aspects.desktop.plasma-manager = { host, ... }: {
     homeManagerModules = { inputs', ... }: [
-      inputs'.plasma-manager.homeModules.plasma-manager
+      (
+        if host.channel == "nixos-unstable" then
+          inputs'.plasma-manager-unstable.homeModules.plasma-manager
+        else
+          inputs'.plasma-manager.homeModules.plasma-manager
+      )
     ];
 
     homeManager = {

@@ -95,6 +95,13 @@
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    plasma-manager-unstable = {
+      url = "github:nix-community/plasma-manager";
+      inputs = {
         home-manager.follows = "home-manager-unstable";
         nixpkgs.follows = "nixpkgs-unstable";
       };

@@ -32,6 +32,7 @@
       hardware.nitrokey3
 
       desktop.kde
+      desktop.plasma-manager
 
       disk.btrfs-tmpfs-single
 

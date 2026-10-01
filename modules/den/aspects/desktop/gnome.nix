@@ -35,15 +35,15 @@
           gdm-password.enableGnomeKeyring = true;
         };
 
-        xdg.portal = {
-          config = {
-            gnome = {
-              default = [
-                "gnome"
-                "gtk"
-              ];
-            };
-          };
+        xdg = {
+          portal.config.gnome.default = [
+            "gnome"
+            "gtk"
+          ];
+
+          terminal-exec.settings.GNOME = [
+            "org.gnome.Terminal.desktop"
+          ];
         };
 
         services = {
