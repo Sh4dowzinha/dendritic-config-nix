@@ -44,7 +44,6 @@
         applications.creative.prusa-slicer
         applications.creative.bambu-studio
         applications.engineering.arduino-ide
-        applications.gaming.prismlauncher
       ];
     };
   };
