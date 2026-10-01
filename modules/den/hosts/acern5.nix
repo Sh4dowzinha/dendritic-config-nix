@@ -1,7 +1,7 @@
 { den, ... }:
 {
   den.hosts.x86_64-linux.acern5 = {
-    channel = "nixos-unstable";
+    channel = "nixos-stable";
     system-owner = "sh4dow";
     keyboard.layout = "br";
     timezone = "Europe/Lisbon";

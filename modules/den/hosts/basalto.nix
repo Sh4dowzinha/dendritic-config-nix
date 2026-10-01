@@ -1,7 +1,7 @@
 { den, ... }:
 {
   den.hosts.x86_64-linux.basalto = {
-    channel = "nixos-unstable";
+    channel = "nixos-stable";
     system-owner = "fona";
     keyboard.layout = "us";
     timezone = "Europe/Lisbon";
