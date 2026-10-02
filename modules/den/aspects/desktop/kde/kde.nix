@@ -20,7 +20,9 @@
           "org.freedesktop.portal.FileChooser" = [ "kde" ];
           "org.freedesktop.portal.OpenURI" = [ "kde" ];
         };
-        #terminal-exec
+        #terminal-exec.settings.KDE = [
+        #  "org.gnome.Terminal.desktop"
+        #];
       };
 
       services.desktopManager.plasma6.enable = true;

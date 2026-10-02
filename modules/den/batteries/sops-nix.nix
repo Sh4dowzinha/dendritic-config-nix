@@ -44,8 +44,8 @@ let
               # Per-user identity secrets are emitted by sopsUserAspect at user scope
             };
 
-            # Make secrets paths available as module arg
-            _module.args.secrets = lib.mapAttrs (_: v: v.path) config.sops.secrets;
+            # Make secret paths available as module arg
+            _module.args.secretPaths = lib.mapAttrs (_: v: v.path) config.sops.secrets;
           };
     };
 
@@ -71,7 +71,7 @@ let
           (
             { config, lib, ... }:
             {
-              _module.args.secrets = lib.mapAttrs (_: v: v.path) config.sops.secrets;
+              _module.args.secretPaths = lib.mapAttrs (_: v: v.path) config.sops.secrets;
             }
           )
         ];
