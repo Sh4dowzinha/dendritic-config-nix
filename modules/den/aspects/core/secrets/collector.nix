@@ -1,5 +1,5 @@
 {
-  den.aspects.core.secrets.collector =
+  den.aspects.core.sops-secrets.collector =
     let
       collect =
         lib: sops-secrets:

@@ -13,7 +13,6 @@
 
   perSystem =
     {
-      inputs',
       config,
       pkgs,
       ...
@@ -38,7 +37,7 @@
 
           global.excludes = [
             "generated/**"
-            ".secrets/**"
+            "secrets/**"
             "*.editorconfig"
             "*.envrc"
             "*.gitconfig"
