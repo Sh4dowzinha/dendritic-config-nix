@@ -5,6 +5,10 @@
   ...
 }:
 {
+  flake-file.inputs = {
+    preservation.url = "github:nix-community/preservation";
+  };
+
   den.aspects.core.preservation = {
     includes = [
       den.aspects.core.preservation.collector

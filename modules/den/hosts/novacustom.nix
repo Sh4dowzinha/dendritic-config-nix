@@ -38,6 +38,10 @@
       core.network.manager
     ];
 
+    # WARNING!! DON'T TOUCH THE SYSTEM STATE VERSION IN ANY
+    # CIRCUMSTANCE, ONLY IF EXPLICITLY SAID IN THE DOCUMENTATION!
+    system.stateVersion = "26.11";
+
     sh4dow = {
       includes = with den.aspects; [
         applications.browsers.brave-origin

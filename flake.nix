@@ -8,7 +8,7 @@
   inputs = {
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     ayugram-desktop.url = "github:ndfined-crp/ayugram-desktop";
     base16-schemes = {
@@ -23,11 +23,11 @@
     den.url = "github:denful/den";
     devshell = {
       url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     files.url = "github:sini/files";
     flake-compat.url = "github:edolstra/flake-compat";
@@ -69,7 +69,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid";
@@ -78,18 +78,14 @@
         nixpkgs.follows = "nixpkgs-unstable";
       };
     };
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-wrapper-modules = {
       url = "github:BirdeeHub/nix-wrapper-modules";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-stable-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    noctalia.url = "github:noctalia-dev/noctalia/cachix";
     nvf.url = "github:notashelf/nvf";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     plasma-manager = {
@@ -113,16 +109,12 @@
     };
     steam-config-nix = {
       url = "github:different-name/steam-config-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default/future-26.11";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     umu = {
       url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";

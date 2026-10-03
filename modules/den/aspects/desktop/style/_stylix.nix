@@ -1,3 +1,5 @@
+# Disable stylix for now
+
 { inputs, ... }:
 let
   # Named wallpapers kept for reference. Stylix themes a single image per
@@ -18,7 +20,7 @@ let
   wallpaper = pkgs: (wallpapers pkgs).wallpaperaccess-17036190;
 in
 {
-  den.aspects.desktop.style.stylix = {
+  den.aspects.desktop.style.stylix = { host, ... }: {
     nixos =
       {
         pkgs,
@@ -26,7 +28,12 @@ in
       }:
       {
         imports = [
-          inputs.stylix.nixosModules.stylix
+          (
+            if host.channel == "nixos-unstable" then
+              inputs.stylix-unstable.nixosModules.stylix
+            else
+              inputs.stylix.nixosModules.stylix
+          )
         ];
 
         config = {
@@ -171,11 +178,14 @@ in
         };
       };
 
-    homeManagerModules =
-      { inputs', ... }:
-      [
-        inputs'.stylix.homeModules.stylix
-      ];
+    homeManagerModules = { inputs', ... }: [
+      (
+        if host.channel == "nixos-unstable" then
+          inputs'.stylix-unstable.homeModules.stylix
+        else
+          inputs'.stylix.homeModules.stylix
+      )
+    ];
 
     homeManager =
       {

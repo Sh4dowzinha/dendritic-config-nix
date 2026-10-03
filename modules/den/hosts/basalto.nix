@@ -1,7 +1,7 @@
 { den, ... }:
 {
   den.hosts.x86_64-linux.basalto = {
-    channel = "nixos-stable";
+    channel = "nixos-unstable";
     system-owner = "fona";
     keyboard.layout = "us";
     timezone = "Europe/Lisbon";
@@ -34,6 +34,10 @@
 
       core.network.manager
     ];
+
+    # WARNING!! DON'T TOUCH THE SYSTEM STATE VERSION IN ANY
+    # CIRCUMSTANCE, ONLY IF EXPLICITLY SAID IN THE DOCUMENTATION!
+    system.stateVersion = "26.11";
 
     fona = {
       includes = with den.aspects; [
