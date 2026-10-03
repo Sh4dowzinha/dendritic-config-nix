@@ -35,9 +35,11 @@
       core.network.manager
     ];
 
-    # WARNING!! DON'T TOUCH THE SYSTEM STATE VERSION IN ANY
-    # CIRCUMSTANCE, ONLY IF EXPLICITLY SAID IN THE DOCUMENTATION!
-    system.stateVersion = "26.11";
+    nixos = {
+      # WARNING!! DON'T TOUCH THE SYSTEM STATE VERSION IN ANY
+      # CIRCUMSTANCE, ONLY IF EXPLICITLY SAID IN THE DOCUMENTATION!
+      system.stateVersion = "26.11";
+    };
 
     fona = {
       includes = with den.aspects; [

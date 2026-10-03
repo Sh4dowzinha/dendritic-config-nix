@@ -2,6 +2,9 @@
 {
   den.aspects.fona = {
     includes = [ den.batteries.host-aspects ];
+
+    homeManager = {
+    };
   };
 
   den.users.registry.fona = {
