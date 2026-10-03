@@ -3,7 +3,7 @@
   den.aspects.dani = {
     includes = [ den.batteries.host-aspects ];
 
-    homeManager = { ... }: {
+    homeManager = {
       programs.fish = {
         functions = {
           ist = "cd ~/Documents/Documents_arch/IST/";
