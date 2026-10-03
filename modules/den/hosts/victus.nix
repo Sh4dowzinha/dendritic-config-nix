@@ -31,7 +31,8 @@
       hardware.laptop
       hardware.nbfc-linux
 
-      desktop.gnome
+      desktop.kde
+      desktop.plasma-manager
 
       disk.btrfs-luks-root-tmpfs-single
 

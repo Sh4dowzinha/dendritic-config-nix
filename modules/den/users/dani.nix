@@ -2,6 +2,15 @@
 {
   den.aspects.dani = {
     includes = [ den.batteries.host-aspects ];
+
+    homeManager = {
+      programs.fish = {
+        functions = {
+          ist = "cd ~/Documents/Documents_arch/IST/";
+          aed = "cd ~/Documents/Documents_arch/IST/aed";
+        };
+      };
+    };
   };
 
   den.users.registry.dani = {
