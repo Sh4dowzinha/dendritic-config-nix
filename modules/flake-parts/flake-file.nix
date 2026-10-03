@@ -14,7 +14,7 @@
     inputs = {
       apple-fonts = {
         url = "github:Lyndeno/apple-fonts.nix";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
+        inputs.nixpkgs.follows = "nixpkgs";
       };
 
       base16-schemes = {
@@ -22,22 +22,7 @@
         flake = false;
       };
 
-      betterfox = {
-        url = "github:yokoffing/Betterfox";
-        flake = false;
-      };
-
       den.url = "github:denful/den";
-
-      devshell = {
-        url = "github:numtide/devshell";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
-
-      disko = {
-        url = "github:nix-community/disko";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
 
       files.url = "github:sini/files";
 
@@ -64,16 +49,7 @@
         inputs.nixpkgs.follows = "nixpkgs-unstable";
       };
 
-      hyprland.url = "github:hyprwm/Hyprland";
-
-      hyprland-plugins = {
-        url = "github:hyprwm/hyprland-plugins";
-        inputs.hyprland.follows = "hyprland";
-      };
-
       import-tree.url = "github:vic/import-tree";
-
-      noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
       nix-darwin = {
         url = "github:LnL7/nix-darwin/nix-darwin-26.05";
@@ -91,17 +67,12 @@
 
       nix-index-database = {
         url = "github:nix-community/nix-index-database";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
-
-      nix-vscode-extensions = {
-        url = "github:nix-community/nix-vscode-extensions";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
+        inputs.nixpkgs.follows = "nixpkgs";
       };
 
       nix-wrapper-modules = {
         url = "github:BirdeeHub/nix-wrapper-modules";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
+        inputs.nixpkgs.follows = "nixpkgs";
       };
 
       nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
@@ -110,25 +81,11 @@
 
       nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-      nvf.url = "github:notashelf/nvf";
-
       pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
-
-      preservation.url = "github:nix-community/preservation";
-
-      steam-config-nix = {
-        url = "github:different-name/steam-config-nix";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
-
-      stylix = {
-        url = "github:nix-community/stylix";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
 
       treefmt-nix = {
         url = "github:numtide/treefmt-nix";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
+        inputs.nixpkgs.follows = "nixpkgs";
       };
     };
   };

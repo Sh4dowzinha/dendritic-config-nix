@@ -9,7 +9,7 @@
       hardware.printers
 
       # Theming
-      desktop.style.stylix
+      #desktop.style.stylix
       desktop.style.fonts
 
       # Virtualization

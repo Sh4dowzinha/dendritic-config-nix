@@ -1,11 +1,18 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 let
   inherit (inputs) betterfox;
 in
 {
+  flake-file.inputs = {
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false;
+    };
+  };
+
   den.aspects.applications.browsers.firefox = {
     homeManager =
-      { pkgs, inputs', ... }:
+      { pkgs, ... }:
       {
         programs.firefox = {
           enable = true;
@@ -228,11 +235,11 @@ in
       };
     };
 
-    stylix-hm = {
-      targets.firefox.profileNames = [ "default" ];
-      # TODO: bind this to linux only
-      # targets.firefox.firefoxGnomeTheme.enable = true;
-    };
+    # stylix-hm = {
+    # targets.firefox.profileNames = [ "default" ];
+    # TODO: bind this to linux only
+    # targets.firefox.firefoxGnomeTheme.enable = true;
+    # };
 
     # home-manager ≥ the nixpkgs bump migrated firefox to the XDG path
     # (~/.config/mozilla/firefox). Firefox prefers legacy ~/.mozilla when it

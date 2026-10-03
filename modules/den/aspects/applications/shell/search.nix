@@ -18,7 +18,6 @@
           enableBashIntegration = true;
           enableFishIntegration = true;
           enableZshIntegration = true;
-          tmux.enableShellIntegration = true;
         };
         ripgrep = {
           enable = true;

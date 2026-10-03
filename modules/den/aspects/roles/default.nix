@@ -6,7 +6,6 @@
       core.nix.nixpkgs
       core.systemd.boot
       core.localization.i18n
-      core.nix.stateVersion
       core.systemd
       core.users.shell
       core.network.firewall
