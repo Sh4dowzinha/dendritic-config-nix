@@ -11,6 +11,7 @@
       core.network.firewall
       core.network.dns
       core.utils
+      core.documentation
       core.system.firmware
       core.security
       core.system.facter
