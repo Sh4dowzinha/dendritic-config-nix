@@ -9,7 +9,8 @@
         generateCompletions = true;
         shellAbbrs = {
           c = "clear";
-          gs = "git switch";
+          gst = "git status";
+          gsw = "git switch";
         };
       };
     };
