@@ -50,7 +50,7 @@
       programs.plasma.input.mice = lib.mkIf (host.hasAspect den.aspects.desktop.plasma-manager) [
         {
           enable = true;
-          name = "Razer DeathAdder Essential";
+          name = "Razer Razer DeathAdder Essential";
           productId = "0098";
           vendorId = "1532";
           accelerationProfile = "none";
