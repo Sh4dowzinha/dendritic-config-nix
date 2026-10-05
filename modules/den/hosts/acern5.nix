@@ -53,7 +53,7 @@
           name = "Razer DeathAdder Essential";
           productId = "0098";
           vendorId = "1532";
-          accelerationProfile = "flat";
+          accelerationProfile = "none";
         }
       ];
     };

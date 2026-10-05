@@ -7,8 +7,6 @@
         ...
       }:
       {
-        services.razer-laptop-control.enable = true;
-
         hardware.openrazer.enable = true;
         hardware.openrazer.users = map (u: u.name) resolved-users;
         environment.systemPackages = [
