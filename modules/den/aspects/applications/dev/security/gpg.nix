@@ -14,6 +14,7 @@
 
         scdaemonSettings = {
           disable-ccid = true;
+          pcsc-shared = true;
         };
 
         settings = {
