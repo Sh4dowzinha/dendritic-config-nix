@@ -7,6 +7,15 @@
       ];
     };
 
+    cache = {
+      directories = [
+        {
+          directory = "/var/cache/powertop";
+          mode = "0700";
+        }
+      ];
+    };
+
     nixos =
       { pkgs, lib, ... }:
       {
