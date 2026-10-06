@@ -2,7 +2,6 @@
 {
   den.aspects.applications.dev.security.gpg = {
     nixos = {
-      services.pcscd.enable = true;
       hardware.gpgSmartcards.enable = true;
     };
 
@@ -11,11 +10,6 @@
         enable = true;
         mutableKeys = false;
         mutableTrust = false;
-
-        scdaemonSettings = {
-          disable-ccid = true;
-          pcsc-shared = true;
-        };
 
         settings = {
           personal-cipher-preferences = "AES256 AES192 AES";
