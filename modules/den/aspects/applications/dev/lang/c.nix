@@ -8,6 +8,8 @@
       home.packages = with pkgs; [
         gnumake
         clang-tools
+        valgrind
+        gdb
       ];
     };
 
