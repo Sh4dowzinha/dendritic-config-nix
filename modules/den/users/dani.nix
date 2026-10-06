@@ -14,10 +14,7 @@
   };
 
   den.users.registry.dani = {
-    system.uid = 1000;
-    groups = [
-      "admins"
-    ];
+    system.uid = 1002;
 
     settings = {
       #git.signing.method = "openpgp";
