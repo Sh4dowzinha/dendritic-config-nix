@@ -7,16 +7,17 @@
       };
       home.packages = with pkgs; [
         gnumake
+        clang-tools
       ];
-
     };
 
-    codium-settings = [
+    codium-settings = { config, pkgs, ... }: [
       {
+        "clangd.path" = "${pkgs.clang-tools}/bin/clangd-unwrapped";
         "clangd.arguments" = [
-          "--query-driver=/nix/store/*/bin/g++"
-          "--query-driver=/nix/store/*/bin/gcc"
-          "--format-style=llvm"
+          "--query-driver=${config.home.profileDirectory}/bin/g++"
+          "--query-driver=${config.home.profileDirectory}/bin/gcc"
+          #"--format-style=llvm"
         ];
 
         "[c]" = {

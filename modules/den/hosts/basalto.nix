@@ -27,6 +27,7 @@
       hardware.cpu.intel
       hardware.gpu.intel-legacy
       hardware.laptop
+      hardware.razer
 
       desktop.kde
 

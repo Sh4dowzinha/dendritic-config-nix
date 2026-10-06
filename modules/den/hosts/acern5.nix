@@ -30,6 +30,7 @@
       hardware.gpu.optimus.nvidia-primary-legacy
       hardware.laptop
       hardware.nitrokey3
+      hardware.razer
 
       desktop.kde
       desktop.plasma-manager
@@ -43,6 +44,18 @@
       # WARNING!! DON'T TOUCH THE SYSTEM STATE VERSION IN ANY
       # CIRCUMSTANCE, ONLY IF EXPLICITLY SAID IN THE DOCUMENTATION!
       system.stateVersion = "26.11";
+    };
+
+    homeManager = { lib, host, ... }: {
+      programs.plasma.input.mice = lib.mkIf (host.hasAspect den.aspects.desktop.plasma-manager) [
+        {
+          enable = true;
+          name = "Razer Razer DeathAdder Essential";
+          productId = "0098";
+          vendorId = "1532";
+          accelerationProfile = "none";
+        }
+      ];
     };
 
     sh4dow = {

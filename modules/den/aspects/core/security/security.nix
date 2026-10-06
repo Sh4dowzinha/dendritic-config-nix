@@ -1,16 +1,12 @@
 {
   den.aspects.core.security = {
-    nixos =
-      { pkgs, ... }:
-      {
-        security.polkit.enable = true;
+    nixos = {
+      security.polkit.enable = true;
 
-        security.tpm2 = {
-          enable = true;
-        };
-
-        services.pcscd.enable = true;
+      security.tpm2 = {
+        enable = true;
       };
+    };
 
     persist = {
       directories = [
