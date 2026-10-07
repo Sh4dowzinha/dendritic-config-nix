@@ -2,14 +2,14 @@
 #
 # Ported from main:modules/_legacy/core/deterministic-uids/
 # The option module defines `users.deterministicIds` which auto-assigns uid/gid
-# to users/groups via mkDefault. The data module provides the central ID registry.
+# to users/groups via mkForce. The data module provides the central ID registry.
 {
   den.aspects.core.users.deterministic-uids = {
     nixos =
       { config, lib, ... }:
       let
         inherit (lib)
-          mkDefault
+          mkForce
           mkIf
           mkOption
           types
@@ -78,17 +78,17 @@
                       let
                         v = cfg.${name}.uid or null;
                       in
-                      mkIf (v != null) (mkDefault v);
+                      mkIf (v != null) (mkForce v);
                     subUidRanges =
                       let
                         v = cfg.${name}.subUidRanges or [ ];
                       in
-                      mkIf (v != [ ]) (mkDefault v);
+                      mkIf (v != [ ]) (mkForce v);
                     subGidRanges =
                       let
                         v = cfg.${name}.subGidRanges or [ ];
                       in
-                      mkIf (v != [ ]) (mkDefault v);
+                      mkIf (v != [ ]) (mkForce v);
                   };
                 }
               )
@@ -104,7 +104,7 @@
                     let
                       v = cfg.${name}.gid or null;
                     in
-                    mkIf (v != null) (mkDefault v);
+                    mkIf (v != null) (mkForce v);
                 }
               )
             );

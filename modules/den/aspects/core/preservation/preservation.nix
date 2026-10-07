@@ -55,13 +55,6 @@
               "x-gdu.hide"
             ];
 
-            directories = [
-              {
-                directory = "/var/lib/nixos";
-                inInitrd = true;
-              }
-            ];
-
             files = [
               {
                 file = "/etc/machine-id";

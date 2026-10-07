@@ -61,8 +61,6 @@
         inputs.nixpkgs.follows = "nixpkgs-unstable";
       };
 
-      nix-flatpak.url = "github:gmodena/nix-flatpak";
-
       nix-gaming.url = "github:fufexan/nix-gaming";
 
       nix-index-database = {

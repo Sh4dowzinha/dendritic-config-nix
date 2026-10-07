@@ -20,15 +20,20 @@
           "org.freedesktop.portal.FileChooser" = [ "kde" ];
           "org.freedesktop.portal.OpenURI" = [ "kde" ];
         };
-        #terminal-exec.settings.KDE = [
-        #  "org.gnome.Terminal.desktop"
-        #];
+        terminal-exec.settings.KDE = [
+          "org.kde.konsole.desktop"
+        ];
       };
 
       services.desktopManager.plasma6.enable = true;
       services.displayManager.plasma-login-manager = {
         enable = true;
       };
+      environment.plasma6.excludePackages = with pkgs.kdePackages; [
+        kwin-x11
+        drkonqi
+        discover
+      ];
     };
 
     persistHome = {
