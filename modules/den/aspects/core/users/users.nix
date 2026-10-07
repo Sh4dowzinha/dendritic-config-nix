@@ -38,6 +38,7 @@ let
         users.groups.${userName} = lib.optionalAttrs (gid != null) { inherit gid; };
 
         users.users.${userName} = {
+          group = userName;
           openssh.authorizedKeys.keys = map (k: k.key) (user.identity.sshKeys or [ ]);
           linger = user.system.linger or false;
           description = lib.mkDefault (user.identity.displayName or "");
