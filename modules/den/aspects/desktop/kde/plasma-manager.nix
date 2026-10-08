@@ -30,7 +30,18 @@
     homeManager = {
       programs.plasma = {
         enable = true;
+        immutableByDefault = true;
         overrideConfig = true;
+
+        configFile = {
+          "baloofilerc" = {
+            "Basic Settings" = {
+              "Indexing-Enabled" = {
+                value = false;
+              };
+            };
+          };
+        };
 
         workspace = {
           lookAndFeel = "org.kde.breezedark.desktop";
