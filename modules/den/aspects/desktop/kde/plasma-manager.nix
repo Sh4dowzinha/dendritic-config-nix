@@ -47,6 +47,15 @@
           lookAndFeel = "org.kde.breezedark.desktop";
         };
       };
+
+      programs.okular = {
+        enable = true;
+        performance.memoryUsage = "Aggressive";
+        general = {
+          obeyDrm = false;
+          openFileInTabs = true;
+        };
+      };
     };
   };
 }
