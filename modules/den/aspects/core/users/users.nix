@@ -69,10 +69,11 @@ in
   # Wire into user schema includes — fires for every resolved user
   den.schema.user.includes = [ userEnrich ];
 
-  # Host-level mutableUsers setting
+  # Host-level mutableUsers and userborn settings
   den.aspects.core.users = {
     nixos = {
       users.mutableUsers = false;
+      services.userborn.enable = true;
     };
   };
 }
