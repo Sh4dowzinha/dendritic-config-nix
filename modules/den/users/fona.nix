@@ -8,10 +8,7 @@
   };
 
   den.users.registry.fona = {
-    system.uid = 1000;
-    groups = [
-      "admins"
-    ];
+    system.uid = 1003;
 
     settings = {
       #git.signing.method = "openpgp";

@@ -16,6 +16,7 @@
       core.security
       core.system.facter
       core.users.home-manager-shared
+      core.users.deterministic-uids
       core.security.sudo
       core.localization.time
       core.system.zram-swap

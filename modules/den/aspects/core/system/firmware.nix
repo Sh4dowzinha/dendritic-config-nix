@@ -5,11 +5,12 @@
       services.fwupd.enable = true;
     };
 
-    persist = {
-      directories = [
-        "/var/cache/fwupd"
-        "/var/lib/fwupd"
-      ];
-    };
+    persist.directories = [
+      "/var/lib/fwupd"
+    ];
+
+    cache.directories = [
+      "/var/cache/fwupd"
+    ];
   };
 }

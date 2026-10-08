@@ -2,7 +2,6 @@
   den,
   lib,
   withSystem,
-  config,
   inputs,
   ...
 }:

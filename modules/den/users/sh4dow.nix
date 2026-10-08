@@ -15,9 +15,6 @@
 
   den.users.registry.sh4dow = {
     system.uid = 1000;
-    groups = [
-      "admins"
-    ];
 
     settings = {
       git.signing.method = "openpgp";
