@@ -48,7 +48,7 @@
       includes = with den.aspects; [
         applications.browsers.brave-origin
         applications.creative.prusa-slicer
-        applications.creative.bambu-studio
+        #applications.creative.bambu-studio
         applications.engineering.arduino-ide
       ];
     };
