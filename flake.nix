@@ -65,7 +65,6 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";

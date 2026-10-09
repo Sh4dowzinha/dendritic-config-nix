@@ -44,21 +44,26 @@
       system.stateVersion = "26.11";
     };
 
-    homeManager = { lib, host, ... }: {
-      programs.plasma.input.touchpads = lib.mkIf (host.hasAspect den.aspects.desktop.plasma-manager) [
-        {
-          accelerationProfile = "default";
-          disableWhileTyping = false;
-          enable = true;
-          leftHanded = false;
-          name = "ELAN0412:00 04F3:3240 Touchpad";
-          naturalScroll = true;
-          productId = "3240";
-          tapToClick = true;
-          vendorId = "04f3";
-        }
-      ];
-    };
+    homeManager =
+      { lib, host, ... }:
+      {
+        # Home Manager options that always apply
+      }
+      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.plasma-manager) {
+        programs.plasma.input.touchpads = [
+          {
+            accelerationProfile = "default";
+            disableWhileTyping = false;
+            enable = true;
+            leftHanded = false;
+            name = "ELAN0412:00 04F3:3240 Touchpad";
+            naturalScroll = true;
+            productId = "3240";
+            tapToClick = true;
+            vendorId = "04f3";
+          }
+        ];
+      };
 
     sh4dow = {
       includes = with den.aspects; [
@@ -66,6 +71,8 @@
         applications.gaming.osu-lazer
         applications.engineering.vivado
         applications.engineering.ltspice
+        applications.creative.prusa-slicer
+        #applications.creative.bambu-studio
 
         core.preservation-user
       ];

@@ -129,6 +129,10 @@
           polkituser = uidGid 985;
           uinput = uidGid 984;
           wireshark = uidGid 983;
+          avahi = uidGid 982;
+          colord = uidGid 981;
+          gnome-remote-desktop = uidGid 980;
+          gnome-initial-setup = uidGid 979;
         };
 
         config.assertions =

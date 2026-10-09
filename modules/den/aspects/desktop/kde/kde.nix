@@ -26,9 +26,9 @@
       };
 
       services.desktopManager.plasma6.enable = true;
-      services.displayManager.plasma-login-manager = {
-        enable = true;
-      };
+      services.displayManager.plasma-login-manager.enable = true;
+
+      programs.kde-pim.enable = false;
       environment.plasma6.excludePackages = with pkgs.kdePackages; [
         kwin-x11
         drkonqi
