@@ -6,6 +6,10 @@
     homeManager = {
       programs.fish = {
         functions = {
+
+        };
+
+        shellAbbrs = {
           ist = "cd ~/Documents/Documents_arch/IST/";
           aed = "cd ~/Documents/Documents_arch/IST/aed";
         };
