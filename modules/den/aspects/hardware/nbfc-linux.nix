@@ -19,9 +19,5 @@
           wantedBy = [ "multi-user.target" ];
         };
       };
-
-    persist.files = [
-      "/etc/nbfc/nbfc.json"
-    ];
   };
 }
