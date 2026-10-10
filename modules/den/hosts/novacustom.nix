@@ -73,6 +73,7 @@
         applications.engineering.ltspice
         applications.creative.prusa-slicer
         #applications.creative.bambu-studio
+        applications.network.localsend
 
         core.preservation-user
       ];
