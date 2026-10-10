@@ -2,6 +2,7 @@
   den.aspects.core.security = {
     nixos = {
       security.polkit.enable = true;
+      security.polkit.enablePkexecWrapper = true;
 
       security.tpm2 = {
         enable = true;
