@@ -1,5 +1,15 @@
 {
   den.aspects.disk.btrfs = {
+    persist = {
+      directories = [
+        # records fs scrubbing status
+        {
+          directory = "/var/lib/btrfs";
+          mode = "0700";
+        }
+      ];
+    };
+
     nixos = { pkgs, ... }: {
       boot.supportedFilesystems.btrfs = true;
 
@@ -11,7 +21,6 @@
       programs.btrfs-heatmap.enable = true;
 
       environment.systemPackages = with pkgs; [
-        btrfs-assistant
         btrfs-list
         btrfs-progs
       ];
