@@ -5,5 +5,9 @@
         wireguard-tools
       ];
     };
+
+    persist.directories = [
+      "/etc/wireguard/"
+    ];
   };
 }
