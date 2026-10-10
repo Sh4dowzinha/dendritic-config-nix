@@ -4,11 +4,10 @@
     persist = {
       directories = [
         "/var/lib/upower"
-      ];
-    };
 
-    cache = {
-      directories = [
+        # Powertop saved parameters and results aren't supposed
+        # to be lost every time the /cache directory is wiped, so
+        # its contents are stored on /persist instead of /cache.
         {
           directory = "/var/cache/powertop";
           mode = "0700";
