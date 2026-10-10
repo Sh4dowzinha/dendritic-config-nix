@@ -10,12 +10,12 @@
         ];
       };
 
-    #codium-settings = [
-    #  {
-    #    "shellcheck.run" = "onSave";
-    #    "shellformat.useEditorConfig" = true;
-    #  }
-    #];
+    codium-settings = [
+      {
+        "shellcheck.run" = "onSave";
+        "shellformat.useEditorConfig" = true;
+      }
+    ];
 
     codium-extensions =
       { pkgs, ... }:
