@@ -11,13 +11,11 @@ let
   inherit (den.lib.policy) pipe;
 in
 {
-  den.policies.collect-host-addrs =
-    { host, ... }:
-    [
-      (pipe.from "host-addrs" [
-        (pipe.collectAll ({ host, ... }: true))
-      ])
-    ];
+  den.policies.collect-host-addrs = { host, ... }: [
+    (pipe.from "host-addrs" [
+      (pipe.collectAll ({ host, ... }: true))
+    ])
+  ];
 
   # Bottom-up dual of the collect policies. `resolved-users` is emitted per user
   # at user scope (core/users/resolved-user-emitter.nix) and must bubble up the
@@ -26,27 +24,29 @@ in
   # host. Exposed (not collected): the emit lives below the consumer, not beside
   # it. The emit is pipeline-parametric (`{ user, ... }:`), resolved to a concrete
   # record at the emitting user node before it crosses upward.
-  den.policies.expose-resolved-users =
-    { user, ... }:
-    [
-      (pipe.from "resolved-users" [
-        pipe.expose
-      ])
-    ];
+  den.policies.expose-resolved-users = { user, ... }: [
+    (pipe.from "resolved-users" [
+      pipe.expose
+    ])
+  ];
 
   # User-side persistence values are exposed upward to the host so
   # the preservation user collector can consume them in user context.
-  den.policies.expose-preservation-user =
-    { user, ... }:
-    [
-      (pipe.from "persistHome" [
-        pipe.expose
-      ])
+  den.policies.expose-preservation-user = { user, ... }: [
+    (pipe.from "persistHome" [
+      pipe.expose
+    ])
 
-      (pipe.from "cacheHome" [
-        pipe.expose
-      ])
-    ];
+    (pipe.from "cacheHome" [
+      pipe.expose
+    ])
+  ];
+
+  den.policies.expose-firewall = { user, ... }: [
+    (pipe.from "firewall" [
+      pipe.expose
+    ])
+  ];
 
   den.schema.host.includes = [
     den.policies.collect-host-addrs
@@ -55,5 +55,6 @@ in
   den.schema.user.includes = [
     den.policies.expose-resolved-users
     den.policies.expose-preservation-user
+    den.policies.expose-firewall
   ];
 }
