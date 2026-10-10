@@ -10,6 +10,7 @@
       core.users.shell
       core.network.firewall
       core.network.dns
+      core.network.wireguard
       core.utils
       core.documentation
       core.system.firmware

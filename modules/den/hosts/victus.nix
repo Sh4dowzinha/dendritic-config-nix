@@ -36,8 +36,6 @@
       disk.btrfs-luks-root-tmpfs-single
 
       core.network.manager
-
-      core.network.wireguard
     ];
 
     nixos = {

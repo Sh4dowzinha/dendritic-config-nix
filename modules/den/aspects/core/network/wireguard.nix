@@ -1,13 +1,9 @@
 {
   den.aspects.core.network.wireguard = {
-    homeManager = { pkgs, ... }: {
-      home.packages = with pkgs; [
+    nixos = { pkgs, ... }: {
+      environment.systemPackages = with pkgs; [
         wireguard-tools
       ];
     };
-
-    persist.directories = [
-      "/etc/wireguard/"
-    ];
   };
 }
