@@ -4,7 +4,7 @@
       sops.secrets.vivadoLicense = {
         key = "vivadoLicense";
         owner = "sh4dow";
-        group = "users";
+        group = "sh4dow";
         mode = "0400";
       };
 

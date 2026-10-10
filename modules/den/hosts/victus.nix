@@ -38,7 +38,36 @@
       core.network.manager
     ];
 
-    nixos = {
+    nixos = { config, ... }: {
+      sops = {
+        secrets = {
+          victus-wireguard-private-key.key = "victus/wireguard/private-key";
+          victus-wireguard-psk.key = "victus/wireguard/psk";
+          victus-wireguard-endpoint.key = "victus/wireguard/endpoint";
+        };
+
+        templates."victus.conf" = {
+          mode = "0400";
+
+          content = ''
+            [Interface]
+            Address = 10.236.97.3/24,fd11:5ee:bad:c0de::aec:6103/64
+            DNS = 9.9.9.9, 149.112.112.112
+            PrivateKey = ${config.sops.placeholder.victus-wireguard-private-key}
+
+            [Peer]
+            PublicKey = /qvQLiu2QxRZ/ulOuSykZG2ou6AWTXAVJyFyhgWVi18=
+            PresharedKey = ${config.sops.placeholder.victus-wireguard-psk}
+            Endpoint = ${config.sops.placeholder.victus-wireguard-endpoint}
+            AllowedIPs = 0.0.0.0/0, ::0/0
+          '';
+        };
+      };
+
+      networking.wg-quick.interfaces = {
+        victus.configFile = config.sops.templates."victus.conf".path;
+      };
+
       # WARNING!! DON'T TOUCH THE SYSTEM STATE VERSION IN ANY
       # CIRCUMSTANCE, ONLY IF EXPLICITLY SAID IN THE DOCUMENTATION!
       system.stateVersion = "26.11";
