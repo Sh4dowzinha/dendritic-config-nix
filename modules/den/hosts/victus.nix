@@ -41,9 +41,9 @@
     nixos = { config, ... }: {
       sops = {
         secrets = {
-          victus-wireguard-private-key.key = "victus/wireguard/private-key";
-          victus-wireguard-psk.key = "victus/wireguard/psk";
-          victus-wireguard-endpoint.key = "victus/wireguard/endpoint";
+          wireguard-victus-private-key.key = "wireguard/victus/private-key";
+          wireguard-victus-psk.key = "wireguard/victus/psk";
+          wireguard-victus-endpoint.key = "wireguard/victus/endpoint";
         };
 
         templates."victus.conf" = {
@@ -53,12 +53,12 @@
             [Interface]
             Address = 10.236.97.3/24,fd11:5ee:bad:c0de::aec:6103/64
             DNS = 9.9.9.9, 149.112.112.112
-            PrivateKey = ${config.sops.placeholder.victus-wireguard-private-key}
+            PrivateKey = ${config.sops.placeholder.wireguard-victus-private-key}
 
             [Peer]
             PublicKey = /qvQLiu2QxRZ/ulOuSykZG2ou6AWTXAVJyFyhgWVi18=
-            PresharedKey = ${config.sops.placeholder.victus-wireguard-psk}
-            Endpoint = ${config.sops.placeholder.victus-wireguard-endpoint}
+            PresharedKey = ${config.sops.placeholder.wireguard-victus-psk}
+            Endpoint = ${config.sops.placeholder.wireguard-victus-endpoint}
             AllowedIPs = 0.0.0.0/0, ::0/0
           '';
         };
