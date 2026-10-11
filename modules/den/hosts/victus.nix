@@ -65,7 +65,10 @@
       };
 
       networking.wg-quick.interfaces = {
-        victus.configFile = config.sops.templates."victus.conf".path;
+        victus = {
+          configFile = config.sops.templates."victus.conf".path;
+          autostart = false;
+        };
       };
 
       environment.etc."nbfc/nbfc.json".text = ''
