@@ -30,7 +30,7 @@
           mode = "0700";
         }
         {
-          directory = "~/.config/sops/age";
+          directory = ".config/sops/age";
           mode = "0700";
         }
       ];
