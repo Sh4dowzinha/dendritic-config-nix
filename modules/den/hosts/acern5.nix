@@ -47,17 +47,22 @@
       system.stateVersion = "26.11";
     };
 
-    homeManager = { lib, host, ... }: {
-      programs.plasma.input.mice = lib.mkIf (host.hasAspect den.aspects.desktop.plasma-manager) [
-        {
-          enable = true;
-          name = "Razer Razer DeathAdder Essential";
-          productId = "0098";
-          vendorId = "1532";
-          accelerationProfile = "none";
-        }
-      ];
-    };
+    homeManager =
+      { lib, host, ... }:
+      {
+        # Home Manager options that always apply
+      }
+      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.plasma-manager) {
+        programs.plasma.input.mice = [
+          {
+            enable = true;
+            name = "Razer Razer DeathAdder Essential";
+            productId = "0098";
+            vendorId = "1532";
+            accelerationProfile = "none";
+          }
+        ];
+      };
 
     sh4dow = {
       includes = with den.aspects; [

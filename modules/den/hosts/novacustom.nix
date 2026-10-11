@@ -29,6 +29,7 @@
       hardware.gpu.intel
       hardware.laptop
       hardware.nitrokey3
+      hardware.razer
 
       desktop.kde
       desktop.plasma-manager
@@ -50,19 +51,31 @@
         # Home Manager options that always apply
       }
       // lib.optionalAttrs (host.hasAspect den.aspects.desktop.plasma-manager) {
-        programs.plasma.input.touchpads = [
-          {
-            accelerationProfile = "default";
-            disableWhileTyping = false;
-            enable = true;
-            leftHanded = false;
-            name = "ELAN0412:00 04F3:3240 Touchpad";
-            naturalScroll = true;
-            productId = "3240";
-            tapToClick = true;
-            vendorId = "04f3";
-          }
-        ];
+        programs.plasma.input = {
+          touchpads = [
+            {
+              accelerationProfile = "default";
+              disableWhileTyping = false;
+              enable = true;
+              leftHanded = false;
+              name = "ELAN0412:00 04F3:3240 Touchpad";
+              naturalScroll = true;
+              productId = "3240";
+              tapToClick = true;
+              vendorId = "04f3";
+            }
+          ];
+
+          mice = [
+            {
+              enable = true;
+              name = "Razer Razer DeathAdder Essential";
+              productId = "0098";
+              vendorId = "1532";
+              accelerationProfile = "none";
+            }
+          ];
+        };
       };
 
     sh4dow = {
