@@ -6,7 +6,8 @@
     homeManager = {
       programs.fish = {
         functions = {
-
+          vpnon = "sudo systemctl start wg-quick-victus.service";
+          vpnoff = "sudo systemctl stop wg-quick-victus.service";
         };
 
         shellAbbrs = {
