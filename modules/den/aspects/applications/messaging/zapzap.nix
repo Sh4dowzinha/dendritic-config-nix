@@ -8,7 +8,7 @@
 
     persistHome.directories = [
       {
-        directory = ".local/share/zapzap";
+        directory = ".local/share/ZapZap";
         mode = "0700";
       }
     ];
