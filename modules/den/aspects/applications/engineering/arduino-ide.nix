@@ -14,5 +14,9 @@
         arduino-ide
       ];
     };
+
+    codium-extensions = { pkgs, ... }: [
+      pkgs.vscode-marketplace.platformio.platformio-ide
+    ];
   };
 }
