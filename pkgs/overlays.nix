@@ -14,12 +14,6 @@
       ];
     });
 
-    contour = prev.contour.overrideAttrs (old: {
-      patches = (old.patches or [ ]) ++ [
-        ./contour-0.6.3-gcc16-simd.patch
-      ];
-    });
-
     # Fix winetricks not opening
     winetricks = prev.winetricks.overrideAttrs (old: {
       postInstall = (old.postInstall or "") + ''
