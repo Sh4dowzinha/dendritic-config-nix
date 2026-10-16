@@ -2,6 +2,7 @@
   den.aspects.core.nix = {
     os = {
       nix = {
+        channel.enable = false;
         settings = {
           experimental-features = [
             "auto-allocate-uids"
