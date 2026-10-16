@@ -18,8 +18,6 @@
         interval = "monthly";
       };
 
-      programs.btrfs-heatmap.enable = true;
-
       environment.systemPackages = with pkgs; [
         btrfs-list
         btrfs-progs
