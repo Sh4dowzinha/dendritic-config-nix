@@ -44,7 +44,6 @@
 
       directories = [
         "Downloads"
-        ".local/state/nix"
         ".cache/nix"
         ".cache/mesa_shader_cache"
       ];
