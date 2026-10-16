@@ -4,16 +4,6 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
-
-    # Temporary GCC 16 / C++20 compatibility fix.
-    # Based on Gentoo's rxvt-unicode-9.31-cxx20.patch:
-    # https://gitweb.gentoo.org/repo/gentoo.git/tree/x11-terms/rxvt-unicode/files/rxvt-unicode-9.31-cxx20.patch
-    rxvt-unicode-unwrapped = prev.rxvt-unicode-unwrapped.overrideAttrs (old: {
-      patches = (old.patches or [ ]) ++ [
-        ./rxvt-unicode-9.31-cxx20.patch
-      ];
-    });
-
     # Fix winetricks not opening
     winetricks = prev.winetricks.overrideAttrs (old: {
       postInstall = (old.postInstall or "") + ''
