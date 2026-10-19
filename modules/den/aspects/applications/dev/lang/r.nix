@@ -37,7 +37,7 @@
     codium-extensions =
       { pkgs, ... }:
       [
-        pkgs.vscode-marketplace.REditorSupport.r
+        pkgs.vscode-marketplace.reditorsupport.r
       ];
   };
 }
