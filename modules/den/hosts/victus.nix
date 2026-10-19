@@ -87,7 +87,7 @@
         applications.browsers.brave-origin
         applications.creative.prusa-slicer
         #applications.creative.bambu-studio
-        applications.engineering.arduino-ide
+        #applications.engineering.boards  # TODO: platformio WIP
       ];
     };
   };

@@ -19,7 +19,6 @@
         "clangd.arguments" = [
           "--query-driver=${config.home.profileDirectory}/bin/g++"
           "--query-driver=${config.home.profileDirectory}/bin/gcc"
-          #"--format-style=llvm"
         ];
 
         "[c]" = {
