@@ -10,6 +10,7 @@
       applications.dev.lang.markdown
       applications.dev.lang.nix
       applications.dev.lang.python
+      applications.dev.lang.r
       applications.dev.lang.shell
       applications.dev.networking.wireshark
     ];
