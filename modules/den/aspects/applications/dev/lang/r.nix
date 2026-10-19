@@ -34,10 +34,11 @@
       }
     ];
 
-    codium-extensions =
-      { pkgs, ... }:
+    codium-extensions = { pkgs, ... }: with pkgs.vscode-marketplace;
       [
-        pkgs.vscode-marketplace.reditorsupport.r
+        reditorsupport.r
+        reditorsupport.r-syntax
+        rdebugger.r-debugger
       ];
   };
 }
