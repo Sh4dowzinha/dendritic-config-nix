@@ -1,14 +1,27 @@
-{ den, ... }: {
+{
   den.aspects.hardware.printers = {
-    include = [ den.aspects.core.network.avahi ];
     nixos = { pkgs, ... }: {
-      services.printing = {
-        enable = true;
-        startWhenNeeded = true;
-        stateless = true;
-        drivers = with pkgs; [
-          hplip
-        ];
+      services = {
+        avahi = {
+          enable = true;
+          nssmdns4 = true;
+          nssmdns6 = true;
+          openFirewall = true;
+        };
+
+        ipp-usb.enable = true;
+
+        printing = {
+          enable = true;
+          startWhenNeeded = true;
+          stateless = true;
+          tempDir = "/tmp/cups";
+          drivers = with pkgs; [
+            cups-filters
+            cups-browsed
+            hplipWithPlugin
+          ];
+        };
       };
     };
   };

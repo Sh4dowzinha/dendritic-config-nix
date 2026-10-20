@@ -12,7 +12,7 @@
         enable = true;
         settings.Resolve = {
           LLMNR = "false";
-          MulticastDNS = "true";
+          MulticastDNS = "false";
           DNSSEC = "true";
           Domains = [ "~." ];
           DNSOverTLS = "true";
