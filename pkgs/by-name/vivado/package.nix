@@ -25,6 +25,7 @@
   expat,
   fontconfig,
   freetype,
+  gcc,
   glib,
   gsettings-desktop-schemas,
   graphviz,
@@ -331,6 +332,7 @@ let
       libxtst
 
       # Other runtime dependencies
+      gcc
       graphviz
       libgcrypt
       libpng
