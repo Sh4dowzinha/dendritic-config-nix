@@ -5,7 +5,7 @@
       # Hardware
       hardware.audio
       hardware.bluetooth
-      hardware.ddcutil
+      #hardware.ddcutil     # Uncomment when upstream issue with external kernel modules is solved
       hardware.printers
 
       # Theming

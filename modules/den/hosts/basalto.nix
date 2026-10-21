@@ -27,7 +27,7 @@
       hardware.cpu.intel
       hardware.gpu.intel-legacy
       hardware.laptop
-      hardware.razer
+      #hardware.razer    # Uncomment when upstream issue with external kernel modules is solved
 
       desktop.kde
 

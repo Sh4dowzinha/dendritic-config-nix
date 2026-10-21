@@ -23,13 +23,12 @@
       roles.dev-gui
       roles.messaging
       roles.media
-      roles.music-production
 
       hardware.cpu.intel
       hardware.gpu.intel
       hardware.laptop
       hardware.nitrokey3
-      hardware.razer
+      #hardware.razer   # Uncomment when upstream issue with external kernel modules is solved
 
       desktop.kde
       desktop.plasma-manager
