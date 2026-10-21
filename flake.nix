@@ -51,11 +51,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
     import-tree.url = "github:vic/import-tree";
     nix-darwin = {
       url = "github:LnL7/nix-darwin/nix-darwin-26.05";
