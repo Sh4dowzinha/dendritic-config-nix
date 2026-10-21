@@ -1,32 +1,45 @@
+let
+  rPkgs =
+    pkgs: with pkgs.rPackages; [
+      ggplot2
+      httpgd
+      languageserver
+    ];
+
+  rWrapper =
+    pkgs:
+    pkgs.rWrapper.override {
+      packages = rPkgs pkgs;
+    };
+
+  radianWrapper =
+    pkgs:
+    pkgs.radianWrapper.override {
+      packages = rPkgs pkgs;
+    };
+in
 {
   den.aspects.applications.dev.lang.r = {
-    homeManager =
-      { pkgs, ... }:
-      let
-        rPkgs = with pkgs.rPackages; [
-          ggplot2
-          httpgd
-          languageserver
-        ];
-
-        R-base = pkgs.rWrapper.override { packages = rPkgs; };
-        Radian-base = pkgs.radianWrapper.override { packages = rPkgs; };
-      in
-      {
-        home.packages = [
-          R-base
-          Radian-base
-        ];
-      };
+    homeManager = { pkgs, ... }: {
+      home.packages = [
+        (rWrapper pkgs)
+        (radianWrapper pkgs)
+      ];
+    };
 
     codium-settings = { pkgs, ... }: [
       {
-        "r.rpath.linux" = "${pkgs.rWrapper}/bin/R";
-        "r.rterm.linux" = "${pkgs.radianWrapper}/bin/radian";
+        # R executable for the language server and background processes
+        "r.executablePath" = "${(rWrapper pkgs)}/bin/R";
+
+        # Radian for interactive R terminals
+        "r.consolePath" = "${(radianWrapper pkgs)}/bin/radian";
+
         "r.bracketedPaste" = true;
         "r.sessionWatcher" = true;
-        "r.plot.useHttpgd" = true;
+        "r.plot.backend" = "httpgd";
         "r.lsp.diagnostics" = true;
+
         "[r]" = {
           "editor.defaultFormatter" = "REditorSupport.r";
           "editor.formatOnSave" = true;
