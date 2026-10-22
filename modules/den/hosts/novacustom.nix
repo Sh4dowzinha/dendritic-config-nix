@@ -28,7 +28,7 @@
       hardware.gpu.intel
       hardware.laptop
       hardware.nitrokey3
-      #hardware.razer   # Uncomment when upstream issue with external kernel modules is solved
+      hardware.razer
 
       desktop.kde
       desktop.plasma-manager

@@ -29,7 +29,7 @@
       hardware.gpu.optimus.nvidia-primary-legacy
       hardware.laptop
       hardware.nitrokey3
-      #hardware.razer   # Uncomment when upstream issue with external kernel modules is solved
+      hardware.razer
 
       hardware.gamepad
 
