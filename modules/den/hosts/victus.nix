@@ -23,6 +23,7 @@
       roles.dev-gui
       roles.messaging
       roles.media
+      roles.creative.graphics
 
       hardware.cpu.amd
       hardware.gpu.amd
@@ -86,7 +87,8 @@
       includes = with den.aspects; [
         applications.browsers.brave-origin
         applications.creative.prusa-slicer
-        #applications.creative.bambu-studio
+        applications.creative.bambu-studio
+        applications.media.kdenlive
         #applications.engineering.boards  # TODO: platformio WIP
       ];
     };
