@@ -53,11 +53,6 @@
             package = pkgs.nix-output-monitor;
             help = "Nix Output Monitor (a drop-in alternative for `nix` which shows a build graph)";
           }
-          {
-            package = config.packages.nix-flake-build;
-            name = "nix-flake-build";
-            help = "Build a host configuration";
-          }
         ];
 
         devshell.startup.pre-commit.text = config.pre-commit.installationScript;
