@@ -23,7 +23,9 @@
       roles.dev-gui
       roles.messaging
       roles.media
+      roles.cad
       roles.creative.graphics
+      roles.creative.video
 
       hardware.cpu.amd
       hardware.gpu.amd
@@ -86,9 +88,6 @@
     dani = {
       includes = with den.aspects; [
         applications.browsers.brave-origin
-        applications.creative.prusa-slicer
-        applications.creative.bambu-studio
-        applications.media.kdenlive
         #applications.engineering.boards  # TODO: platformio WIP
       ];
     };

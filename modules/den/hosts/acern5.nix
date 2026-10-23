@@ -23,6 +23,7 @@
       roles.dev-gui
       roles.messaging
       roles.media
+      roles.creative.video
 
       hardware.cpu.intel
       hardware.gpu.intel-legacy

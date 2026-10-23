@@ -23,6 +23,8 @@
       roles.dev-gui
       roles.messaging
       roles.media
+      roles.cad
+      roles.creative.video
 
       hardware.cpu.intel
       hardware.gpu.intel
@@ -83,8 +85,6 @@
         applications.gaming.osu-lazer
         applications.engineering.vivado
         applications.engineering.ltspice
-        applications.creative.prusa-slicer
-        #applications.creative.bambu-studio
         applications.network.localsend
 
         core.preservation-user
