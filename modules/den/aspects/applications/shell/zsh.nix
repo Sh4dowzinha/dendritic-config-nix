@@ -54,6 +54,8 @@
 
           sessionVariables = {
             "DIRSTACKSIZE" = "20";
+            "LOCALE_ARCHIVE_2_11" = "${pkgs.glibcLocales}/lib/locale/locale-archive";
+            "LOCALE_ARCHIVE_2_27" = "${pkgs.glibcLocales}/lib/locale/locale-archive";
           };
 
           syntaxHighlighting = {
@@ -99,15 +101,6 @@
             "fixstore" = "sudo nix-store --verify --check-contents --repair";
             "flake-update" = "nix flake update --option access-tokens \"github.com=$(gh auth token)\"";
           };
-        };
-      };
-
-    homeLinux =
-      { pkgs, ... }:
-      {
-        programs.zsh.sessionVariables = {
-          "LOCALE_ARCHIVE_2_11" = "${pkgs.glibcLocales}/lib/locale/locale-archive";
-          "LOCALE_ARCHIVE_2_27" = "${pkgs.glibcLocales}/lib/locale/locale-archive";
         };
       };
 

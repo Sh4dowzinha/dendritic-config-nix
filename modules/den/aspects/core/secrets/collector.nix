@@ -24,13 +24,5 @@
           ...
         }:
         collect lib sops-secrets;
-
-      darwin =
-        {
-          sops-secrets ? [ ],
-          lib,
-          ...
-        }:
-        collect lib sops-secrets;
     };
 }

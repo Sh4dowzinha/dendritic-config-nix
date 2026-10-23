@@ -1,6 +1,6 @@
 {
   den.aspects.applications.gaming.osu-lazer = {
-    homeLinux = { inputs', ... }: {
+    homeManager = { inputs', ... }: {
       home.packages = [ inputs'.nix-gaming.packages.osu-lazer-bin ];
     };
 

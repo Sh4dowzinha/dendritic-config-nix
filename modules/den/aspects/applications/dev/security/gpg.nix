@@ -5,7 +5,7 @@
       hardware.gpgSmartcards.enable = true;
     };
 
-    homeManager = {
+    homeManager = { pkgs, host, ... }: {
       programs.gpg = {
         enable = true;
         mutableKeys = false;
@@ -49,31 +49,17 @@
           defaultCacheTtlSsh = 43200;
           maxCacheTtl = 86400;
           maxCacheTtlSsh = 86400;
+
+          pinentry.package =
+            if (host.hasAspect den.aspects.desktop.gnome) then
+              pkgs.pinentry-gnome3
+            else if (host.hasAspect den.aspects.desktop.kde) then
+              pkgs.pinentry-qt
+            else
+              pkgs.pinentry-tty;
         };
       };
     };
-
-    homeLinux =
-      {
-        pkgs,
-        host,
-        ...
-      }:
-      {
-        services.gpg-agent.pinentry.package =
-          if (host.hasAspect den.aspects.desktop.gnome) then
-            pkgs.pinentry-gnome3
-          else if (host.hasAspect den.aspects.desktop.kde) then
-            pkgs.pinentry-qt
-          else
-            pkgs.pinentry-tty;
-      };
-
-    homeDarwin =
-      { pkgs, ... }:
-      {
-        services.gpg-agent.pinentry.package = pkgs.pinentry_mac;
-      };
 
     persistHome = {
       directories = [

@@ -39,27 +39,12 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
-      home-manager-stable-darwin = {
-        url = "github:nix-community/home-manager/release-26.05";
-        inputs.nixpkgs.follows = "nixpkgs-stable-darwin";
-      };
-
       home-manager-unstable = {
         url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs-unstable";
       };
 
       import-tree.url = "github:vic/import-tree";
-
-      nix-darwin = {
-        url = "github:LnL7/nix-darwin/nix-darwin-26.05";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-
-      nix-darwin-unstable = {
-        url = "github:LnL7/nix-darwin";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
 
       nix-gaming.url = "github:fufexan/nix-gaming";
 
@@ -74,8 +59,6 @@
       };
 
       nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-
-      nixpkgs-stable-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
 
       #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 

@@ -1,6 +1,6 @@
 {
   den.aspects.applications.media.stremio = {
-    homeLinux = { pkgs, ... }: {
+    homeManager = { pkgs, ... }: {
       home.packages = [ pkgs.stremio-linux-shell ];
     };
   };

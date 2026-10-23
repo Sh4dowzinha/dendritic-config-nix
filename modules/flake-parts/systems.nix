@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake-file.inputs.systems.url = "github:nix-systems/default/future-26.11";
+  flake-file.inputs.systems.url = "github:nix-systems/default-linux";
 
   systems = import inputs.systems;
 }

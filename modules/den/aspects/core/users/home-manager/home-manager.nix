@@ -15,7 +15,7 @@
       '';
     };
 
-    os =
+    nixos =
       {
         pkgs,
         host,
@@ -34,43 +34,20 @@
         };
 
         home-manager.sharedModules = [
-          {
-            programs.home-manager.enable = true;
-            home.enableNixpkgsReleaseCheck = true;
-          }
+          (
+            { osConfig, ... }:
+            {
+              programs.home-manager.enable = true;
+              home.enableNixpkgsReleaseCheck = true;
+              home.stateVersion = osConfig.system.stateVersion;
+              systemd.user.startServices = "sd-switch";
+            }
+          )
         ];
       };
 
-    nixos = {
-      home-manager.sharedModules = [
-        (
-          { osConfig, ... }:
-          {
-            home.stateVersion = osConfig.system.stateVersion;
-            systemd.user.startServices = "sd-switch";
-          }
-        )
-      ];
+    homeManager = { homeManagerModules, ... }: {
+      imports = homeManagerModules;
     };
-
-    darwin = {
-      home-manager.sharedModules = [
-        (
-          { lib, ... }:
-          {
-            home.stateVersion = lib.trivial.release;
-          }
-        )
-      ];
-    };
-
-    homeManager =
-      {
-        homeManagerModules,
-        ...
-      }:
-      {
-        imports = homeManagerModules;
-      };
   };
 }

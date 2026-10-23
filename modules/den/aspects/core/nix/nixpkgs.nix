@@ -24,7 +24,7 @@ in
       [ (_final: _prev: { local = self'.packages; }) ]
       ++ builtins.attrValues (import (self + "/pkgs/overlays.nix") { inherit inputs; });
 
-    os =
+    nixos =
       { nixpkgs-overlays, lib, ... }:
       {
         nixpkgs = {

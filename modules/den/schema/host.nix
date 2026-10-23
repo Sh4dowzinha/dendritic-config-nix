@@ -14,25 +14,15 @@ let
   inherit (lib) mkOption types;
   schemaLib = inputs.gen-schema.lib;
 
-  # Channel definitions — maps channel name to nixpkgs/HM/darwin inputs
+  # Channel definitions — maps channel name to nixpkgs/HM inputs
   channels = {
     nixos-unstable = {
       nixosSystem = inputs.nixpkgs-unstable.lib.nixosSystem;
-      darwinSystem = inputs.nix-darwin-unstable.lib.darwinSystem;
       home-manager-module.nixos = inputs.home-manager-unstable.nixosModules.home-manager;
-      home-manager-module.darwin = inputs.home-manager-unstable.darwinModules.home-manager;
     };
     nixos-stable = {
       nixosSystem = inputs.nixpkgs.lib.nixosSystem;
-      darwinSystem = inputs.nix-darwin.lib.darwinSystem;
       home-manager-module.nixos = inputs.home-manager.nixosModules.home-manager;
-      home-manager-module.darwin = inputs.home-manager.darwinModules.home-manager;
-    };
-    nixpkgs-stable-darwin = {
-      nixosSystem = inputs.nixpkgs-stable-darwin.lib.nixosSystem;
-      darwinSystem = inputs.nix-darwin.lib.darwinSystem;
-      home-manager-module.nixos = inputs.home-manager-stable-darwin.nixosModules.home-manager;
-      home-manager-module.darwin = inputs.home-manager-stable-darwin.darwinModules.home-manager;
     };
   };
 
@@ -63,7 +53,7 @@ in
           channel = mkOption {
             type = types.enum channelNames;
             default = "nixos-unstable";
-            description = "Nixpkgs channel — determines nixpkgs, home-manager, and nix-darwin versions";
+            description = "Nixpkgs channel — determines nixpkgs and home-manager versions";
           };
 
           system-owner = mkOption {
@@ -107,16 +97,8 @@ in
             in
             lib.mkDefault (if builtins.pathExists factsPath then factsPath else null);
 
-          instantiate = lib.mkDefault (
-            if config.class == "darwin" then resolvedChannel.darwinSystem else resolvedChannel.nixosSystem
-          );
-
-          home-manager.module = lib.mkDefault (
-            if config.class == "darwin" then
-              resolvedChannel.home-manager-module.darwin
-            else
-              resolvedChannel.home-manager-module.nixos
-          );
+          instantiate = lib.mkDefault (resolvedChannel.nixosSystem);
+          home-manager.module = lib.mkDefault (resolvedChannel.home-manager-module.nixos);
         };
       }
     )
