@@ -88,7 +88,7 @@
     dani = {
       includes = with den.aspects; [
         applications.browsers.brave-origin
-        #applications.engineering.boards  # TODO: platformio WIP
+        applications.engineering.boards
       ];
     };
   };
