@@ -6,11 +6,11 @@
       ];
     };
 
-    #persistHome.directories = [
-    #  {
-    #    directory = ".local/share/AyuGramDesktop";
-    #    mode = "0700";
-    #  }
-    #];
+    persistHome.directories = [
+      {
+        directory = ".local/share/TelegramDesktop";
+        mode = "0700";
+      }
+    ];
   };
 }
