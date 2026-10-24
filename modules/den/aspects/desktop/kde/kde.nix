@@ -41,6 +41,7 @@
           directory = ".local/share/kwalletd";
           mode = "0700";
         }
+        #".local/share/baloo"
       ];
 
       files = [
@@ -48,10 +49,9 @@
       ];
     };
 
-    cacheHome = {
-      directories = [
-        ".local/share/baloo"
-      ];
-    };
+    #cacheHome = {
+    #  directories = [
+    #  ];
+    #};
   };
 }

@@ -16,6 +16,7 @@
         LC_TELEPHONE = "pt_PT.UTF-8";
         LC_TIME = "pt_PT.UTF-8";
       };
+
       services.xserver.xkb.layout = host.keyboard.layout or "us";
 
       console = {

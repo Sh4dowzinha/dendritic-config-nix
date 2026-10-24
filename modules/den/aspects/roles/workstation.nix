@@ -17,8 +17,6 @@
 
       # Desktop
       desktop.wine
-      desktop.xserver
-      desktop.xwayland
       desktop.xdg
 
       # Apps
