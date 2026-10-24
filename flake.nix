@@ -10,7 +10,6 @@
       url = "github:Lyndeno/apple-fonts.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ayugram-desktop.url = "github:ndfined-crp/ayugram-desktop";
     base16-schemes = {
       url = "github:tinted-theming/schemes";
       flake = false;
