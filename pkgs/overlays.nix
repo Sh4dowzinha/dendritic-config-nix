@@ -21,7 +21,7 @@
             rm $out/bin/dolphin
             makeWrapper ${kprev.dolphin}/bin/dolphin $out/bin/dolphin \
               --set XDG_CONFIG_DIRS "${kprev.plasma-workspace}/etc/xdg:$XDG_CONFIG_DIRS" \
-              --run "${kprev.plasma-workspace}/bin/kbuildsycoca6 --noincremental ${kprev.plasma-workspace}/etc/xdg/menus/applications.menu"
+              --run "${kprev.kservice}/bin/kbuildsycoca6 --noincremental ${kprev.plasma-workspace}/etc/xdg/menus/applications.menu"
           '';
           passthru = (kprev.dolphin.passthru or { }) // {
             dev = kprev.dolphin.dev;
