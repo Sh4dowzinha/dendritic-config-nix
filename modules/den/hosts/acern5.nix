@@ -31,7 +31,6 @@
       hardware.laptop
       hardware.nitrokey3
       hardware.razer
-
       hardware.gamepad
 
       desktop.kde

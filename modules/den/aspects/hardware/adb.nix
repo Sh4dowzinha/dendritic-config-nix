@@ -1,13 +1,5 @@
 {
   den.aspects.hardware.adb = {
-    os =
-      { pkgs, ... }:
-      {
-        environment.systemPackages = [
-          pkgs.android-tools
-        ];
-      };
-
     nixos =
       {
         pkgs,
@@ -16,9 +8,11 @@
         ...
       }:
       {
-        environment.systemPackages = [
-          pkgs.android-file-transfer
+        environment.systemPackages = with pkgs; [
+          android-file-transfer
+          android-tools
         ];
+
         users.users = lib.genAttrs (map (u: u.name) resolved-users) (_: {
           extraGroups = [ "adbusers" ];
         });
