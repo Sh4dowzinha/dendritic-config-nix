@@ -1,5 +1,9 @@
 { den, lib, ... }: {
   den.aspects.desktop.kde = {
+    includes = with den.aspects; [
+      applications.fileManager.dolphin
+    ];
+
     nixos = { host, pkgs, ... }: {
       environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";
@@ -7,7 +11,7 @@
       };
 
       security.pam.services = {
-        plasmalogin.enableKwallet = true;
+        plasmalogin.enableGnomeKeyring = true;
       };
 
       xdg = {
@@ -19,7 +23,9 @@
 
           "org.freedesktop.portal.FileChooser" = [ "kde" ];
           "org.freedesktop.portal.OpenURI" = [ "kde" ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ]; # Use gnome-keyring instead of kwallet
         };
+
         terminal-exec.settings.KDE = [
           "org.kde.konsole.desktop"
         ];
@@ -27,6 +33,9 @@
 
       services.desktopManager.plasma6.enable = true;
       services.displayManager.plasma-login-manager.enable = true;
+
+      services.gnome.gnome-keyring.enable = true;
+      services.kde.kwallet.enable = false;
 
       programs.kde-pim.enable = false;
       environment.plasma6.excludePackages = with pkgs.kdePackages; [
@@ -37,10 +46,6 @@
 
     persistHome = {
       directories = [
-        {
-          directory = ".local/share/kwalletd";
-          mode = "0700";
-        }
         #".local/share/baloo"
       ];
 
