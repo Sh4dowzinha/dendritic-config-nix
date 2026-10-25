@@ -35,7 +35,6 @@
       services.displayManager.plasma-login-manager.enable = true;
 
       services.gnome.gnome-keyring.enable = true;
-      services.kde.kwallet.enable = false;
 
       programs.kde-pim.enable = false;
       environment.plasma6.excludePackages = with pkgs.kdePackages; [

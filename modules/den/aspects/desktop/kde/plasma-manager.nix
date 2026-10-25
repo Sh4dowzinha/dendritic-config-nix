@@ -41,6 +41,11 @@
               };
             };
           };
+
+          kwalletrc.Wallet = {
+            Enabled = false;
+            "Prompt on Open" = false;
+          };
         };
 
         workspace = {
