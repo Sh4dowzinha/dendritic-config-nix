@@ -631,11 +631,11 @@
         "gen-prelude": "gen-prelude_7"
       },
       "locked": {
-        "lastModified": 1792951449,
-        "narHash": "sha256-YQlIcHW16kUk2AvvNksMiOrZOzqyr6IoFciKDDVjCYg=",
+        "lastModified": 1792963455,
+        "narHash": "sha256-GEVSR/KE7hSaD/kmQcW8Lld/wKTdrC5JdzGz80gcsyo=",
         "owner": "sini",
         "repo": "gen-schema",
-        "rev": "da52182fc3a9823238b8951f5ef372cdb5b0224a",
+        "rev": "8d4fec1abd64fb3c4e6af8a65aaf244399cd3897",
         "type": "github"
       },
       "original": {
@@ -997,17 +997,17 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1792094642,
-        "narHash": "sha256-zp8ToDMnqZcu4o4IH9pdwXFXGp7yLm/M0dEnNWnyd7I=",
+        "lastModified": 1792773339,
+        "narHash": "sha256-rZLrzrC6i+jnTAlvPZHogKDulY7WWDEv9hJeHieO7Zw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fe13242281a67641c0102cdb1087f0ebe586c7df",
+        "rev": "3ec636362e1816bc2f0888fa0fa2c69f1bc9e504",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
-        "rev": "fe13242281a67641c0102cdb1087f0ebe586c7df",
         "type": "github"
       }
     },

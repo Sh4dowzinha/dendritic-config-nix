@@ -15,24 +15,6 @@
     { config, pkgs, ... }:
     # Temporary ix for toml-sort incompatiblilty until
     # version 0.25.0 isn't available on nixpkgs
-    let
-      compatibleTomlSort = pkgs.toml-sort.override {
-        python3Packages = pkgs.python3Packages.overrideScope (
-          pyFinal: pyPrev: {
-            tomlkit = pyPrev.tomlkit.overridePythonAttrs (old: rec {
-              version = "0.15.0";
-
-              src = pkgs.fetchPypi {
-                pname = "tomlkit";
-                inherit version;
-                hash = "sha256-fRqey6MIZjghGxOBTqeckN1U3RGZNWQ3bzqpInH1x6M=";
-              };
-            });
-          }
-        );
-      };
-
-    in
     {
       # Provide a formatter package for `nix fmt`. Setting this
       # to `config.treefmt.build.wrapper` will use the treefmt
@@ -173,7 +155,6 @@
           };
 
           toml-sort.enable = true;
-          toml-sort.package = compatibleTomlSort;
 
           # mdformat.enable = true;
 

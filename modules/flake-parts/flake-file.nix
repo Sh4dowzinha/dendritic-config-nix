@@ -60,11 +60,11 @@
 
       nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
-      #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+      nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
       # temporary pin to the nixpkgs version before
       # the kernel modules regression
-      nixpkgs-unstable.url = "github:nixos/nixpkgs/fe13242281a67641c0102cdb1087f0ebe586c7df";
+      #nixpkgs-unstable.url = "github:nixos/nixpkgs/fe13242281a67641c0102cdb1087f0ebe586c7df";
 
       pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
 
