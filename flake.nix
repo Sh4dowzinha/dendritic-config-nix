@@ -8,11 +8,7 @@
   inputs = {
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    base16-schemes = {
-      url = "github:tinted-theming/schemes";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     dag.url = "github:denful/dag";
     den.url = "github:denful/den";
@@ -33,7 +29,10 @@
     };
     flake-root.url = "github:srid/flake-root";
     gen-schema.url = "github:sini/gen-schema";
-    git-hooks-nix.url = "github:cachix/git-hooks.nix";
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,7 +45,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid";
@@ -58,7 +57,7 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-wrapper-modules = {
       url = "github:BirdeeHub/nix-wrapper-modules";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -90,7 +89,7 @@
     systems.url = "github:nix-systems/default/future-26.11";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     umu = {
       url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";

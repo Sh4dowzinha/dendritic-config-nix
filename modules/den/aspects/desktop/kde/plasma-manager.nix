@@ -1,18 +1,18 @@
 {
   flake-file.inputs = {
-    plasma-manager-unstable = {
-      url = "github:nix-community/plasma-manager";
-      inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
-        home-manager.follows = "home-manager-unstable";
-      };
-    };
-
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
+      };
+    };
+
+    plasma-manager-unstable = {
+      url = "github:nix-community/plasma-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-unstable";
+        home-manager.follows = "home-manager-unstable";
       };
     };
   };
