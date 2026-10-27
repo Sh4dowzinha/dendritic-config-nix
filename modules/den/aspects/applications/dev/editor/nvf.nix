@@ -23,8 +23,8 @@
       {
         programs.nvf = {
           enable = true;
-          package = targetPkgs.neovim-unwrapped;
           settings.vim = {
+            package = targetPkgs.neovim-unwrapped;
             theme.enable = true;
             options = {
               tabstop = 2;
