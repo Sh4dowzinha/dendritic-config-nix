@@ -1,6 +1,9 @@
 {
   flake-file.inputs = {
-    nvf.url = "github:notashelf/nvf";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   den.aspects.applications.dev.editor.nvf = {
@@ -11,10 +14,16 @@
       ];
 
     homeManager =
-      { ... }:
+      { pkgs, ... }:
+      let
+        # On a stable host, use pkgs.unstable to prevent missing plugin errors;
+        # on an unstable host, pkgs is already unstable.
+        targetPkgs = pkgs.unstable or pkgs;
+      in
       {
         programs.nvf = {
           enable = true;
+          package = targetPkgs.neovim-unwrapped;
           settings.vim = {
             theme.enable = true;
             options = {
