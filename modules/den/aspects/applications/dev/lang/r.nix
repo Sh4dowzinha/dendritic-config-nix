@@ -1,39 +1,44 @@
 let
-  rPkgs =
-    pkgs: with pkgs.rPackages; [
-      ggplot2
-      httpgd
-      languageserver
-    ];
-
-  rWrapper =
+  # R environment
+  rEnv =
     pkgs:
     pkgs.rWrapper.override {
-      packages = rPkgs pkgs;
+      packages = with pkgs.rPackages; [
+        ggplot2
+        httpgd
+        languageserver
+      ];
     };
 
-  radianWrapper =
+  # Radian wrapper bundling python3 + radian + R environment
+  radianEnv =
     pkgs:
-    pkgs.radianWrapper.override {
-      packages = rPkgs pkgs;
-    };
+    let
+      r = rEnv pkgs;
+      pythonWithRadian = pkgs.python3.withPackages (ps: [ ps.radian ]);
+    in
+    pkgs.writeShellScriptBin "radian" ''
+      export R_HOME="${r}/lib/R"
+      export PATH="${r}/bin:$PATH"
+      exec "${pythonWithRadian}/bin/radian" "$@"
+    '';
 in
 {
   den.aspects.applications.dev.lang.r = {
     homeManager = { pkgs, ... }: {
       home.packages = [
-        (rWrapper pkgs)
-        (radianWrapper pkgs)
+        (rEnv pkgs)
+        (radianEnv pkgs)
       ];
     };
 
     codium-settings = { pkgs, ... }: [
       {
-        # R executable for the language server and background processes
-        "r.executablePath" = "${(rWrapper pkgs)}/bin/R";
+        # Background R executable (language server, session watcher)
+        "r.executablePath" = "${(rEnv pkgs)}/bin/R";
 
-        # Radian for interactive R terminals
-        "r.consolePath" = "${(radianWrapper pkgs)}/bin/radian";
+        # Interactive terminal console
+        "r.consolePath" = "${(radianEnv pkgs)}/bin/radian";
 
         "r.bracketedPaste" = true;
         "r.sessionWatcher" = true;
