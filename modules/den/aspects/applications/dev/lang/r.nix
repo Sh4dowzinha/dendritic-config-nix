@@ -10,17 +10,16 @@ let
       ];
     };
 
-  # Radian wrapper bundling python3 + radian + R environment
+  # Radian wrapper
   radianEnv =
     pkgs:
     let
       r = rEnv pkgs;
-      pythonWithRadian = pkgs.python3.withPackages (ps: [ ps.radian ]);
     in
     pkgs.writeShellScriptBin "radian" ''
       export R_HOME="${r}/lib/R"
       export PATH="${r}/bin:$PATH"
-      exec "${pythonWithRadian}/bin/radian" "$@"
+      exec "${pkgs.radian}/bin/radian" "$@"
     '';
 in
 {
