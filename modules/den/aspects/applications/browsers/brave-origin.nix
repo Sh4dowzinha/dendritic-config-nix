@@ -39,7 +39,7 @@
       ".config/BraveSoftware/Brave-Origin"
     ];
 
-    persistCache.directories = [
+    cacheHome.directories = [
       ".cache/BraveSoftware/Brave-Origin"
     ];
   };
