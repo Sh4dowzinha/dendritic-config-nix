@@ -1,18 +1,20 @@
 {
   den.aspects.applications.messaging.thunderbird = {
-    nixos = {
+    homeManager = {
       programs.thunderbird = {
         enable = true;
+        languagePacks = [
+          "en-US"
+          "pt-PT"
+        ];
 
         policies = {
           DisableTelemetry = true;
           DisableAppUpdate = true;
-          DontCheckDefaultClient = true;
+          DisableFirefoxAccounts = true;
         };
 
-        # Sets sane defaults in /etc/thunderbird without locking the GUI
-        preferencesStatus = "default";
-        preferences = {
+        settings = {
           # Kill onboarding & nagging
           "mailnews.start_page.enabled" = false;
           "mail.shell.checkDefaultClient" = false;
