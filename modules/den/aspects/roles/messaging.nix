@@ -5,6 +5,7 @@
       applications.messaging.discord
       applications.messaging.telegram
       applications.messaging.zapzap
+      applications.messaging.thunderbird
     ];
   };
 }
