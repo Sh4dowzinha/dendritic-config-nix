@@ -11,7 +11,6 @@
 
   den.aspects.core.preservation = {
     includes = [
-      den.aspects.core.preservation.collector
       den.aspects.core.preservation.tmpfs
     ];
 
@@ -23,47 +22,64 @@
       };
     };
 
-    nixos = { host, ... }: {
-      imports = [
-        inputs.preservation.nixosModules.preservation
-      ];
-
-      config = lib.mkIf (host.settings.core.preservation.enable or false) {
-        systemd.suppressedSystemUnits = [
-          "systemd-machine-id-commit.service"
+    nixos =
+      {
+        host,
+        persist ? [ ],
+        cache ? [ ],
+        lib,
+        ...
+      }:
+      let
+        mergePersist = entries: {
+          directories = lib.unique (lib.concatMap (e: e.directories or [ ]) entries);
+          files = lib.unique (lib.concatMap (e: e.files or [ ]) entries);
+        };
+      in
+      {
+        imports = [
+          inputs.preservation.nixosModules.preservation
         ];
 
-        preservation.enable = true;
+        config = lib.mkIf (host.settings.core.preservation.enable or false) {
+          systemd.suppressedSystemUnits = [
+            "systemd-machine-id-commit.service"
+          ];
 
-        preservation.preserveAt = {
-          "/cache" = {
-            persistentStoragePath = "/cache";
+          preservation.enable = true;
 
-            commonMountOptions = [
-              "x-gvfs-hide"
-              "x-gdu.hide"
-            ];
-
-            directories = [
-              "/var/log"
-            ];
-          };
-
-          "/persist" = {
-            commonMountOptions = [
-              "x-gvfs-hide"
-              "x-gdu.hide"
-            ];
-
-            files = [
+          preservation.preserveAt = {
+            "/cache" = lib.mkMerge [
+              (mergePersist cache)
               {
-                file = "/etc/machine-id";
-                inInitrd = true;
+                persistentStoragePath = "/cache";
+                commonMountOptions = [
+                  "x-gvfs-hide"
+                  "x-gdu.hide"
+                ];
+                directories = [
+                  "/var/log"
+                ];
+              }
+            ];
+
+            "/persist" = lib.mkMerge [
+              (mergePersist persist)
+              {
+                commonMountOptions = [
+                  "x-gvfs-hide"
+                  "x-gdu.hide"
+                ];
+                files = [
+                  {
+                    file = "/etc/machine-id";
+                    inInitrd = true;
+                  }
+                ];
               }
             ];
           };
         };
       };
-    };
   };
 }

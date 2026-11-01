@@ -1,10 +1,9 @@
 {
   den.aspects.applications.dev.git.mergiraf = {
-    homeManager = {
+    homeManager = _: {
       programs.mergiraf = {
         enable = true;
         enableGitIntegration = true;
-        enableJujutsuIntegration = true;
       };
     };
   };

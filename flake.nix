@@ -47,13 +47,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid";
-      inputs = {
-        home-manager.follows = "home-manager-unstable";
-        nixpkgs.follows = "nixpkgs-unstable";
-      };
-    };
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-unstable";

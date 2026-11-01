@@ -69,8 +69,6 @@
         applications.browsers.brave-origin
         applications.gaming.osu-lazer
         applications.gaming.prismlauncher
-
-        core.preservation-user
       ];
     };
   };

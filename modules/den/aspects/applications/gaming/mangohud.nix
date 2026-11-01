@@ -3,10 +3,7 @@
     homeManager =
       { pkgs, ... }:
       {
-        programs.mangohud = {
-          enable = true;
-          enableSessionWide = true;
-        };
+        programs.mangohud.enable = true;
 
         # TODO: only set this if stylix is enabled
         # stylix.targets.mangohud.enable = false;

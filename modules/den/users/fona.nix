@@ -11,8 +11,9 @@
     system.uid = 1003;
 
     settings = {
-      #git.signing.method = "openpgp";
-      github.username = "HugoFona";
+      applications.dev.git = {
+        github.username = "HugoFona";
+      };
     };
 
     identity = {

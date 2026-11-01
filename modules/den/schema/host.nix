@@ -12,6 +12,7 @@
 }:
 let
   inherit (lib) mkOption types;
+  settingsType = import ./_settings-type.nix { inherit den lib; };
   schemaLib = inputs.gen-schema.lib;
 
   # Channel definitions — maps channel name to nixpkgs/HM inputs
@@ -27,11 +28,6 @@ let
   };
 
   channelNames = builtins.attrNames channels;
-
-  # Dynamic settings type — recursively discovers aspects that declare .settings.
-  # Mirrors the aspect tree: den.aspects.disk.zfs-disk-single.settings →
-  # host.settings.disk.zfs-disk-single.*  (shared with the cluster schema).
-  settingsType = import ./_settings-type.nix { inherit den lib; };
 in
 {
   den.schema.host.isEntity = true;

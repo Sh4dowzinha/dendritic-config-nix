@@ -1,6 +1,7 @@
-{ lib, ... }:
+{ den, lib, ... }:
 let
   inherit (lib) mkOption types;
+  settingsType = import ./_settings-type.nix { inherit den lib; };
 
   sshKeyType = types.submodule {
     options = {
@@ -20,6 +21,16 @@ in
   den.schema.user.imports = [
     {
       options = {
+        settings =
+          mkOption {
+            type = settingsType;
+            default = { };
+            description = "Per-aspect typed settings for the user";
+          }
+          // {
+            identity = false;
+          };
+
         identity = mkOption {
           type = types.submodule {
             options = {
@@ -55,40 +66,18 @@ in
               uid = mkOption {
                 type = types.nullOr types.int;
                 default = null;
-                description = "User ID for the Unix account";
               };
               gid = mkOption {
                 type = types.nullOr types.int;
                 default = null;
-                description = "Group ID for the Unix account";
               };
               linger = mkOption {
                 type = types.bool;
                 default = false;
-                description = "Enable lingering for the user (systemd user services start without login)";
-              };
-              extra-features = mkOption {
-                type = types.listOf types.str;
-                default = [ ];
-                description = "Additional feature aspects to include for this user beyond defaults";
-              };
-              excluded-features = mkOption {
-                type = types.listOf types.str;
-                default = [ ];
-                description = "Feature aspects to exclude for this user";
-              };
-              include-host-features = mkOption {
-                type = types.bool;
-                default = false;
-                description = "Whether to inherit host-level aspect features for this user";
-              };
-              settings = mkOption {
-                type = types.attrsOf (types.attrsOf types.anything);
-                default = { };
-                description = "Per-user feature settings (freeform nested namespace)";
               };
             };
           };
+          default = { };
         };
       };
     }

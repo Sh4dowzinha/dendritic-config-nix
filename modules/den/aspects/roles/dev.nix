@@ -29,9 +29,8 @@
       applications.dev.git
       applications.dev.git.delta
       applications.dev.git.github
-      applications.dev.git.jujutsu
       applications.dev.git.lazygit
-      # applications.dev.git.mergiraf  # Keep disabled until it builds fine
+      applications.dev.git.mergiraf
 
       applications.dev.lang.go
       applications.dev.lang.python

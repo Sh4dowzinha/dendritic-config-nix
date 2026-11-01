@@ -1,6 +1,6 @@
 {
   den.aspects.core.preservation.tmpfs = {
-    nixos = {
+    nixos = _: {
       boot.tmp = {
         useTmpfs = true;
         cleanOnBoot = true;

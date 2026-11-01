@@ -21,7 +21,7 @@
           ];
 
           hosts = {
-            "github.com".user = user.settings.github.username;
+            "github.com".user = user.settings.applications.dev.git.github.username;
           };
         };
       };

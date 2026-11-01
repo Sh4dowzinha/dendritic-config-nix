@@ -87,8 +87,6 @@
         applications.engineering.vivado
         applications.engineering.ltspice
         applications.network.localsend
-
-        core.preservation-user
       ];
     };
   };

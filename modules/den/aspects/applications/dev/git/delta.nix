@@ -1,6 +1,6 @@
 {
   den.aspects.applications.dev.git.delta = {
-    homeManager = {
+    homeManager = _: {
       programs.delta = {
         enable = true;
         options = {

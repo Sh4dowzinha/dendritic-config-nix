@@ -1,8 +1,4 @@
-{
-  den,
-  lib,
-  ...
-}:
+{ lib, ... }:
 {
   den.aspects.applications.dev.git = {
     settings = {
@@ -17,6 +13,40 @@
           description = "Git commit signing method";
         };
       };
+
+      extraIdentities = lib.mkOption {
+        type = lib.types.listOf (
+          lib.types.submodule {
+            options = {
+              email = lib.mkOption {
+                type = lib.types.str;
+                description = "Email address for this identity";
+              };
+              fullName = lib.mkOption {
+                type = lib.types.str;
+                description = "Full display name for this identity";
+              };
+              githubUser = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                default = null;
+                description = "GitHub username for this identity";
+              };
+              signingKey = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                default = null;
+                description = "Signing key for this identity";
+              };
+              conditions = lib.mkOption {
+                type = lib.types.listOf lib.types.str;
+                default = [ ];
+                description = "Git includeIf condition patterns (e.g. 'gitdir:~/work/')";
+              };
+            };
+          }
+        );
+        default = [ ];
+        description = "Additional conditional Git identities";
+      };
     };
 
     homeManager =
@@ -27,41 +57,45 @@
         ...
       }:
       let
+        gitCfg = user.settings.applications.dev.git or { };
+        githubUser = user.settings.applications.dev.git.github.username or "";
+        signingMethod = gitCfg.signing.method or "none";
+
         userEmail = user.identity.email or "${user.name}@users.noreply.github.com";
+        userFullName = user.identity.displayName or user.name;
+
+        globalSigningKeyObj = lib.findFirst (k: k.tag == "global-signing" || k.tag == "signing") null (
+          user.identity.sshKeys or [ ]
+        );
+        signingKey = if globalSigningKeyObj != null then globalSigningKeyObj.key else null;
 
         makeGitConfig =
           {
             userName,
             userEmail,
-            githubUser,
-            signingKey,
-            signingMethod,
+            githubUser ? null,
+            signingKey ? null,
+            signingMethod ? "none",
           }:
-          pkgs.writeText "config" (
+          pkgs.writeText "git-conditional-config" (
             ''
               [user]
                 name = "${userName}"
                 email = "${userEmail}"
             ''
-            + lib.optionalString (signingKey != null) ''
-              signingKey = "${signingKey}"
+            + lib.optionalString (signingKey != null && signingKey != "") ''
+              signingkey = "${signingKey}"
             ''
-            + lib.optionalString (githubUser != null) ''
+            + lib.optionalString (githubUser != null && githubUser != "") ''
               [github]
                 user = "${githubUser}"
             ''
           );
 
-        signingMethod = user.settings.git.signing.method or "none";
-        globalSigningKeyObj = lib.findFirst (k: k.tag == "global-signing") null (
-          user.identity.sshKeys or [ ]
-        );
-        signingKey = if globalSigningKeyObj != null then globalSigningKeyObj.key else null;
-
         defaultIdentity = {
           email = userEmail;
-          fullName = user.identity.displayName or user.name;
-          githubUser = user.settings.github.username;
+          fullName = userFullName;
+          inherit githubUser;
           signingKey =
             if signingMethod == "ssh" then
               signingKey
@@ -69,19 +103,18 @@
               user.identity.gpgKey or null
             else
               null;
-          conditions = [
-            "hasconfig:remote.*.url:git@github.com:${user.settings.github.username}/**"
-          ];
+          conditions = lib.optional (
+            githubUser != ""
+          ) "hasconfig:remote.*.url:git@github.com:${githubUser}/**";
         };
 
-        allIdentities = [ defaultIdentity ] ++ (user.settings.git.extraIdentities or [ ]);
-
+        allIdentities = [ defaultIdentity ] ++ (gitCfg.extraIdentities or [ ]);
       in
       {
         assertions = [
           {
             assertion = (signingMethod == "ssh") -> (signingKey != null);
-            message = "Git signing method is set to 'ssh', but the user signing key has not been generated yet.";
+            message = "Git signing method is set to 'ssh', but no SSH key with tag 'global-signing' or 'signing' was found in user.identity.sshKeys.";
           }
         ];
 
@@ -91,17 +124,21 @@
           signing = {
             signByDefault = signingMethod != "none";
           }
-          // lib.optionalAttrs (signingMethod == "openpgp") {
-            format = "openpgp";
-            key = user.identity.gpgKey or null;
-          }
+          // lib.optionalAttrs (signingMethod == "openpgp") (
+            {
+              format = "openpgp";
+            }
+            // lib.optionalAttrs ((user.identity.gpgKey or null) != null) {
+              key = user.identity.gpgKey;
+            }
+          )
           // lib.optionalAttrs (signingMethod == "ssh") {
             format = "ssh";
             key = signingKey;
           };
 
           settings = {
-            user.name = user.identity.displayName or user.name;
+            user.name = userFullName;
             user.email = userEmail;
             pull.rebase = true;
             init.defaultBranch = "main";
@@ -138,9 +175,9 @@
               {
                 email,
                 fullName,
-                githubUser,
-                signingKey,
-                conditions,
+                githubUser ? null,
+                signingKey ? null,
+                conditions ? [ ],
               }:
               let
                 configFile = makeGitConfig {
