@@ -3,6 +3,7 @@
     nixos =
       { pkgs, ... }:
       {
+        nixpkgs.config.problems.handlers."gtk+".broken = "warn";
         programs.nix-ld = {
           enable = true;
           libraries =

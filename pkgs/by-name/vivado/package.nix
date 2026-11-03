@@ -29,7 +29,6 @@
   glib,
   gsettings-desktop-schemas,
   graphviz,
-  gtk2,
   gtk3,
   hicolor-icon-theme,
   libdrm,
@@ -158,7 +157,6 @@ let
       lsb-release
 
       glib
-      gtk2
       gtk3
 
       libx11
@@ -305,7 +303,6 @@ let
       freetype
       glib
       gsettings-desktop-schemas
-      gtk2
       gtk3
       hicolor-icon-theme
       pango
