@@ -4,6 +4,7 @@
     includes = with den.aspects; [
       core.nix
       core.nix.nixpkgs
+      core.nix.nix-ld
       core.systemd.boot
       core.localization.i18n
       core.systemd

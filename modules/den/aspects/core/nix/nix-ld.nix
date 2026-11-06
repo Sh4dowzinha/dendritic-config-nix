@@ -4,13 +4,13 @@
       {
         lib,
         pkgs,
-        nix-ld ? [ ],
+        nix-ld-libraries ? [ ],
         ...
       }:
       let
         # Handle aspects that pass `{ pkgs, ... }: [ ... ]` or direct package lists `[ ... ]`
         resolve = x: if lib.isFunction x then x { inherit pkgs; } else x;
-        resolvedLibs = map resolve nix-ld;
+        resolvedLibs = map resolve nix-ld-libraries;
       in
       {
         programs.nix-ld = {

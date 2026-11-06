@@ -85,6 +85,7 @@
         applications.browsers.brave-origin
         applications.gaming.osu-lazer
         applications.engineering.vivado
+        applications.engineering.boards
         applications.engineering.ltspice
         applications.network.localsend
       ];

@@ -31,6 +31,6 @@
         };
       };
 
-    nix-ld = { pkgs, ... }: (pkgs.steam-run.fhsenv.args.multiPkgs pkgs);
+    nix-ld-libraries = { pkgs, ... }: (pkgs.steam-run.args.multiPkgs pkgs);
   };
 }

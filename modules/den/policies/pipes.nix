@@ -49,7 +49,7 @@ in
   ];
 
   den.policies.expose-nix-ld-libraries = { host, user, ... }: [
-    (pipe.from "nix-ld" [
+    (pipe.from "nix-ld-libraries" [
       pipe.expose
     ])
   ];

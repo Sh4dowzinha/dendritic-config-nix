@@ -20,7 +20,7 @@
       ];
     };
 
-    nix-ld = { pkgs, ... }: with pkgs;
+    nix-ld-libraries = { pkgs, ... }: with pkgs;
       [
         libusb1
         ncurses5
