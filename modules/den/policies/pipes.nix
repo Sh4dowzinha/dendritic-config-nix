@@ -62,6 +62,6 @@ in
     den.policies.expose-resolved-users
     den.policies.expose-preservation-user
     den.policies.expose-firewall
-    den.policies.expose-nix-ld
+    den.policies.expose-nix-ld-libraries
   ];
 }
