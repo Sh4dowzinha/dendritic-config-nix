@@ -20,6 +20,12 @@
       ];
     };
 
+    nix-ld = { pkgs, ... }: with pkgs;
+      [
+        libusb1
+        ncurses5
+      ];
+
     codium-settings = { pkgs, ... }: [
       {
         # Direct extension to Nix-wrapped binary

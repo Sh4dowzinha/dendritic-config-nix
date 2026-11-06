@@ -14,11 +14,6 @@
           && host.hasAspect den.aspects.hardware.laptop;
       in
       {
-        nix.settings = {
-          substituters = [ "https://nix-gaming.cachix.org" ];
-          trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
-        };
-
         hardware = {
           steam-hardware.enable = true;
           graphics.enable32Bit = true;
@@ -27,6 +22,7 @@
         programs = {
           steam = {
             enable = true;
+            extest.enable = true;
             protontricks.enable = true;
 
             package = pkgs.steam.override {

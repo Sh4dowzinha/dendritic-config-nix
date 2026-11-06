@@ -42,8 +42,6 @@
 
       import-tree.url = "github:vic/import-tree";
 
-      nix-gaming.url = "github:fufexan/nix-gaming";
-
       nix-wrapper-modules = {
         url = "github:BirdeeHub/nix-wrapper-modules";
         inputs.nixpkgs.follows = "nixpkgs-unstable";

@@ -48,6 +48,12 @@ in
     ])
   ];
 
+  den.policies.expose-nix-ld-libraries = { host, user, ... }: [
+    (pipe.from "nix-ld" [
+      pipe.expose
+    ])
+  ];
+
   den.schema.host.includes = [
     den.policies.collect-host-addrs
   ];
@@ -56,5 +62,6 @@ in
     den.policies.expose-resolved-users
     den.policies.expose-preservation-user
     den.policies.expose-firewall
+    den.policies.expose-nix-ld
   ];
 }
