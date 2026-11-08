@@ -43,7 +43,6 @@
         "Public"
         "Templates"
         "Videos"
-        ".config/autostart"
         {
           directory = ".local/share/keyrings";
           mode = "0700";

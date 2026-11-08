@@ -13,12 +13,18 @@
         ];
       };
 
-    homeManager = { pkgs, ... }: {
-      home.packages = with pkgs; [
-        platformio-core
-        avrdude
-      ];
-    };
+    homeManager =
+      { config, pkgs, ... }:
+      {
+        home.packages = with pkgs; [
+          avrdude
+        ];
+
+        # Expose the virtualenv binaries to all user shells, scripts, and desktop processes
+        home.sessionPath = [
+          "${config.home.homeDirectory}/.platformio/penv/bin"
+        ];
+      };
 
     nix-ld-libraries = { pkgs, ... }: with pkgs;
       [
@@ -26,25 +32,9 @@
         ncurses5
       ];
 
-    codium-settings = { pkgs, ... }: [
-      {
-        # Direct extension to Nix-wrapped binary
-        "platformio-ide.useBuiltinPIOCore" = false;
-        "platformio-ide.customPATH" = "${pkgs.platformio-core}/bin";
-
-        # Completely mute Microsoft language server so clangd runs without conflict
-        "C_Cpp.intelliSenseEngine" = "disabled";
-        "C_Cpp.errorSquiggles" = "disabled";
-        "C_Cpp.autocomplete" = "disabled";
-        "C_Cpp.formatting" = "disabled";
-        "C_Cpp.enhancedColoring" = "disabled";
-      }
-    ];
-
     codium-extensions = { pkgs, ... }: with pkgs.vscode-marketplace;
       [
         platformio.platformio-ide
-        ms-vscode.cpptools
       ];
 
     persistHome.directories = [
