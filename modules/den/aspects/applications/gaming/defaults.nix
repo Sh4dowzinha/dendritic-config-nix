@@ -3,9 +3,13 @@
 
   den.aspects.applications.gaming.defaults = {
     nixos =
-      { pkgs, user, ... }:
+      {
+        lib,
+        resolved-users ? [ ],
+        ...
+      }:
       let
-        inherit (user) userName;
+        userNames = map (u: u.name or u.userName) resolved-users;
       in
       {
         nix.settings = {
@@ -25,7 +29,10 @@
           ];
         };
 
-        users.users.${userName}.extraGroups = [ "gamemode" ];
+        users.users = lib.genAttrs userNames (_: {
+          extraGroups = [ "gamemode" ];
+        });
+
         programs.gamemode = {
           enable = true;
         };

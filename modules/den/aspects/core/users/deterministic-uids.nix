@@ -134,6 +134,7 @@
           gnome-remote-desktop = uidGid 980;
           gnome-initial-setup = uidGid 979;
           openrazer = uidGid 978;
+          gamemode = uidGid 977;
         };
 
         config.assertions =

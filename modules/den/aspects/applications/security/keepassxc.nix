@@ -1,10 +1,5 @@
-{ den, ... }:
 {
   den.aspects.applications.security.keepassxc = {
-    includes = [
-      den.aspects.desktop.xdg
-    ];
-
     homeManager = {
       programs.keepassxc = {
         enable = true;
@@ -31,12 +26,6 @@
           };
         };
       };
-    };
-
-    cacheHome = {
-      directories = [
-        ".cache/keepassxc"
-      ];
     };
   };
 }
