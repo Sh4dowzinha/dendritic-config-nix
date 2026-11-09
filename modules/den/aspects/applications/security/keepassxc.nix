@@ -27,5 +27,9 @@
         };
       };
     };
+
+    persistHome.directories = [
+      ".local/state/keepassxc"
+    ];
   };
 }
