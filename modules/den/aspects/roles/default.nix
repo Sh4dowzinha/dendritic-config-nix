@@ -4,7 +4,6 @@
     includes = with den.aspects; [
       core.nix
       core.nix.nixpkgs
-      core.nix.nix-ld
       core.systemd.boot
       core.localization.i18n
       core.systemd
@@ -22,6 +21,7 @@
       core.security.sudo
       core.localization.time
       core.system.zram-swap
+      core.system.fhs-compat
       core.system.appimage
       core.system.plymouth
       core.system.linux-kernel

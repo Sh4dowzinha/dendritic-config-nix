@@ -1,9 +1,9 @@
 {
-  den.aspects.core.nix.nix-ld = {
+  den.aspects.core.system.fhs-compat = {
     nixos =
       {
-        lib,
         pkgs,
+        lib,
         nix-ld-libraries ? [ ],
         ...
       }:
@@ -13,6 +13,7 @@
         resolvedLibs = map resolve nix-ld-libraries;
       in
       {
+        # 1. ELF dynamic linker interception
         programs.nix-ld = {
           enable = true;
           libraries = lib.unique (
@@ -36,6 +37,12 @@
             ++ (lib.flatten resolvedLibs)
           );
         };
+
+        # 2. Script shebang entrypoint interception
+        systemd.tmpfiles.rules = [
+          "L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
+          "L+ /usr/bin/bash - - - - ${pkgs.bash}/bin/bash"
+        ];
       };
   };
 }
