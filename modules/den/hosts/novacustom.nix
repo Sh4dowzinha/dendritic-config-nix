@@ -39,6 +39,8 @@
       disk.btrfs-luks-tmpfs-single
 
       core.network.manager
+
+      applications.network.mullvad-vpn
     ];
 
     nixos = {
