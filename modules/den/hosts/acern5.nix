@@ -66,7 +66,6 @@
 
     sh4dow = {
       includes = with den.aspects; [
-        applications.browsers.brave-origin
         applications.gaming.osu-lazer
         applications.gaming.prismlauncher
       ];
