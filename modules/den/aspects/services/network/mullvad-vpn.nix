@@ -1,5 +1,5 @@
 {
-  den.aspects.applications.network.mullvad-vpn = {
+  den.aspects.services.network.mullvad-vpn = {
     nixos = _: {
       services.mullvad-vpn = {
         enable = true;

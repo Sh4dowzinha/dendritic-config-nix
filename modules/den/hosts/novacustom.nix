@@ -40,7 +40,8 @@
 
       core.network.manager
 
-      applications.network.mullvad-vpn
+      services.network.mullvad-vpn
+      services.network.i2pd
     ];
 
     nixos = {
@@ -85,6 +86,7 @@
     sh4dow = {
       includes = with den.aspects; [
         applications.browsers.brave-origin
+        applications.browsers.i2p-browser
         applications.gaming.osu-lazer
         applications.engineering.vivado
         applications.engineering.boards
