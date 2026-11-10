@@ -16,6 +16,7 @@
       #virtualization.libvirt
 
       # Desktop
+      desktop.default-applications
       desktop.wine
       desktop.xdg
 

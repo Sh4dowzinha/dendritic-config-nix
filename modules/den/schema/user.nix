@@ -1,7 +1,12 @@
-{ den, lib, ... }:
+{
+  den,
+  lib,
+  rootPath,
+  ...
+}:
 let
   inherit (lib) mkOption types;
-  settingsType = import ./_settings-type.nix { inherit den lib; };
+  settingsType = import (rootPath + "/modules/den/lib/_settings-type.nix") { inherit den lib; };
 
   sshKeyType = types.submodule {
     options = {

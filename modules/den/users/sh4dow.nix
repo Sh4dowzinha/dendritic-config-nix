@@ -21,6 +21,10 @@
         signing.method = "openpgp";
         github.username = "Sh4dowzinha";
       };
+
+      desktop.default-applications = {
+        browser = "brave-origin";
+      };
     };
 
     identity = {

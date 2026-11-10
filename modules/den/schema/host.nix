@@ -12,7 +12,7 @@
 }:
 let
   inherit (lib) mkOption types;
-  settingsType = import ./_settings-type.nix { inherit den lib; };
+  settingsType = import (rootPath + "/modules/den/lib/_settings-type.nix") { inherit den lib; };
   schemaLib = inputs.gen-schema.lib;
 
   # Channel definitions — maps channel name to nixpkgs/HM inputs

@@ -85,7 +85,6 @@
 
     sh4dow = {
       includes = with den.aspects; [
-        applications.browsers.brave-origin
         applications.browsers.i2p-browser
         applications.gaming.osu-lazer
         applications.engineering.vivado
