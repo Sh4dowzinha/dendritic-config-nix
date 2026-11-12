@@ -6,47 +6,57 @@
   ...
 }:
 let
-  # Skip sops-nix integration for droid hosts
+  # Normalizes both `{ sops.secrets.foo = ...; }` and shorthand `{ foo = ...; }`
+  extractSecrets = list: map (m: m.sops.secrets or m) list;
+
   sopsHostAspect =
-    { host, ... }:
+    {
+      host,
+      sops-secrets ? [ ],
+      ...
+    }:
     let
-      # Only real (NixOS) preservation relocates the host key under /persist; the
-      # darwin preservation branch is a dummy (no wipe, no /persist), so a darwin
-      # host must read its identity from the plain /etc/ssh path. Without this
-      # guard the darwin host got `/persist/etc/ssh/...`, which doesn't exist, so
-      # system sops-nix had no identity to decrypt the per-user secrets with.
-      hasPreservation = host.hasAspect den.aspects.core.preservation;
+      hasPreservation =
+        host.hasAspect den.aspects.core.preservation && (host.settings.core.preservation.enable or false);
       persistPrefix = lib.optionalString (hasPreservation && host.class == "nixos") "/persist";
       hostSopsFile = rootPath + "/secrets/hosts/${host.name}/${host.name}.yaml";
+      hostSopsFileExists = builtins.pathExists hostSopsFile;
+      secretList = extractSecrets sops-secrets;
     in
     {
       name = "sops-nix/${host.name}";
       ${host.class} =
-        if host.class == "droid" then
-          { }
-        else
-          { config, lib, ... }:
-          {
-            imports = [
-              inputs.sops-nix."${host.class}Modules".sops
+        { config, lib, ... }:
+        {
+          imports = [
+            inputs.sops-nix."${host.class}Modules".sops
+          ];
+
+          assertions = [
+            {
+              assertion = (config.sops.secrets != { }) -> hostSopsFileExists;
+              message = "sops-nix: host '${host.name}' declares secrets, but ${toString hostSopsFile} does not exist (or is not git-tracked).";
+            }
+          ];
+
+          sops = {
+            defaultSopsFormat = "yaml";
+
+            # The host's persisted SSH Ed25519 key is used directly as the machine's age identity.
+            age.sshKeyPaths = [
+              "${persistPrefix}/etc/ssh/ssh_host_ed25519_key"
             ];
-
-            sops = {
-              defaultSopsFile = hostSopsFile;
-              defaultSopsFormat = "yaml";
-
-              # The host's persisted SSH Ed25519 key is used
-              # directly as the machine's age identity.
-              age.sshKeyPaths = [
-                "${persistPrefix}/etc/ssh/ssh_host_ed25519_key"
-              ];
-
-              # Per-user identity secrets are emitted by sopsUserAspect at user scope
-            };
-
-            # Make secret paths available as module arg
-            _module.args.secretPaths = lib.mapAttrs (_: v: v.path) config.sops.secrets;
+          }
+          // lib.optionalAttrs hostSopsFileExists {
+            defaultSopsFile = hostSopsFile;
+          }
+          // lib.optionalAttrs (secretList != [ ]) {
+            secrets = lib.mkMerge secretList;
           };
+
+          # Make secret paths available as module arg
+          _module.args.secretPaths = lib.mapAttrs (_: v: v.path) config.sops.secrets;
+        };
     };
 
   sopsUserAspect =
@@ -59,7 +69,7 @@ let
     let
       userSopsFile = rootPath + "/secrets/users/${user.userName}.yaml";
       userSopsFileExists = builtins.pathExists userSopsFile;
-      mergedSecrets = lib.mergeAttrsList (map (m: m.sops.secrets or { }) sops-secrets);
+      secretList = extractSecrets sops-secrets;
     in
     {
       name = "sops-nix/${user.name}@${host.name}";
@@ -76,16 +86,27 @@ let
           )
         ];
 
-      homeManager = { config, ... }: {
-        sops = {
-          defaultSopsFormat = "yaml";
-          gnupg.home = "${config.home.homeDirectory}/.gnupg";
-          secrets = mergedSecrets;
-        }
-        // lib.optionalAttrs userSopsFileExists {
-          defaultSopsFile = userSopsFile;
+      homeManager =
+        { config, ... }:
+        {
+          assertions = [
+            {
+              assertion = (secretList != [ ]) -> userSopsFileExists;
+              message = "sops-nix: user '${user.userName}' declares secrets, but ${toString userSopsFile} does not exist (or is not git-tracked).";
+            }
+          ];
+
+          sops = {
+            defaultSopsFormat = "yaml";
+            age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+          }
+          // lib.optionalAttrs userSopsFileExists {
+            defaultSopsFile = userSopsFile;
+          }
+          // lib.optionalAttrs (secretList != [ ]) {
+            secrets = lib.mkMerge secretList;
+          };
         };
-      };
     };
 in
 {
@@ -99,13 +120,15 @@ in
   den.schema.host.includes = [ sopsHostAspect ];
   den.schema.user.includes = [ sopsUserAspect ];
 
-  # Useful SOPS tooling in the existing devshell.
-  perSystem = { pkgs, ... }: {
-    devshells.default.packages = [
-      pkgs.sops
-      pkgs.age
-      pkgs.ssh-to-age
-      pkgs.gnupg
-    ];
-  };
+  # SOPS tooling and key generators in the default devshell.
+  perSystem =
+    { pkgs, ... }:
+    {
+      devshells.default.packages = [
+        pkgs.sops
+        pkgs.age
+        pkgs.ssh-to-age
+        pkgs.gnupg
+      ];
+    };
 }

@@ -53,13 +53,20 @@
             };
           };
 
-          scx = {
+          scx-loader = {
             enable = true;
-            package = lib.mkForce pkgs.scx.full;
-            scheduler = lib.mkForce "scx_lavd";
-            extraArgs = [
-              "--autopower"
-            ];
+            config = {
+              default_sched = "scx_lavd";
+              default_mode = "Auto";
+
+              scheds.scx_lavd = {
+                autoMode = [ "--autopower" ];
+                gamingMode = [ "--performance" ];
+                lowLatencyMode = [ "--performance" ];
+                powersaveMode = [ "--powersave" ];
+                serverMode = [ "--performance" ];
+              };
+            };
           };
         };
       };

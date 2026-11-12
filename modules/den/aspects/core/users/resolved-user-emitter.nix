@@ -5,9 +5,11 @@
     resolved-users =
       { user, ... }:
       {
-        inherit (user) name;
+        inherit (user) name userName groups;
         uid = user.system.uid or null;
-        inherit (user) groups;
+        gid = user.system.gid or null;
+        linger = user.system.linger or false;
+        displayName = user.identity.displayName or "";
         sshKeys = map (k: k.key) (user.identity.sshKeys or [ ]);
       };
   };

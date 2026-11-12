@@ -1,6 +1,7 @@
 {
   writeShellApplication,
   sops,
+  ssh-to-age,
   gnupg,
   openssh,
   coreutils,
@@ -10,6 +11,7 @@ writeShellApplication {
   meta.description = "Generate and encrypt SSH host keys for a new host";
   runtimeInputs = [
     sops
+    ssh-to-age
     gnupg
     openssh
     coreutils

@@ -28,7 +28,6 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     flake-root.url = "github:srid/flake-root";
-    gen-schema.url = "github:sini/gen-schema";
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";

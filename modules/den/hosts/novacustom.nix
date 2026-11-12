@@ -42,6 +42,9 @@
 
       services.network.mullvad-vpn
       services.network.i2pd
+
+      applications.engineering.vivado
+      applications.engineering.boards
     ];
 
     nixos = {
@@ -87,8 +90,6 @@
       includes = with den.aspects; [
         applications.browsers.i2p-browser
         applications.gaming.osu-lazer
-        applications.engineering.vivado
-        applications.engineering.boards
         applications.engineering.ltspice
         applications.network.localsend
       ];

@@ -6,7 +6,7 @@ KEYS_DIR="$REPO_ROOT/secrets/hosts"
 
 # Nitrokey-backed OpenPGP key used to protect host private keys.
 #
-NITROKEY_GPG_FINGERPRINT="57B947A6375A93BFE0489ACFC71894C085934296"   # TODO -- Use variable substitution
+NITROKEY_GPG_FINGERPRINT="57B947A6375A93BFE0489ACFC71894C085934296" # TODO -- Use variable substitution
 
 KEY_TYPES=("ed25519" "rsa")
 
@@ -78,37 +78,35 @@ generate_host_key() {
     log "Generating $key_type host key for: $hostname"
 
     case "$key_type" in
-        ed25519)
-            if ! ssh-keygen \
-                -t ed25519 \
-                -f "$temp_key" \
-                -N "" \
-                -C "root@$hostname" \
-                >/dev/null
-            then
-                rm -rf "$temp_dir"
-                error "Failed to generate $key_name"
-            fi
-            ;;
-
-        rsa)
-            if ! ssh-keygen \
-                -t rsa \
-                -b 4096 \
-                -f "$temp_key" \
-                -N "" \
-                -C "root@$hostname" \
-                >/dev/null
-            then
-                rm -rf "$temp_dir"
-                error "Failed to generate $key_name"
-            fi
-            ;;
-
-        *)
+    ed25519)
+        if ! ssh-keygen \
+            -t ed25519 \
+            -f "$temp_key" \
+            -N "" \
+            -C "root@$hostname" \
+            >/dev/null; then
             rm -rf "$temp_dir"
-            error "Unsupported key type: $key_type"
-            ;;
+            error "Failed to generate $key_name"
+        fi
+        ;;
+
+    rsa)
+        if ! ssh-keygen \
+            -t rsa \
+            -b 4096 \
+            -f "$temp_key" \
+            -N "" \
+            -C "root@$hostname" \
+            >/dev/null; then
+            rm -rf "$temp_dir"
+            error "Failed to generate $key_name"
+        fi
+        ;;
+
+    *)
+        rm -rf "$temp_dir"
+        error "Unsupported key type: $key_type"
+        ;;
     esac
 
     log "✓ Generated $key_name"
@@ -121,8 +119,7 @@ generate_host_key() {
         --recipient "$NITROKEY_GPG_FINGERPRINT" \
         --output "$encrypted_file" \
         --encrypt \
-        "$temp_key"
-    then
+        "$temp_key"; then
         rm -rf "$temp_dir"
         rm -f "$encrypted_file"
         error "Failed to encrypt $key_name"
@@ -142,6 +139,9 @@ generate_host_key() {
 
     log "✓ Encrypted: $encrypted_file"
     log "✓ Public key: $public_file"
+    if [[ "$key_type" == "ed25519" ]] && command -v ssh-to-age >/dev/null; then
+        log "✓ Host Age recipient: $(ssh-to-age -i "$public_file")"
+    fi
 }
 
 main() {

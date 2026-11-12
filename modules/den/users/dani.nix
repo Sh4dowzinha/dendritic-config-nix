@@ -1,8 +1,5 @@
-{ den, ... }:
 {
   den.aspects.dani = {
-    includes = [ den.batteries.host-aspects ];
-
     homeManager = {
       programs.fish = {
         functions = {

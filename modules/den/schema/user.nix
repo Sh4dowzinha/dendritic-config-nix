@@ -24,67 +24,77 @@ let
 in
 {
   den.schema.user.imports = [
-    {
-      options = {
-        settings =
-          mkOption {
+    (
+      { config, ... }:
+      {
+        options = {
+          id_hash = mkOption {
+            type = types.str;
+            default = "user:${config.name}";
+            description = "Unique identity hash for user entity comparison";
+          };
+
+          settings = mkOption {
             type = settingsType;
             default = { };
             description = "Per-aspect typed settings for the user";
-          }
-          // {
-            identity = false;
           };
 
-        identity = mkOption {
-          type = types.submodule {
-            options = {
-              displayName = mkOption {
-                type = types.str;
-                default = "";
-                description = "Display name for the user";
-              };
-              email = mkOption {
-                type = types.nullOr types.str;
-                default = null;
-                description = "Email address for the user";
-              };
-              gpgKey = mkOption {
-                type = types.nullOr types.str;
-                default = null;
-                description = "GPG key ID for the user";
-              };
-              sshKeys = mkOption {
-                type = types.listOf sshKeyType;
-                default = [ ];
-                description = "SSH public keys for the user, each with an optional tag";
+          identity = mkOption {
+            type = types.submodule {
+              options = {
+                displayName = mkOption {
+                  type = types.str;
+                  default = "";
+                  description = "Display name for the user";
+                };
+                email = mkOption {
+                  type = types.nullOr types.str;
+                  default = null;
+                  description = "Email address for the user";
+                };
+                gpgKey = mkOption {
+                  type = types.nullOr types.str;
+                  default = null;
+                  description = "GPG key ID for the user";
+                };
+                sshKeys = mkOption {
+                  type = types.listOf sshKeyType;
+                  default = [ ];
+                  description = "SSH public keys for the user, each with an optional tag";
+                };
               };
             };
+            default = { };
+            description = "User identity information";
           };
-          default = { };
-          description = "User identity information";
+
+          system = mkOption {
+            type = types.submodule {
+              options = {
+                uid = mkOption {
+                  type = types.nullOr types.int;
+                  default = null;
+                };
+                gid = mkOption {
+                  type = types.nullOr types.int;
+                  default = null;
+                };
+                linger = mkOption {
+                  type = types.bool;
+                  default = false;
+                };
+              };
+            };
+            default = { };
+          };
         };
 
-        system = mkOption {
-          type = types.submodule {
-            options = {
-              uid = mkOption {
-                type = types.nullOr types.int;
-                default = null;
-              };
-              gid = mkOption {
-                type = types.nullOr types.int;
-                default = null;
-              };
-              linger = mkOption {
-                type = types.bool;
-                default = false;
-              };
-            };
-          };
-          default = { };
+        config = {
+          # Guard against has-aspect.nix evaluating unpopulated config.resolved on users
+          aspects = lib.mkDefault [ ];
         };
-      };
-    }
+      }
+    )
   ];
 }

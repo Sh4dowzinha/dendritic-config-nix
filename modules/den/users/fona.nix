@@ -1,8 +1,5 @@
-{ den, ... }:
 {
   den.aspects.fona = {
-    includes = [ den.batteries.host-aspects ];
-
     homeManager = {
     };
   };

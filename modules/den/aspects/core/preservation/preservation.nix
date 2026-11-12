@@ -27,14 +27,21 @@
         host,
         persist ? [ ],
         cache ? [ ],
+        persistHome ? [ ],
+        cacheHome ? [ ],
+        resolved-users ? [ ],
         lib,
         ...
       }:
       let
         mergePersist = entries: {
+          commonMountOptions = lib.unique (lib.concatMap (e: e.commonMountOptions or [ ]) entries);
           directories = lib.unique (lib.concatMap (e: e.directories or [ ]) entries);
           files = lib.unique (lib.concatMap (e: e.files or [ ]) entries);
         };
+
+        userPreservationEnabled = host.settings.core.preservation-user.enable or false;
+        userNames = map (u: u.userName or u.name) resolved-users;
       in
       {
         imports = [
@@ -60,6 +67,9 @@
                 directories = [
                   "/var/log"
                 ];
+                users = lib.optionalAttrs userPreservationEnabled (
+                  lib.genAttrs userNames (_: mergePersist cacheHome)
+                );
               }
             ];
 
@@ -76,6 +86,9 @@
                     inInitrd = true;
                   }
                 ];
+                users = lib.optionalAttrs userPreservationEnabled (
+                  lib.genAttrs userNames (_: mergePersist persistHome)
+                );
               }
             ];
           };

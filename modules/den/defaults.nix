@@ -124,6 +124,9 @@ let
     );
 in
 {
+  # Adopt strict user/host content separation (Den #694)
+  den.migrations.user-host-content.acknowledged = true;
+
   # Reserve 'settings' so aspects can declare typed settings without pipeline dispatch
   den.reservedKeys = [ "settings" ];
 
@@ -148,7 +151,6 @@ in
   # Default host includes — aggregator aspects for quirk collection
   den.schema.host.includes = [
     den.aspects.core.network.firewall-collector
-    den.aspects.core.sops-secrets.collector
   ];
 
   # Default user includes — per-user data emission + entity-named aspect auto-include
@@ -200,6 +202,7 @@ in
   den.default.includes = [
     den.batteries.define-user
     den.batteries.hostname
+    den.batteries.host-aspects
     # primary-user is NOT a blanket default: it grants wheel, so it is applied
     # per system-owner via the "primary-user-for-owner" policy above.
     den.batteries.inputs'

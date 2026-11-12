@@ -1,8 +1,5 @@
-{ den, ... }:
 {
   den.aspects.sh4dow = {
-    includes = [ den.batteries.host-aspects ];
-
     homeManager = {
       programs.gpg.publicKeys = [
         {

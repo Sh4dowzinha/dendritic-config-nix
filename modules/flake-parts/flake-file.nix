@@ -23,7 +23,6 @@
       den.url = "github:denful/den";
       files.url = "github:sini/files";
       flake-compat.url = "github:edolstra/flake-compat";
-      gen-schema.url = "github:sini/gen-schema";
 
       git-hooks-nix = {
         url = "github:cachix/git-hooks.nix";

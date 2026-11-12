@@ -1,32 +1,13 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   den.aspects.core.preservation-user = {
     settings = {
       enable = lib.mkOption {
         type = lib.types.bool;
         default = true;
-        description = "Enable preservation on the host";
+        description = "Enable user home preservation on the host";
       };
     };
-
-    nixos =
-      {
-        user,
-        persistHome ? [ ],
-        cacheHome ? [ ],
-        lib,
-        ...
-      }:
-      let
-        mergePersist = entries: {
-          commonMountOptions = lib.unique (lib.concatMap (e: e.commonMountOptions or [ ]) entries);
-          directories = lib.unique (lib.concatMap (e: e.directories or [ ]) entries);
-          files = lib.unique (lib.concatMap (e: e.files or [ ]) entries);
-        };
-      in
-      {
-        preservation.preserveAt."/persist".users.${user.userName} = mergePersist persistHome;
-        preservation.preserveAt."/cache".users.${user.userName} = mergePersist cacheHome;
-      };
 
     persistHome = {
       commonMountOptions = [

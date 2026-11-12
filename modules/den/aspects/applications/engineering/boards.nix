@@ -1,12 +1,16 @@
 {
   den.aspects.applications.engineering.boards = {
     nixos =
-      { user, pkgs, ... }:
-      let
-        inherit (user) userName;
-      in
       {
-        users.users.${userName}.extraGroups = [ "dialout" ];
+        pkgs,
+        lib,
+        resolved-users ? [ ],
+        ...
+      }:
+      {
+        users.users = lib.genAttrs (map (u: u.userName or u.name) resolved-users) (_: {
+          extraGroups = [ "dialout" ];
+        });
         services.udev.packages = with pkgs; [
           platformio-core.udev
           openocd
@@ -48,13 +52,17 @@
         };
       };
 
-    nix-ld-libraries = { pkgs, ... }: with pkgs;
+    nix-ld-libraries =
+      { pkgs, ... }:
+      with pkgs;
       [
         libusb1
         ncurses5
       ];
 
-    codium-extensions = { pkgs, ... }: with pkgs.vscode-marketplace;
+    codium-extensions =
+      { pkgs, ... }:
+      with pkgs.vscode-marketplace;
       [
         platformio.platformio-ide
       ];

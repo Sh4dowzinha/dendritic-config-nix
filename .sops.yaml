@@ -1,5 +1,6 @@
 keys:
   - &sh4dow_gpg 57B947A6375A93BFE0489ACFC71894C085934296
+  - &sh4dow_age age1lel9rf92kwxm4rwy8s26nqhjtd3l9xcmczrx90977gcr0qx989nsqwfm8a
   - &novacustom age17aqufzqevnx0n6svpq7w9e4drgck9ewnfawr6rcglkzzsyxq2djqu958zj
   - &acern5 age1wkvweg05qmnaeyd8s22vas72upl0v084g3dhmqzvvysj4wg6t3rqd9ud9g
   - &basalto age1z579jwaf5pcggnlqrh3zwg8d9mh8kyv7a3gxqnc2vlsnp0rq93nsevz253
@@ -10,12 +11,14 @@ creation_rules:
       - pgp:
           - *sh4dow_gpg
         age:
+          - *sh4dow_age
           - *novacustom
   - path_regex: ^secrets/hosts/acern5/acern5\.yaml$
     key_groups:
       - pgp:
           - *sh4dow_gpg
         age:
+          - *sh4dow_age
           - *acern5
   - path_regex: ^secrets/hosts/basalto/basalto\.yaml$
     key_groups:
@@ -29,6 +32,9 @@ creation_rules:
           - *sh4dow_gpg
         age:
           - *victus
-  - path_regex: ^secrets/users/[^/]+\.yaml$
-    pgp:
-      - *sh4dow_gpg
+  - path_regex: ^secrets/users/sh4dow/sh4dow\.yaml$
+    key_groups:
+      - pgp:
+          - *sh4dow_gpg
+        age:
+          - *sh4dow_age

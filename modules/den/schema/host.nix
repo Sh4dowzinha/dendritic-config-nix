@@ -1,8 +1,3 @@
-# Host entity schema — channels, networking, settings, computed fields.
-#
-# Follows feat/den's approach: channels defined inline, instantiate/HM module
-# derived from config.channel, dynamic settings namespace from den.aspects,
-# computed ipv4/ipv6 from networking interfaces.
 {
   lib,
   inputs,
@@ -13,7 +8,6 @@
 let
   inherit (lib) mkOption types;
   settingsType = import (rootPath + "/modules/den/lib/_settings-type.nix") { inherit den lib; };
-  schemaLib = inputs.gen-schema.lib;
 
   # Channel definitions — maps channel name to nixpkgs/HM inputs
   channels = {
@@ -31,12 +25,6 @@ let
 in
 {
   den.schema.host.isEntity = true;
-
-  den.schema.host.validators = [
-    (schemaLib.mkValidator "valid-channel" (
-      { channel, ... }: lib.elem channel channelNames
-    ) "channel must be one of: ${lib.concatStringsSep ", " channelNames}")
-  ];
 
   den.schema.host.imports = [
     (
@@ -58,43 +46,28 @@ in
             description = "Primary user for this host";
           };
 
-          facts =
-            mkOption {
-              type = types.nullOr types.path;
-              default = null;
-            }
-            // {
-              identity = false;
-            };
+          facts = mkOption {
+            type = types.nullOr types.path;
+            default = null;
+          };
 
           # Dynamic settings namespace — auto-discovers aspects with .settings
-          settings =
-            mkOption {
-              type = settingsType;
-              default = { };
-              description = "Per-aspect typed settings";
-            }
-            // {
-              identity = false;
-            };
+          settings = mkOption {
+            type = settingsType;
+            default = { };
+            description = "Per-aspect typed settings";
+          };
         };
 
-        # Computed config — channel determines instantiate + HM module
         config = {
-          # rootPath (a `../..` path literal), NOT `self`: these defaults are
-          # forced during base eval by the producer-class config-thunk broadcast
-          # (a host config is navigated to reach a nested home config), where
-          # `self` self-cycles (registry → self → flake outputs → registry).
-          # Same git-tracked source as `self`; mirrors `user.secretPath`.
-
           facts =
             let
               factsPath = rootPath + "/hosts/${config.name}/facter.json";
             in
             lib.mkDefault (if builtins.pathExists factsPath then factsPath else null);
 
-          instantiate = lib.mkDefault (resolvedChannel.nixosSystem);
-          home-manager.module = lib.mkDefault (resolvedChannel.home-manager-module.nixos);
+          instantiate = lib.mkDefault resolvedChannel.nixosSystem;
+          home-manager.module = lib.mkDefault resolvedChannel.home-manager-module.nixos;
         };
       }
     )

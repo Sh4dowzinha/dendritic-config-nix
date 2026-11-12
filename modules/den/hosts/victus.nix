@@ -39,6 +39,8 @@
       disk.btrfs-luks-root-tmpfs-single
 
       core.network.manager
+
+      applications.engineering.boards
     ];
 
     nixos = { config, ... }: {
@@ -88,7 +90,6 @@
     dani = {
       includes = with den.aspects; [
         applications.browsers.brave-origin
-        applications.engineering.boards
       ];
     };
   };
