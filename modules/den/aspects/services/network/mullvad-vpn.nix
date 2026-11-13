@@ -25,6 +25,10 @@
       }
     ];
 
+    persistHome.directories = [
+      ".config/Mullvad VPN"
+    ];
+
     cache.directories = [
       {
         directory = "/var/cache/mullvad-vpn";
