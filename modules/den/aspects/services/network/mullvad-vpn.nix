@@ -1,34 +1,22 @@
 {
   den.aspects.services.network.mullvad-vpn = {
-    nixos = _: {
-      services.mullvad-vpn = {
-        enable = true;
-        enableEarlyBootBlocking = true;
-        enableExcludeWrapper = true;
-      };
-    };
-
-    homeManager = { pkgs, ... }: {
-      programs.mullvad-vpn = {
-        enable = true;
-        settings = {
-          animateMap = true;
-          autoConnect = true;
-          browsedForSplitTunnelingApplications = [ ];
-          changelogDisplayedForVersion = "";
-          enableSystemNotifications = true;
-          monochromaticIcon = false;
-          preferredLocale = "system";
-          startMinimized = false;
-          unpinnedWindow = true;
-          updateDismissedForVersion = "";
+    nixos =
+      { pkgs, ... }:
+      let
+        mullvad-autostart = pkgs.makeAutostartItem {
+          name = "mullvad-vpn";
+          package = pkgs.mullvad-vpn;
+        };
+      in
+      {
+        environment.systemPackages = [ mullvad-autostart ];
+        services.mullvad-vpn = {
+          enable = true;
+          gui.enable = true;
+          enableEarlyBootBlocking = true;
+          enableExcludeWrapper = true;
         };
       };
-
-      xdg.autostart.entries = [
-        "${pkgs.mullvad-vpn}/share/applications/mullvad-vpn.desktop"
-      ];
-    };
 
     persist.directories = [
       {
