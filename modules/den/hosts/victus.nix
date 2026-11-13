@@ -7,10 +7,10 @@
     timezone = "Europe/Lisbon";
 
     settings = {
-      disk.btrfs-luks-root-tmpfs-single.device_id = "/dev/disk/by-id/nvme-PHIXERO_BC07985E01071850320";
+      disk.btrfs-luks-tmpfs-single.device_id = "/dev/disk/by-id/nvme-PHIXERO_BC07985E01071850320";
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
-      core.preservation-user.enable = false;
+      core.preservation-user.enable = true;
     };
   };
 

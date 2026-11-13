@@ -1384,7 +1384,7 @@
     ],
     "camera": [
       {
-        "index": 71,
+        "index": 72,
         "attached_to": 75,
         "class_list": ["camera", "usb"],
         "bus_type": {
@@ -1843,7 +1843,7 @@
       },
       {
         "index": 65,
-        "attached_to": 21,
+        "attached_to": 58,
         "class_list": ["disk", "usb", "scsi", "block_device"],
         "bus_type": {
           "hex": "0084",
@@ -1865,44 +1865,35 @@
           "value": 0
         },
         "vendor": {
-          "hex": "0781",
-          "name": "USB",
-          "value": 1921
+          "hex": "6557",
+          "value": 25943
         },
         "device": {
-          "hex": "5581",
-          "name": "SanDisk 3.2Gen1",
-          "value": 21889
+          "hex": "2031",
+          "name": "USB DISK 3.0",
+          "value": 8241
         },
         "revision": {
           "hex": "0000",
-          "name": "1.00",
+          "name": "PMAP",
           "value": 0
         },
-        "serial": "04015ae58bc7a74084a7",
-        "model": "USB SanDisk 3.2Gen1",
+        "serial": "0E7700D42030",
+        "model": "USB DISK 3.0",
         "sysfs_id": "/class/block/sda",
         "sysfs_bus_id": "0:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:08.3/0000:08:00.4/usb7/7-1/7-1:1.0/host0/target0:0:0/0:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:08.1/0000:06:00.3/usb2/2-1/2-1:1.0/host0/target0:0:0/0:0:0:0",
         "unix_device_names": [
-          "/dev/disk/by-id/usb-USB_SanDisk_3.2Gen1_04015ae58bc7a74084a75eb3a789bab82b31431209cbb7b39669184cc9b87e374b2d000000000000000000003c215c550003071881558107ac30c747-0:0",
-          "/dev/disk/by-path/pci-0000:08:00.4-usb-0:1:1.0-scsi-0:0:0:0",
-          "/dev/disk/by-path/pci-0000:08:00.4-usbv2-0:1:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-id/usb-_USB_DISK_3.0_070D23918868E704-0:0",
+          "/dev/disk/by-path/pci-0000:06:00.3-usb-0:1:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-path/pci-0000:06:00.3-usbv3-0:1:1.0-scsi-0:0:0:0",
           "/dev/sda"
         ],
         "unix_device_name2": "/dev/sg0",
         "resources": [
           {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          },
-          {
             "type": "disk_geo",
-            "cylinders": 58680,
+            "cylinders": 59153,
             "heads": 64,
             "sectors": 32,
             "size": "0x0",
@@ -1911,7 +1902,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 120176640,
+            "value_1": 121145344,
             "value_2": 512
           }
         ],
@@ -1919,7 +1910,7 @@
         "driver_module": "usb_storage",
         "drivers": ["sd", "usb-storage"],
         "driver_modules": ["sd_mod", "usb_storage"],
-        "module_alias": "usb:v0781p5581d0100dc00dsc00dp00ic08isc06ip50in00"
+        "module_alias": "usb:v6557p2031d0110dc00dsc00dp00ic08isc06ip50in00"
       }
     ],
     "graphics_card": [
@@ -2097,7 +2088,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.53 xhci-hcd",
+          "name": "Linux 6.18.62 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2111,7 +2102,7 @@
           "value": 0
         },
         "serial": "0000:08:00.3",
-        "model": "Linux 6.18.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.62 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:08:00.3/usb6/6-0:1.0",
         "sysfs_bus_id": "6-0:1.0",
         "detail": {
@@ -2148,7 +2139,7 @@
         "module_alias": "usb:v1D6Bp0003d0618dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 68,
+        "index": 69,
         "attached_to": 34,
         "class_list": ["usb", "hub"],
         "bus_type": {
@@ -2167,7 +2158,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.53 xhci-hcd",
+          "name": "Linux 6.18.62 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2181,7 +2172,7 @@
           "value": 0
         },
         "serial": "0000:06:00.4",
-        "model": "Linux 6.18.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.62 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:06:00.4/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -2228,7 +2219,7 @@
         "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 69,
+        "index": 70,
         "attached_to": 21,
         "class_list": ["usb", "hub"],
         "bus_type": {
@@ -2247,7 +2238,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.53 xhci-hcd",
+          "name": "Linux 6.18.62 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2261,7 +2252,7 @@
           "value": 0
         },
         "serial": "0000:08:00.4",
-        "model": "Linux 6.18.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.62 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:08:00.4/usb7/7-0:1.0",
         "sysfs_bus_id": "7-0:1.0",
         "resources": [
@@ -2308,7 +2299,7 @@
         "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 72,
+        "index": 73,
         "attached_to": 34,
         "class_list": ["usb", "hub"],
         "bus_type": {
@@ -2327,7 +2318,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.53 xhci-hcd",
+          "name": "Linux 6.18.62 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2341,7 +2332,7 @@
           "value": 0
         },
         "serial": "0000:06:00.4",
-        "model": "Linux 6.18.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.62 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:06:00.4/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -2397,7 +2388,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.53 xhci-hcd",
+          "name": "Linux 6.18.62 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2411,7 +2402,7 @@
           "value": 0
         },
         "serial": "0000:08:00.4",
-        "model": "Linux 6.18.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.62 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:08:00.4/usb8/8-0:1.0",
         "sysfs_bus_id": "8-0:1.0",
         "detail": {
@@ -2467,7 +2458,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.53 xhci-hcd",
+          "name": "Linux 6.18.62 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2481,7 +2472,7 @@
           "value": 0
         },
         "serial": "0000:06:00.3",
-        "model": "Linux 6.18.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.62 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:06:00.3/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2547,7 +2538,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.53 xhci-hcd",
+          "name": "Linux 6.18.62 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2561,7 +2552,7 @@
           "value": 0
         },
         "serial": "0000:08:00.3",
-        "model": "Linux 6.18.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.62 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:08:00.3/usb5/5-0:1.0",
         "sysfs_bus_id": "5-0:1.0",
         "resources": [
@@ -2627,7 +2618,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.53 xhci-hcd",
+          "name": "Linux 6.18.62 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2641,7 +2632,7 @@
           "value": 0
         },
         "serial": "0000:06:00.3",
-        "model": "Linux 6.18.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.62 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:06:00.3/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2804,8 +2795,8 @@
           "hex": "321a",
           "value": 12826
         },
-        "sysfs_id": "/devices/platform/AMDI0010:03/i2c-0/i2c-ELAN07FB:00/0018:04F3:321A.0001/input/input11",
-        "unix_device_names": ["/dev/input/event7", "/dev/input/ + handler"]
+        "sysfs_id": "/devices/platform/AMDI0010:03/i2c-0/i2c-ELAN07FB:00/0018:04F3:321A.0001/input/input12",
+        "unix_device_names": ["/dev/input/event8", "/dev/input/ + handler"]
       }
     ],
     "network_controller": [
@@ -3806,7 +3797,7 @@
     },
     "usb": [
       {
-        "index": 70,
+        "index": 71,
         "attached_to": 75,
         "class_list": ["usb", "unknown"],
         "bus_type": {
