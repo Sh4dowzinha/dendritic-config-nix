@@ -35,8 +35,9 @@
       hardware.nbfc-linux
 
       desktop.kde
+      desktop.plasma-manager
 
-      disk.btrfs-luks-root-tmpfs-single
+      disk.btrfs-luks-tmpfs-single
 
       core.network.manager
 
