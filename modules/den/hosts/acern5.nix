@@ -7,7 +7,11 @@
     timezone = "Europe/Lisbon";
 
     settings = {
-      disk.btrfs-tmpfs-single.device_id = "/dev/disk/by-id/ata-SSD_960GB_TD23110000083";
+      disk.btrfs-single = {
+        device_id = "/dev/disk/by-id/ata-SSD_960GB_TD23110000083";
+        encrypt = false;
+      };
+
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = true;
@@ -35,8 +39,6 @@
 
       desktop.kde
       desktop.plasma-manager
-
-      disk.btrfs-tmpfs-single
 
       core.network.manager
     ];

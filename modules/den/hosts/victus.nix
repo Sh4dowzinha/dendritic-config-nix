@@ -7,7 +7,11 @@
     timezone = "Europe/Lisbon";
 
     settings = {
-      disk.btrfs-luks-tmpfs-single.device_id = "/dev/disk/by-id/nvme-PHIXERO_BC07985E01071850320";
+      disk.btrfs-single = {
+        device_id = "/dev/disk/by-id/nvme-PHIXERO_BC07985E01071850320";
+        encrypt = true;
+      };
+
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = true;
@@ -36,8 +40,6 @@
 
       desktop.kde
       desktop.plasma-manager
-
-      disk.btrfs-luks-tmpfs-single
 
       core.network.manager
 

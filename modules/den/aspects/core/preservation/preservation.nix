@@ -40,12 +40,20 @@
           files = lib.unique (lib.concatMap (e: e.files or [ ]) entries);
         };
 
+        rootPreservationEnabled = host.settings.core.preservation.enable or true;
         userPreservationEnabled = host.settings.core.preservation-user.enable or false;
         userNames = map (u: u.userName or u.name) resolved-users;
       in
       {
         imports = [
           inputs.preservation.nixosModules.preservation
+        ];
+
+        assertions = [
+          {
+            assertion = (host.settings.core.preservation-user.enable or false) -> rootPreservationEnabled;
+            message = "core.preservation-user.enable requires core.preservation.enable = true.";
+          }
         ];
 
         config = lib.mkIf (host.settings.core.preservation.enable or false) {

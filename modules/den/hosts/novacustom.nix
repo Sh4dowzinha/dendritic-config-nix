@@ -7,7 +7,11 @@
     timezone = "Europe/Lisbon";
 
     settings = {
-      disk.btrfs-luks-tmpfs-single.device_id = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNL0X119308M";
+      disk.btrfs-single = {
+        device_id = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNL0X119308M";
+        encrypt = true;
+      };
+
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = true;
@@ -36,8 +40,6 @@
       desktop.kde
       desktop.plasma-manager
 
-      disk.btrfs-luks-tmpfs-single
-
       core.network.manager
 
       services.network.mullvad-vpn
@@ -55,10 +57,7 @@
 
     homeManager =
       { lib, host, ... }:
-      {
-        # Home Manager options that always apply
-      }
-      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.plasma-manager) {
+      lib.optionalAttrs (host.hasAspect den.aspects.desktop.plasma-manager) {
         programs.plasma.input = {
           touchpads = [
             {
