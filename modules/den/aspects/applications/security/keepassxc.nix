@@ -24,9 +24,6 @@
           SSHAgent = {
             Enabled = false;
           };
-          Security = {
-            QuickUnlock = false;
-          };
         };
       };
     };
