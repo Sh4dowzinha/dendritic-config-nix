@@ -89,6 +89,7 @@
     };
 
     dani = {
+      homeManager.programs.keepassxc.settings.Security.QuickUnlock = false;
       includes = with den.aspects; [
         applications.browsers.brave-origin
       ];
