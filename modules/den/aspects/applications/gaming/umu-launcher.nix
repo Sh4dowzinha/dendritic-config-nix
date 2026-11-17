@@ -6,16 +6,16 @@
 #
 # Taken as an overlay rather than packages.*: upstream's overlay builds on the
 # nixpkgs umu-launcher, so the rest of the package set stays coherent.
-{
+{ inputs, ... }: {
   flake-file.inputs.umu = {
     url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
     inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   den.aspects.applications.gaming.umu-launcher = {
-    nixpkgs-overlays =
-      { inputs', ... }:
-      [ inputs'.umu.overlays.default ];
+    nixpkgs-overlays = [
+      inputs.umu.overlays.default
+    ];
 
     homeManager =
       { pkgs, ... }:

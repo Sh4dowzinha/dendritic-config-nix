@@ -74,17 +74,15 @@ let
     {
       name = "sops-nix/${user.name}@${host.name}";
 
-      homeManagerModules =
-        { inputs', ... }:
-        [
-          inputs'.sops-nix.homeManagerModules.sops
-          (
-            { config, lib, ... }:
-            {
-              _module.args.secretPaths = lib.mapAttrs (_: v: v.path) config.sops.secrets;
-            }
-          )
-        ];
+      homeManagerModules = [
+        inputs.sops-nix.homeManagerModules.sops
+        (
+          { config, lib, ... }:
+          {
+            _module.args.secretPaths = lib.mapAttrs (_: v: v.path) config.sops.secrets;
+          }
+        )
+      ];
 
       homeManager =
         { config, ... }:

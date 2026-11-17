@@ -46,49 +46,57 @@
       applications.engineering.boards
     ];
 
-    nixos = { config, ... }: {
-      sops = {
-        secrets = {
-          wireguard-victus-private-key.key = "wireguard/victus/private-key";
-          wireguard-victus-psk.key = "wireguard/victus/psk";
-          wireguard-victus-endpoint.key = "wireguard/victus/endpoint";
+    nixos =
+      { config, pkgs, ... }:
+      {
+        sops.secrets = {
+          "wireguard/victus/private-key" = { };
+          "wireguard/victus/psk" = { };
+          "wireguard/victus/endpoint" = { };
         };
 
-        templates."victus.conf" = {
-          mode = "0400";
+        networking.wg-quick.interfaces.victus = {
+          autostart = false;
+          address = [
+            "10.236.97.3/24"
+            "fd11:5ee:bad:c0de::aec:6103/64"
+          ];
 
-          content = ''
-            [Interface]
-            Address = 10.236.97.3/24,fd11:5ee:bad:c0de::aec:6103/64
-            DNS = 9.9.9.9, 149.112.112.112
-            PrivateKey = ${config.sops.placeholder.wireguard-victus-private-key}
+          dns = [
+            "9.9.9.9"
+            "149.112.112.112"
+          ];
 
-            [Peer]
-            PublicKey = /qvQLiu2QxRZ/ulOuSykZG2ou6AWTXAVJyFyhgWVi18=
-            PresharedKey = ${config.sops.placeholder.wireguard-victus-psk}
-            Endpoint = ${config.sops.placeholder.wireguard-victus-endpoint}
-            AllowedIPs = 0.0.0.0/0, ::0/0
+          privateKeyFile = config.sops.secrets."wireguard/victus/private-key".path;
+
+          peers = [
+            {
+              publicKey = "/qvQLiu2QxRZ/ulOuSykZG2ou6AWTXAVJyFyhgWVi18=";
+              presharedKeyFile = config.sops.secrets."wireguard/victus/psk".path;
+              allowedIPs = [
+                "0.0.0.0/0"
+                "::/0"
+              ];
+            }
+          ];
+
+          postUp = ''
+            ${pkgs.wireguard-tools}/bin/wg set victus \
+              peer '/qvQLiu2QxRZ/ulOuSykZG2ou6AWTXAVJyFyhgWVi18=' \
+              endpoint "$(cat ${config.sops.secrets."wireguard/victus/endpoint".path})"
           '';
         };
+
+        environment.etc."nbfc/nbfc.json".text = ''
+          {
+            "SelectedConfigId": "HP Victus 15-fb0xxx"
+          }
+        '';
+
+        # WARNING!! DON'T TOUCH THE SYSTEM STATE VERSION IN ANY
+        # CIRCUMSTANCE, ONLY IF EXPLICITLY SAID IN THE DOCUMENTATION!
+        system.stateVersion = "26.11";
       };
-
-      networking.wg-quick.interfaces = {
-        victus = {
-          configFile = config.sops.templates."victus.conf".path;
-          autostart = false;
-        };
-      };
-
-      environment.etc."nbfc/nbfc.json".text = ''
-        {
-          "SelectedConfigId": "HP Victus 15-fb0xxx"
-        }
-      '';
-
-      # WARNING!! DON'T TOUCH THE SYSTEM STATE VERSION IN ANY
-      # CIRCUMSTANCE, ONLY IF EXPLICITLY SAID IN THE DOCUMENTATION!
-      system.stateVersion = "26.11";
-    };
 
     dani = {
       includes = with den.aspects; [

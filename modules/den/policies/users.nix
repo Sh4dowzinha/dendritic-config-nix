@@ -12,7 +12,6 @@ let
   registryUserType = types.submodule (
     { name, config, ... }:
     {
-      freeformType = types.attrsOf types.anything;
       imports = [ den.schema.user ];
 
       config._module.args.user = config;
@@ -26,11 +25,6 @@ let
         userName = mkOption {
           type = types.str;
           default = name;
-        };
-
-        classes = mkOption {
-          type = types.listOf types.str;
-          default = [ "user" ];
         };
 
         aspect = mkOption {
@@ -58,11 +52,17 @@ in
 
     den.policies.host-users =
       { host, ... }:
-      lib.optional (host.system-owner != null && config.den.users.registry ? ${host.system-owner}) (
-        resolve.to "user" {
-          user = config.den.users.registry.${host.system-owner};
-        }
-      );
+      let
+        targetUsers = host.users or (lib.optional (host.system-owner != null) host.system-owner);
+      in
+      lib.concatMap (
+        uName:
+        lib.optional (config.den.users.registry ? ${uName}) (
+          resolve.to "user" {
+            user = config.den.users.registry.${uName};
+          }
+        )
+      ) targetUsers;
 
     den.schema.host.includes = [
       den.policies.host-users

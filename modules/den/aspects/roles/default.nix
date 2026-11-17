@@ -8,9 +8,7 @@
       core.localization.i18n
       core.systemd
       core.users.shell
-      core.network.firewall
-      core.network.dns
-      core.network.wireguard
+      core.network
       core.utils
       core.documentation
       core.system.firmware
@@ -26,8 +24,6 @@
       core.system.plymouth
       core.system.linux-kernel
       core.users
-
-      core.preservation
 
       applications.shell.fish
       applications.shell.fastfetch

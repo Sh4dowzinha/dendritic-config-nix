@@ -1,4 +1,4 @@
-{
+{ inputs, ... }: {
   den.aspects.desktop.noctalia = {
     nixos = {
       nix.settings = {
@@ -9,13 +9,11 @@
       };
     };
 
-    homeManagerModules =
-      { inputs', ... }:
-      [
-        inputs'.noctalia.homeModules.default
-      ];
+    homeManagerModules = [
+      inputs.noctalia.homeModules.default
+    ];
 
-    homeManager = { ... }: {
+    homeManager = _: {
       programs.noctalia = {
         enable = true;
         systemd.enable = true;

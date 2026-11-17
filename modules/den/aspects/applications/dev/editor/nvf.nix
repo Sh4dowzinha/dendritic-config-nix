@@ -1,4 +1,4 @@
-{
+{ inputs, ... }: {
   flake-file.inputs = {
     nvf = {
       url = "github:notashelf/nvf";
@@ -7,11 +7,9 @@
   };
 
   den.aspects.applications.dev.editor.nvf = {
-    homeManagerModules =
-      { inputs', ... }:
-      [
-        inputs'.nvf.homeManagerModules.default
-      ];
+    homeManagerModules = [
+      inputs.nvf.homeModules.default
+    ];
 
     homeManager =
       { pkgs, ... }:

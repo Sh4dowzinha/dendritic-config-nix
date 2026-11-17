@@ -1,4 +1,4 @@
-{
+{ inputs, ... }: {
   flake-file.inputs = {
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
@@ -18,12 +18,12 @@
   };
 
   den.aspects.desktop.plasma-manager = { host, ... }: {
-    homeManagerModules = { inputs', ... }: [
+    homeManagerModules = [
       (
         if host.channel == "nixos-unstable" then
-          inputs'.plasma-manager-unstable.homeModules.plasma-manager
+          inputs.plasma-manager-unstable.homeModules.plasma-manager
         else
-          inputs'.plasma-manager.homeModules.plasma-manager
+          inputs.plasma-manager.homeModules.plasma-manager
       )
     ];
 

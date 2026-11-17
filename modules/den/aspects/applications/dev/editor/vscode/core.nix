@@ -1,4 +1,4 @@
-{
+{ inputs, ... }: {
   flake-file.inputs = {
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
@@ -7,9 +7,9 @@
   };
 
   den.aspects.applications.dev.editor.codium.core = {
-    nixpkgs-overlays =
-      { inputs', ... }:
-      [ inputs'.nix-vscode-extensions.overlays.default ];
+    nixpkgs-overlays = [
+      inputs.nix-vscode-extensions.overlays.default
+    ];
 
     homeManager =
       {

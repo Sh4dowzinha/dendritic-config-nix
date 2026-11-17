@@ -1,4 +1,4 @@
-{ den, ... }:
+{ den, inputs, ... }:
 {
   den.aspects.desktop.style.fonts.regular = {
     includes = [
@@ -8,9 +8,9 @@
       ])
     ];
 
-    nixpkgs-overlays =
-      { inputs', ... }:
-      [ inputs'.apple-fonts.overlays.default ];
+    nixpkgs-overlays = [
+      inputs.apple-fonts.overlays.default
+    ];
 
     nixos =
       { pkgs, ... }:
