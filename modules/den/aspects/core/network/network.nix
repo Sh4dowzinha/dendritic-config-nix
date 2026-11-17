@@ -12,7 +12,7 @@ in
   den.aspects.core.network = {
     includes = with den.aspects.core.network; [
       dns
-      firewall
+      firewall-config
       networkmanager
       networkd
       iwd

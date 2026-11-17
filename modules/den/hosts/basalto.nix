@@ -34,8 +34,6 @@
       hardware.razer
 
       desktop.kde
-
-      core.network.manager
     ];
 
     nixos = {

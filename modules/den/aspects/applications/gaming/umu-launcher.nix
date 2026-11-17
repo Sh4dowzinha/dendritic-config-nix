@@ -13,7 +13,7 @@
   };
 
   den.aspects.applications.gaming.umu-launcher = {
-    nixpkgs-overlays = [
+    nixpkgs-overlays = { ... }: [
       inputs.umu.overlays.default
     ];
 

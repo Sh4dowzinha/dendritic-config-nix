@@ -41,8 +41,6 @@
       desktop.kde
       desktop.plasma-manager
 
-      core.network.manager
-
       applications.engineering.boards
     ];
 

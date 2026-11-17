@@ -1,6 +1,5 @@
 {
   inputs,
-  self,
   ...
 }:
 let
@@ -21,15 +20,22 @@ in
     # is the same `config.packages`, so it is safe to force here.
     nixpkgs-overlays =
       { self', ... }:
-      [ (_final: _prev: { local = self'.packages; }) ]
-      ++ builtins.attrValues (import (self + "/pkgs/overlays.nix") { inherit inputs; });
+      [
+        (_final: _prev: { local = self'.packages; })
+        (final: _prev: {
+          unstable = import inputs.nixpkgs-unstable {
+            inherit (final.stdenv.hostPlatform) system;
+            inherit (final) config;
+          };
+        })
+      ];
 
     nixos =
       { nixpkgs-overlays, lib, ... }:
       {
         nixpkgs = {
           inherit config;
-          overlays = lib.unique nixpkgs-overlays;
+          overlays = lib.unique (lib.flatten nixpkgs-overlays);
         };
       };
 
@@ -48,7 +54,7 @@ in
       lib.mkIf (!host.settings.core.users.home-manager-shared.useGlobalPkgs) {
         nixpkgs = {
           inherit config;
-          overlays = lib.unique nixpkgs-overlays;
+          overlays = lib.unique (lib.flatten nixpkgs-overlays);
         };
       };
   };

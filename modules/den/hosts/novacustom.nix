@@ -15,34 +15,6 @@
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = true;
-
-      core.network = {
-        backend = "networkd";
-        mode = "declarative";
-
-        wirelessNetworks = {
-          home = {
-            ssid = "MyHomeWiFi"; # Replace with your home SSID
-            auth = "wpa-psk";
-            sopsKey = "wifi/home-psk";
-          };
-
-          eduroam = {
-            ssid = "eduroam";
-            auth = "wpa-eap";
-            sopsKey = "wifi/eduroam-password";
-
-            eap = {
-              method = "peap";
-              phase2Auth = "mschapv2";
-              identitySopsKey = "wifi/eduroam-identity";
-              anonymousIdentity = "anonymous@tecnico.ulisboa.pt";
-              domainSuffixMatch = "tecnico.ulisboa.pt";
-              caCert = ./certs/ist-root-ca.pem;
-            };
-          };
-        };
-      };
     };
   };
 

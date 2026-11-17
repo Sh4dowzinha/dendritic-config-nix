@@ -105,8 +105,7 @@ in
               };
             };
 
-            networking.useNetworkd = false;
-            networking.wireless.enable = false;
+            networking.useNetworkd = lib.mkDefault false;
 
             users.users = lib.genAttrs userNames (_: {
               extraGroups = [ "networkmanager" ];
@@ -114,7 +113,7 @@ in
           }
 
           (lib.mkIf (!isIwd) {
-            networking.wireless.iwd.enable = false;
+            networking.wireless.iwd.enable = lib.mkDefault false;
           })
 
           # Experimental iwd backend with NixOS D-Bus activation boot-race fix

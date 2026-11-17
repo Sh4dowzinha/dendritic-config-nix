@@ -1,4 +1,4 @@
-{
+{ inputs, ... }: {
   flake-file.inputs = {
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -7,11 +7,9 @@
   };
 
   den.aspects.applications.shell.nix-index = {
-    homeManagerModules =
-      { inputs', ... }:
-      [
-        inputs'.nix-index-database.homeModules.default
-      ];
+    homeManagerModules = [
+      inputs.nix-index-database.homeModules.default
+    ];
 
     homeManager = {
       programs.command-not-found.enable = false;

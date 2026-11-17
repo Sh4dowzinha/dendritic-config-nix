@@ -41,7 +41,8 @@
         };
 
         rootPreservationEnabled = host.settings.core.preservation.enable or true;
-        userPreservationEnabled = host.settings.core.preservation-user.enable or false;
+        userPreservationEnabled =
+          rootPreservationEnabled && (host.settings.core.preservation-user.enable or false);
         userNames = map (u: u.userName or u.name) resolved-users;
       in
       {
@@ -49,58 +50,61 @@
           inputs.preservation.nixosModules.preservation
         ];
 
-        assertions = [
+        config = lib.mkMerge [
           {
-            assertion = (host.settings.core.preservation-user.enable or false) -> rootPreservationEnabled;
-            message = "core.preservation-user.enable requires core.preservation.enable = true.";
+            assertions = [
+              {
+                assertion = (host.settings.core.preservation-user.enable or false) -> rootPreservationEnabled;
+                message = "core.preservation-user.enable requires core.preservation.enable = true.";
+              }
+            ];
           }
+          (lib.mkIf rootPreservationEnabled {
+            systemd.suppressedSystemUnits = [
+              "systemd-machine-id-commit.service"
+            ];
+
+            preservation.enable = true;
+
+            preservation.preserveAt = {
+              "/cache" = lib.mkMerge [
+                (mergePersist cache)
+                {
+                  persistentStoragePath = "/cache";
+                  commonMountOptions = [
+                    "x-gvfs-hide"
+                    "x-gdu.hide"
+                  ];
+                  directories = [
+                    "/var/log"
+                  ];
+                  users = lib.optionalAttrs userPreservationEnabled (
+                    lib.genAttrs userNames (_: mergePersist cacheHome)
+                  );
+                }
+              ];
+
+              "/persist" = lib.mkMerge [
+                (mergePersist persist)
+                {
+                  commonMountOptions = [
+                    "x-gvfs-hide"
+                    "x-gdu.hide"
+                  ];
+                  files = [
+                    {
+                      file = "/etc/machine-id";
+                      inInitrd = true;
+                    }
+                  ];
+                  users = lib.optionalAttrs userPreservationEnabled (
+                    lib.genAttrs userNames (_: mergePersist persistHome)
+                  );
+                }
+              ];
+            };
+          })
         ];
-
-        config = lib.mkIf (host.settings.core.preservation.enable or false) {
-          systemd.suppressedSystemUnits = [
-            "systemd-machine-id-commit.service"
-          ];
-
-          preservation.enable = true;
-
-          preservation.preserveAt = {
-            "/cache" = lib.mkMerge [
-              (mergePersist cache)
-              {
-                persistentStoragePath = "/cache";
-                commonMountOptions = [
-                  "x-gvfs-hide"
-                  "x-gdu.hide"
-                ];
-                directories = [
-                  "/var/log"
-                ];
-                users = lib.optionalAttrs userPreservationEnabled (
-                  lib.genAttrs userNames (_: mergePersist cacheHome)
-                );
-              }
-            ];
-
-            "/persist" = lib.mkMerge [
-              (mergePersist persist)
-              {
-                commonMountOptions = [
-                  "x-gvfs-hide"
-                  "x-gdu.hide"
-                ];
-                files = [
-                  {
-                    file = "/etc/machine-id";
-                    inInitrd = true;
-                  }
-                ];
-                users = lib.optionalAttrs userPreservationEnabled (
-                  lib.genAttrs userNames (_: mergePersist persistHome)
-                );
-              }
-            ];
-          };
-        };
       };
   };
 }

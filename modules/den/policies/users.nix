@@ -27,6 +27,11 @@ let
           default = name;
         };
 
+        classes = mkOption {
+          type = types.listOf types.str;
+          default = [ "homeManager" ];
+        };
+
         aspect = mkOption {
           type = types.raw;
           default = den.aspects.${name} or { };
@@ -53,7 +58,10 @@ in
     den.policies.host-users =
       { host, ... }:
       let
-        targetUsers = host.users or (lib.optional (host.system-owner != null) host.system-owner);
+        ownerList = lib.optional (host.system-owner != null) host.system-owner;
+        rawUsers = host.users or { };
+        extraUsers = if builtins.isList rawUsers then rawUsers else builtins.attrNames rawUsers;
+        targetUsers = lib.unique (ownerList ++ extraUsers);
       in
       lib.concatMap (
         uName:

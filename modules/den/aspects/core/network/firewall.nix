@@ -1,5 +1,7 @@
 {
-  den.aspects.core.network.firewall = {
+  # Named `firewall-config` rather than `firewall` so it does not collide with
+  # the `den.quirks.firewall` quirk attribute on `den.aspects.core.network`.
+  den.aspects.core.network.firewall-config = {
     nixos =
       {
         firewall ? [ ],
@@ -11,7 +13,8 @@
           {
             networking.nftables = {
               enable = true;
-              # Only replace table inet nixos-fw on reload; never flush external tables
+              # Only replace table inet nixos-fw on reload; never flush external
+              # tables such as Mullvad's table inet mullvad.
               flushRuleset = false;
             };
 

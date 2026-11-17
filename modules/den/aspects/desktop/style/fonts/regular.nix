@@ -8,7 +8,7 @@
       ])
     ];
 
-    nixpkgs-overlays = [
+    nixpkgs-overlays = { ... }: [
       inputs.apple-fonts.overlays.default
     ];
 

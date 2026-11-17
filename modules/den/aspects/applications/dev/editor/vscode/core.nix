@@ -7,7 +7,7 @@
   };
 
   den.aspects.applications.dev.editor.codium.core = {
-    nixpkgs-overlays = [
+    nixpkgs-overlays = { ... }: [
       inputs.nix-vscode-extensions.overlays.default
     ];
 
