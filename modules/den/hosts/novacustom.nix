@@ -38,6 +38,13 @@
             priority = 100;
           };
 
+          openlab = {
+            ssid = "HackerSchool_Lab_5G";
+            auth = "wpa-psk";
+            sopsKey = "wifi/openlab-psk";
+            priority = 100;
+          };
+
           eduroamIST = {
             ssid = "eduroam";
             auth = "wpa-eap";
