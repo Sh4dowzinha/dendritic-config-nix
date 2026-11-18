@@ -72,7 +72,7 @@ in
                 };
 
                 "25-wireless" = {
-                  matchConfig.Name = lib.mkDefault "wl*";
+                  matchConfig.Type = lib.mkDefault "wlan";
                   networkConfig = {
                     DHCP = lib.mkDefault "yes";
                     IPv6AcceptRA = lib.mkDefault true;
