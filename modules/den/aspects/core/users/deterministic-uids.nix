@@ -136,7 +136,6 @@
           openrazer = uidGid 978;
           gamemode = uidGid 977;
           netdev = uidGid 976;
-          plugdev = uidGid 975;
         };
 
         config.assertions =

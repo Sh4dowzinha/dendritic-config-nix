@@ -7,13 +7,21 @@
         resolved-users ? [ ],
         ...
       }:
+      let
+        openocd-udev = pkgs.runCommand "openocd-udev-rules" { } ''
+          mkdir -p $out/lib/udev/rules.d
+          substitute ${pkgs.openocd}/etc/udev/rules.d/60-openocd.rules \
+          $out/lib/udev/rules.d/60-openocd.rules \
+          --replace-fail 'GROUP="plugdev"' 'GROUP="dialout"'
+        '';
+      in
       {
         users.users = lib.genAttrs (map (u: u.userName or u.name) resolved-users) (_: {
           extraGroups = [ "dialout" ];
         });
         services.udev.packages = with pkgs; [
           platformio-core.udev
-          openocd
+          openocd-udev
         ];
       };
 
