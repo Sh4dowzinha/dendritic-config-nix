@@ -135,6 +135,7 @@
           gnome-initial-setup = uidGid 979;
           openrazer = uidGid 978;
           gamemode = uidGid 977;
+          netdev = uidGid 976;
         };
 
         config.assertions =

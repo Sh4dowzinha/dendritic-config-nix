@@ -1,4 +1,3 @@
-# modules/den/policies/network.nix
 {
   den,
   lib,
@@ -10,16 +9,11 @@ in
 {
   den.policies.include-iwd-frontend =
     { host, ... }:
-    lib.optional
-      (
-        (host.settings.core.network.backend or "networkmanager") == "networkd"
-        && host.hasAspect den.aspects.roles.workstation
-      )
-      (include {
-        includes = [
-          den.aspects.desktop.iwd-frontend
-        ];
-      });
+    lib.optional ((host.settings.core.network.backend or "networkmanager") == "networkd") (include {
+      includes = [
+        den.aspects.desktop.iwd-frontend
+      ];
+    });
 
   den.schema.host.includes = [
     den.policies.include-iwd-frontend

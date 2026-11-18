@@ -15,6 +15,45 @@
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = true;
+
+      desktop.iwd-frontend.tool = "both";
+
+      core.network = {
+        backend = "networkd";
+        mode = "declarative";
+
+        # Ignore router/ISP DNS so systemd-resolved uses Quad9 FallbackDNS from dns.nix
+        # when VPN is disconnected, and Mullvad's 10.64.0.1 (~.) when connected.
+        ignoreDHCPDNS = true;
+
+        macRandomization = "network"; # "network" | "once" | "disabled"
+        macRandomizationRange = "full"; # "full" | "nic"
+
+        # Provisioned via sops-nix into /var/lib/iwd/*.psk and *.8021x
+        wirelessNetworks = {
+          home = {
+            ssid = "MEO-FERNANDES";
+            auth = "wpa-psk";
+            sopsKey = "wifi/home-psk";
+            priority = 100;
+          };
+
+          eduroamIST = {
+            ssid = "eduroam";
+            auth = "wpa-eap";
+            sopsKey = "wifi/eduroamIST-password";
+            priority = 80;
+            eap = {
+              method = "peap";
+              phase2Auth = "mschapv2";
+              identitySopsKey = "wifi/eduroamIST-identity";
+              anonymousIdentity = "anonymous@tecnico.ulisboa.pt";
+              domainSuffixMatch = "tecnico.ulisboa.pt";
+              caCert = ./certs/ist-root-ca.pem;
+            };
+          };
+        };
+      };
     };
   };
 
