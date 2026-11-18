@@ -1,3 +1,4 @@
+# modules/den/aspects/core/network/networkmanager.nix
 {
   den,
   lib,
@@ -66,43 +67,49 @@ in
 
         # Strip optional systemd-resolved '#sni' suffixes so shared DNS lists work across backends
         strippedDNS = map (s: lib.head (lib.splitString "#" s)) netCfg.defaultDNS;
+
+        connectionSettings =
+          lib.optionalAttrs (netCfg.macRandomization != "disabled" && netCfg.macRandomizationRange == "nic") {
+            "wifi.generate-mac-address-mask" = lib.mkDefault "FF:FF:FF:00:00:00";
+          }
+          //
+            lib.optionalAttrs
+              (
+                nmCfg.ethernetMacRandomization != "preserve"
+                && nmCfg.ethernetMacRandomization != "disabled"
+                && netCfg.macRandomizationRange == "nic"
+              )
+              {
+                "ethernet.generate-mac-address-mask" = lib.mkDefault "FF:FF:FF:00:00:00";
+              }
+          // lib.optionalAttrs effectiveIgnoreDHCPDNS {
+            "ipv4.ignore-auto-dns" = lib.mkDefault true;
+            "ipv6.ignore-auto-dns" = lib.mkDefault true;
+          };
       in
       lib.mkIf isNM (
         lib.mkMerge [
           {
             networking.networkmanager = {
               enable = true;
+
               wifi = {
                 backend = nmCfg.wifiBackend;
                 macAddress = lib.mkDefault wifiMacMap.${netCfg.macRandomization};
                 scanRandMacAddress = lib.mkDefault (netCfg.macRandomization != "disabled");
               };
+
               ethernet.macAddress = lib.mkDefault ethMacMap.${nmCfg.ethernetMacRandomization};
-              settings = {
-                connection =
-                  lib.optionalAttrs (netCfg.macRandomization != "disabled" && netCfg.macRandomizationRange == "nic") {
-                    "wifi.generate-mac-address-mask" = lib.mkDefault "FF:FF:FF:00:00:00";
-                  }
-                  //
-                    lib.optionalAttrs
-                      (
-                        nmCfg.ethernetMacRandomization != "preserve"
-                        && nmCfg.ethernetMacRandomization != "disabled"
-                        && netCfg.macRandomizationRange == "nic"
-                      )
-                      {
-                        "ethernet.generate-mac-address-mask" = lib.mkDefault "FF:FF:FF:00:00:00";
-                      }
-                  // lib.optionalAttrs effectiveIgnoreDHCPDNS {
-                    "ipv4.ignore-auto-dns" = lib.mkDefault true;
-                    "ipv6.ignore-auto-dns" = lib.mkDefault true;
+
+              settings =
+                lib.optionalAttrs (connectionSettings != { }) {
+                  connection = connectionSettings;
+                }
+                // lib.optionalAttrs (strippedDNS != [ ]) {
+                  "global-dns-domain-*" = {
+                    servers = lib.mkDefault (lib.concatStringsSep "," strippedDNS);
                   };
-              }
-              // lib.optionalAttrs (strippedDNS != [ ]) {
-                "global-dns-domain-*" = {
-                  servers = lib.mkDefault (lib.concatStringsSep "," strippedDNS);
                 };
-              };
             };
 
             networking.useNetworkd = lib.mkDefault false;
