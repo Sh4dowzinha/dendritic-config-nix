@@ -21,8 +21,8 @@
       };
 
       den.url = "github:denful/den";
+
       files.url = "github:sini/files";
-      flake-compat.url = "github:edolstra/flake-compat";
 
       git-hooks-nix = {
         url = "github:cachix/git-hooks.nix";
@@ -40,11 +40,6 @@
       };
 
       import-tree.url = "github:vic/import-tree";
-
-      nix-wrapper-modules = {
-        url = "github:BirdeeHub/nix-wrapper-modules";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
 
       pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     };
