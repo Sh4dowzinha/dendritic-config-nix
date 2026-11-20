@@ -15,6 +15,28 @@
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = true;
+
+      desktop.iwd-frontend.tool = "impala";
+
+      core.network = {
+        backend = "networkd";
+        mode = "declarative";
+
+        ignoreDHCPDNS = true;
+
+        macRandomization = "network"; # "network" | "once" | "disabled"
+        macRandomizationRange = "full"; # "full" | "nic"
+
+        # Provisioned via sops-nix into /var/lib/iwd/*.psk and *.8021x
+        wirelessNetworks = {
+          home = {
+            ssid = "MEO-FERNANDES";
+            auth = "wpa-psk";
+            sopsKey = "wifi/home-psk";
+            priority = 100;
+          };
+        };
+      };
     };
   };
 
