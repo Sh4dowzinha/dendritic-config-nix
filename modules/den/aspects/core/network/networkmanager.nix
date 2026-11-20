@@ -1,4 +1,3 @@
-# modules/den/aspects/core/network/networkmanager.nix
 {
   den,
   lib,
@@ -218,7 +217,7 @@ in
                       anonymous-identity = net.eap.anonymousIdentity;
                     }
                     // lib.optionalAttrs (net.eap.caCert != null) {
-                      ca-cert = toString net.eap.caCert;
+                      ca-cert = "file://${net.eap.caCert}";
                     }
                     // lib.optionalAttrs (net.eap.domainSuffixMatch != null) {
                       domain-suffix-match = net.eap.domainSuffixMatch;

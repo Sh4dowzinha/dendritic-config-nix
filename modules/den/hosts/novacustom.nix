@@ -55,7 +55,7 @@
               phase2Auth = "mschapv2";
               identitySopsKey = "wifi/eduroamIST-identity";
               anonymousIdentity = "anonymous@tecnico.ulisboa.pt";
-              domainSuffixMatch = "tecnico.ulisboa.pt";
+              domainSuffixMatch = "IST - eduroam";
               caCert = ./certs/ist-root-ca.pem;
             };
           };

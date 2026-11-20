@@ -1,4 +1,3 @@
-# modules/den/aspects/core/network/iwd.nix
 {
   den,
   lib,
@@ -125,7 +124,7 @@ in
                       ${eapPrefix}-Phase2-Password=${config.sops.placeholder."wifi-${name}-psk"}
                     ''
                     + lib.optionalString (net.eap.caCert != null) ''
-                      ${eapPrefix}-CACert=${toString net.eap.caCert}
+                      ${eapPrefix}-CACert=${net.eap.caCert}
                     ''
                     + lib.optionalString (net.eap.domainSuffixMatch != null) ''
                       ${eapPrefix}-ServerDomainMask=${net.eap.domainSuffixMatch}
