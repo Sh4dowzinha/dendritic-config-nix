@@ -1,18 +1,5 @@
-{ inputs, ... }: {
+{
   den.aspects.desktop.noctalia = {
-    nixos = {
-      nix.settings = {
-        extra-substituters = [ "https://noctalia.cachix.org" ];
-        extra-trusted-public-keys = [
-          "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-        ];
-      };
-    };
-
-    homeManagerModules = [
-      inputs.noctalia.homeModules.default
-    ];
-
     homeManager = _: {
       programs.noctalia = {
         enable = true;
