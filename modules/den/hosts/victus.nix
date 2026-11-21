@@ -41,6 +41,20 @@
             sopsKey = "wifi/hotspot-psk";
             priority = 100;
           };
+
+          hackerschool = {
+            ssid = "HackerSchool_Lab_5G";
+            auth = "wpa-psk";
+            sopsKey = "wifi/hackerschool-psk";
+            priority = 100;
+          };
+
+          vodafone = {
+            ssid = "Vodafone";
+            auth = "wpa-psk";
+            sopsKey = "wifi/vodafone-psk";
+            priority = 100;
+          };
         };
       };
     };
