@@ -19,7 +19,7 @@
       desktop.iwd-frontend.tool = "impala";
 
       core.network = {
-        backend = "networkmanager";
+        backend = "networkd";
         mode = "declarative";
 
         # Ignore router/ISP DNS so systemd-resolved uses Quad9 FallbackDNS from dns.nix
