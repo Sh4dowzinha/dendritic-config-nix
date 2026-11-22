@@ -136,6 +136,7 @@
           openrazer = uidGid 978;
           gamemode = uidGid 977;
           netdev = uidGid 976;
+          greeter = uidGid 975;
         };
 
         config.assertions =
