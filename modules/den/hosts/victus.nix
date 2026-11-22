@@ -15,6 +15,48 @@
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = true;
+
+      desktop.iwd-frontend.tool = "both";
+
+      core.network = {
+        backend = "networkd";
+        mode = "declarative";
+
+        # Ignore router/ISP DNS so systemd-resolved uses Quad9 FallbackDNS from dns.nix
+        # when VPN is disconnected, and Mullvad's 10.64.0.1 (~.) when connected.
+        ignoreDHCPDNS = true;
+
+        # Provisioned via sops-nix into /var/lib/iwd/*.psk and *.8021x
+        wirelessNetworks = {
+          home = {
+            ssid = "NOS-F856";
+            auth = "wpa-psk";
+            sopsKey = "wifi/home-psk";
+            priority = 100;
+          };
+
+          hotspot = {
+            ssid = "Redmi-Note-9T";
+            auth = "wpa-psk";
+            sopsKey = "wifi/hotspot-psk";
+            priority = 100;
+          };
+
+          hackerschool = {
+            ssid = "HackerSchool_Lab_5G";
+            auth = "wpa-psk";
+            sopsKey = "wifi/hackerschool-psk";
+            priority = 100;
+          };
+
+          vodafone = {
+            ssid = "Vodafone";
+            auth = "wpa-psk";
+            sopsKey = "wifi/vodafone-psk";
+            priority = 100;
+          };
+        };
+      };
     };
   };
 
