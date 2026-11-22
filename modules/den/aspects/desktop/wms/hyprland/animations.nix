@@ -42,40 +42,40 @@ in
           leaf = "windowsIn";
           enabled = true;
           speed = 3;
-          curve = "emphasizedDecel";
+          bezier = "emphasizedDecel";
           style = "popin 80%";
         }
         {
           leaf = "fadeIn";
           enabled = true;
           speed = 3;
-          curve = "emphasizedDecel";
+          bezier = "emphasizedDecel";
         }
         {
           leaf = "windowsOut";
           enabled = true;
           speed = 2;
-          curve = "emphasizedDecel";
+          bezier = "emphasizedDecel";
           style = "popin 90%";
         }
         {
           leaf = "fadeOut";
           enabled = true;
           speed = 2;
-          curve = "emphasizedDecel";
+          bezier = "emphasizedDecel";
         }
         {
           leaf = "windowsMove";
           enabled = true;
           speed = 3;
-          curve = "emphasizedDecel";
+          bezier = "emphasizedDecel";
           style = "slide";
         }
         {
           leaf = "border";
           enabled = true;
           speed = 10;
-          curve = "emphasizedDecel";
+          bezier = "emphasizedDecel";
         }
 
         # Layers (Noctalia surfaces override this with no_anim = true in rules.nix)
@@ -83,27 +83,27 @@ in
           leaf = "layersIn";
           enabled = true;
           speed = 2.7;
-          curve = "emphasizedDecel";
+          bezier = "emphasizedDecel";
           style = "popin 93%";
         }
         {
           leaf = "layersOut";
           enabled = true;
           speed = 2.4;
-          curve = "menu_accel";
+          bezier = "menu_accel";
           style = "popin 94%";
         }
         {
           leaf = "fadeLayersIn";
           enabled = true;
           speed = 0.5;
-          curve = "menu_decel";
+          bezier = "menu_decel";
         }
         {
           leaf = "fadeLayersOut";
           enabled = true;
           speed = 2.7;
-          curve = "stall";
+          bezier = "stall";
         }
 
         # Workspaces
@@ -111,21 +111,21 @@ in
           leaf = "workspaces";
           enabled = true;
           speed = 3;
-          curve = "menu_decel";
+          bezier = "menu_decel";
           style = "slide";
         }
         {
           leaf = "specialWorkspaceIn";
           enabled = true;
           speed = 2.8;
-          curve = "emphasizedDecel";
+          bezier = "emphasizedDecel";
           style = "slidevert";
         }
         {
           leaf = "specialWorkspaceOut";
           enabled = true;
           speed = 1.2;
-          curve = "emphasizedAccel";
+          bezier = "emphasizedAccel";
           style = "slidevert";
         }
       ];

@@ -122,12 +122,22 @@
         })
 
         (lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
-          wayland.windowManager.hyprland.settings.device = [
-            {
-              name = "elan0412:00-04f3:3240-touchpad";
-              accel_profile = "adaptive";
-            }
-          ];
+          wayland.windowManager.hyprland.settings = {
+            monitor = [
+              {
+                output = "eDP-1";
+                mode = "preferred";
+                position = "auto";
+                scale = 1.2;
+              }
+            ];
+            device = [
+              {
+                name = "elan0412:00-04f3:3240-touchpad";
+                accel_profile = "adaptive";
+              }
+            ];
+          };
         })
       ];
 

@@ -24,6 +24,12 @@ in
 {
   den.aspects.desktop.hyprland = {
     homeManager.wayland.windowManager.hyprland.settings = {
+      # Keep workspaces 1–5 alive when empty so Noctalia's workspace indicator always shows them
+      workspace_rule = builtins.genList (i: {
+        workspace = toString (i + 1);
+        persistent = true;
+      }) 5;
+
       layer_rule = [
         # Disable Hyprland layer animations on Noctalia surfaces (Noctalia animates itself)
         {
