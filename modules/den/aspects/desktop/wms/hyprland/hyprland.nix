@@ -6,6 +6,8 @@
       den.aspects.desktop.uwsm
       den.aspects.desktop.noctalia
       den.aspects.desktop.noctalia-greeter
+
+      den.aspects.applications.fileManager.dolphin # Keep while it isn't integrated in default apps
     ];
 
     nixos =
