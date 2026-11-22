@@ -1,4 +1,3 @@
-# modules/den/aspects/desktop/wms/hyprland/hyprland.nix
 { den, lib, ... }:
 {
   den.aspects.desktop.hyprland = {
@@ -53,28 +52,11 @@
           portalPackage = null;
           systemd.enable = false;
 
-          extraLuaFiles = {
-            "00-nix-env" = {
-              autoLoad = true;
-              content = ''
-                _G.nix_env = {
-                  host_name = "${host.name}",
-                  kb_layout = "${host.keyboard.layout or "us"}",
-                }
-              '';
-            };
-            "10-general" = {
-              autoLoad = true;
-              content = ./lua/general.lua;
-            };
-            "20-binds" = {
-              autoLoad = true;
-              content = ./lua/binds.lua;
-            };
-            "30-rules" = {
-              autoLoad = true;
-              content = ./lua/rules.lua;
-            };
+          settings.config.input.kb_layout = host.keyboard.layout or "us";
+
+          extraLuaFiles.binds = {
+            autoLoad = true;
+            content = ./lua/binds.lua;
           };
         };
       };

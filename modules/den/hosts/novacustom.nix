@@ -104,9 +104,9 @@
 
     homeManager =
       { lib, host, ... }:
-      lib.optionalAttrs (host.hasAspect den.aspects.desktop.plasma-manager) {
-        programs.plasma.input = {
-          touchpads = [
+      lib.mkMerge [
+        (lib.optionalAttrs (host.hasAspect den.aspects.desktop.plasma-manager) {
+          programs.plasma.input.touchpads = [
             {
               accelerationProfile = "default";
               disableWhileTyping = false;
@@ -119,18 +119,17 @@
               vendorId = "04f3";
             }
           ];
+        })
 
-          mice = [
+        (lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+          wayland.windowManager.hyprland.settings.device = [
             {
-              enable = true;
-              name = "Razer Razer DeathAdder Essential";
-              productId = "0098";
-              vendorId = "1532";
-              accelerationProfile = "none";
+              name = "elan0412:00-04f3:3240-touchpad";
+              accel_profile = "adaptive";
             }
           ];
-        };
-      };
+        })
+      ];
 
     sh4dow = {
       includes = with den.aspects; [

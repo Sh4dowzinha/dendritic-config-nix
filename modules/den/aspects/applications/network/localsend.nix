@@ -1,10 +1,36 @@
-{
+{ den, ... }: {
   den.aspects.applications.network.localsend = {
-    homeManager = { pkgs, ... }: {
-      home.packages = with pkgs; [
-        localsend
-      ];
-    };
+    homeManager =
+      {
+        host,
+        lib,
+        pkgs,
+        ...
+      }:
+      {
+        home.packages = with pkgs; [
+          localsend
+        ];
+      }
+      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+        wayland.windowManager.hyprland.settings.window_rule = lib.mkMerge [
+          [
+            {
+              match.class = "^(localsend)$";
+              tag = "+floating";
+            }
+          ]
+          (lib.mkAfter [
+            {
+              match.class = "^(localsend)$";
+              size = [
+                520
+                640
+              ];
+            }
+          ])
+        ];
+      };
 
     firewall = {
       networking.firewall.allowedTCPPorts = [ 53317 ];

@@ -103,12 +103,29 @@
         };
       };
 
-    homeManager = {
-      home.sessionVariables = {
-        MESA_SHADER_CACHE_MAX_SIZE = "12G";
-        __GL_SHADER_DISK_CACHE_SIZE = "12000000000";
+    homeManager =
+      { host, lib, ... }:
+      {
+        home.sessionVariables = {
+          MESA_SHADER_CACHE_MAX_SIZE = "12G";
+          __GL_SHADER_DISK_CACHE_SIZE = "12000000000";
+        };
+      }
+      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+        wayland.windowManager.hyprland.settings.window_rule = [
+          {
+            match.class = "^(steam_app_\\d+|gamescope)$";
+            tag = "+games";
+          }
+          {
+            match = {
+              class = "^(steam)$";
+              title = "^(Friends List|Steam Settings)$";
+            };
+            tag = "+floating";
+          }
+        ];
       };
-    };
 
     persistHome.directories = [
       ".local/share/Steam"

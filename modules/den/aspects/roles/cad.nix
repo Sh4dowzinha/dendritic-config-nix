@@ -1,14 +1,27 @@
-{
+{ den, ... }: {
   den.aspects.roles.cad = {
     homeManager =
-      { pkgs, ... }:
       {
-        home.packages = [
-          pkgs.kicad
-          pkgs.freecad-wayland
-          pkgs.openscad
-          pkgs.prusa-slicer
-          pkgs.orca-slicer
+        host,
+        lib,
+        pkgs,
+        ...
+      }:
+      {
+        home.packages = with pkgs; [
+          kicad
+          freecad-wayland
+          openscad
+          prusa-slicer
+          orca-slicer
+        ];
+      }
+      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+        wayland.windowManager.hyprland.settings.window_rule = [
+          {
+            match.class = "^(FreeCAD|KiCad)$";
+            tag = "+crisp";
+          }
         ];
       };
 

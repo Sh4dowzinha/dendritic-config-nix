@@ -1,4 +1,4 @@
-{
+{ den, ... }: {
   den.aspects.applications.engineering.vivado = {
     nixos =
       {
@@ -20,10 +20,30 @@
       };
 
     homeManager =
-      { pkgs, ... }:
+      {
+        host,
+        lib,
+        pkgs,
+        ...
+      }:
       {
         home.packages = [
           pkgs.local.vivado
+        ];
+      }
+      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+        wayland.windowManager.hyprland.settings.window_rule = [
+          {
+            match.class = "^(Vivado|java-lang-Thread)$";
+            tag = "+crisp";
+          }
+          {
+            match = {
+              class = "^(Vivado|java-lang-Thread)$";
+              title = "^(splash)$";
+            };
+            tag = "+floating";
+          }
         ];
       };
 

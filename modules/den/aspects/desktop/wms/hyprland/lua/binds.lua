@@ -1,97 +1,90 @@
 local mod = "SUPER"
 
 local function app(cmd)
-  return "app2unit -- " .. cmd
+  return hl.dsp.exec_cmd("app2unit -- " .. cmd)
 end
 
 local function noctalia(cmd)
-  return "noctalia msg " .. cmd
+  return hl.dsp.exec_cmd("noctalia msg " .. cmd)
 end
 
 -- Core Applications (launched inside UWSM app-graphical.slice)
-hl.bind(mod, "T", "exec", app("kitty"))
-hl.bind(mod, "W", "exec", app("brave"))
-hl.bind(mod, "E", "exec", app("dolphin"))
+hl.bind(mod .. " + T", app("kitty"))
+hl.bind(mod .. " + W", app("brave-origin"))
+hl.bind(mod .. " + E", app("dolphin"))
 
 -- Noctalia Shell Panels & Overlays
-hl.bind(mod, "Space", "exec", noctalia("panel-toggle launcher"))
-hl.bind(mod, "S", "exec", noctalia("panel-toggle control-center"))
-hl.bind(mod .. " SHIFT", "S", "exec", noctalia("panel-toggle control-center system"))
-hl.bind(mod, "Comma", "exec", noctalia("settings-toggle"))
-hl.bind(mod, "D", "exec", noctalia("dock-toggle"))
-hl.bind(mod, "N", "exec", noctalia("notification-clear-active"))
-hl.bind(mod .. " SHIFT", "N", "exec", noctalia("notification-dnd-toggle"))
+hl.bind(mod .. " + Space", noctalia("panel-toggle launcher"))
+hl.bind(mod .. " + S", noctalia("panel-toggle control-center"))
+hl.bind(mod .. " + SHIFT + S", noctalia("panel-toggle control-center system"))
+hl.bind(mod .. " + comma", noctalia("settings-toggle"))
+hl.bind(mod .. " + D", noctalia("dock-toggle"))
+hl.bind(mod .. " + N", noctalia("notification-clear-active"))
+hl.bind(mod .. " + SHIFT + N", noctalia("notification-dnd-toggle"))
 
 -- Noctalia Alt+Tab Window Switcher
-hl.bind("ALT", "Tab", "exec", noctalia("window-switcher hold"))
-hl.bind("ALT SHIFT", "Tab", "exec", noctalia("window-switcher hold reverse"))
+hl.bind("ALT + Tab", noctalia("window-switcher hold"))
+hl.bind("ALT + SHIFT + Tab", noctalia("window-switcher hold reverse"))
 
 -- Noctalia Screenshots
-hl.bind("", "Print", "exec", noctalia("screenshot-region"))
-hl.bind("SHIFT", "Print", "exec", noctalia("screenshot-region --annotate"))
-hl.bind(mod, "Print", "exec", noctalia("screenshot-fullscreen"))
-hl.bind(mod .. " SHIFT", "Print", "exec", noctalia("screenshot-window"))
+hl.bind("Print", noctalia("screenshot-region"))
+hl.bind("SHIFT + Print", noctalia("screenshot-region --annotate"))
+hl.bind(mod .. " + Print", noctalia("screenshot-fullscreen"))
+hl.bind(mod .. " + SHIFT + Print", noctalia("screenshot-window"))
 
 -- Noctalia Session & Power
-hl.bind(mod, "L", "exec", noctalia("session lock"))
-hl.bind(mod .. " SHIFT", "L", "exec", noctalia("session lock-and-suspend"))
-hl.bind(mod .. " SHIFT", "E", "exec", noctalia("session logout"))
+hl.bind(mod .. " + L", noctalia("session lock"))
+hl.bind(mod .. " + SHIFT + L", noctalia("session lock-and-suspend"))
+hl.bind(mod .. " + SHIFT + E", noctalia("session logout"))
 
 -- Window Management
-hl.bind(mod, "Q", "killactive")
-hl.bind(mod, "F", "fullscreen", "0")
-hl.bind(mod, "M", "fullscreen", "1")
-hl.bind(mod, "V", "togglefloating")
-hl.bind(mod, "P", "pseudo")
-hl.bind(mod, "J", "togglesplit")
+hl.bind(mod .. " + Q", hl.dsp.window.close())
+hl.bind(mod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+hl.bind(mod .. " + M", hl.dsp.window.fullscreen({ mode = "maximized" }))
+hl.bind(mod .. " + V", hl.dsp.window.float())
+hl.bind(mod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mod .. " + J", hl.dsp.layout("togglesplit"))
 
 -- Focus & Window Movement (Arrows + Alt-Vim keys so SUPER+L stays free for lock)
-local directions = {
-  left = "l",
-  right = "r",
-  up = "u",
-  down = "d",
-}
-
-for key, dir in pairs(directions) do
-  hl.bind(mod, key, "movefocus", dir)
-  hl.bind(mod .. " SHIFT", key, "movewindow", dir)
+for _, dir in ipairs({ "left", "right", "up", "down" }) do
+  hl.bind(mod .. " + " .. dir, hl.dsp.focus({ direction = dir }))
+  hl.bind(mod .. " + SHIFT + " .. dir, hl.dsp.window.move({ direction = dir }))
 end
 
-hl.bind(mod .. " ALT", "H", "movefocus", "l")
-hl.bind(mod .. " ALT", "L", "movefocus", "r")
-hl.bind(mod .. " ALT", "K", "movefocus", "u")
-hl.bind(mod .. " ALT", "J", "movefocus", "d")
+hl.bind(mod .. " + ALT + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mod .. " + ALT + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mod .. " + ALT + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mod .. " + ALT + J", hl.dsp.focus({ direction = "down" }))
 
 -- Workspaces (1-10)
 for i = 1, 10 do
   local key = tostring(i % 10)
   local ws = tostring(i)
-  hl.bind(mod, key, "workspace", ws)
-  hl.bind(mod .. " SHIFT", key, "movetoworkspace", ws)
+  hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = ws }))
+  hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = ws, follow = true }))
 end
 
 -- Scratchpad (Special Workspace)
-hl.bind(mod, "grave", "togglespecialworkspace", "magic")
-hl.bind(mod .. " SHIFT", "grave", "movetoworkspace", "special:magic")
+hl.bind(mod .. " + grave", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mod .. " + SHIFT + grave", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll Through Workspaces
-hl.bind(mod, "mouse_down", "workspace", "e+1")
-hl.bind(mod, "mouse_up", "workspace", "e-1")
+hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
--- Mouse Move / Resize
-hl.bindm(mod, "mouse:272", "movewindow")
-hl.bindm(mod, "mouse:273", "resizewindow")
+-- Mouse Drag / Resize
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
--- Repeatable Hardware Keys (work even when locked)
-hl.bindel("", "XF86AudioRaiseVolume", "exec", noctalia("volume-up"))
-hl.bindel("", "XF86AudioLowerVolume", "exec", noctalia("volume-down"))
-hl.bindel("", "XF86MonBrightnessUp", "exec", noctalia("brightness-up"))
-hl.bindel("", "XF86MonBrightnessDown", "exec", noctalia("brightness-down"))
+-- Repeatable Hardware Keys (active even when locked)
+hl.bind("XF86AudioRaiseVolume", noctalia("volume-up"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", noctalia("volume-down"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", noctalia("brightness-up"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", noctalia("brightness-down"), { locked = true, repeating = true })
 
--- Single-Press Hardware Keys (work even when locked)
-hl.bindl("", "XF86AudioMute", "exec", noctalia("volume-mute"))
-hl.bindl("", "XF86AudioMicMute", "exec", noctalia("mic-mute"))
-hl.bindl("", "XF86AudioPlay", "exec", noctalia("media play-pause"))
-hl.bindl("", "XF86AudioNext", "exec", noctalia("media next"))
-hl.bindl("", "XF86AudioPrev", "exec", noctalia("media previous"))
+-- Single-Press Hardware Keys (active even when locked)
+hl.bind("XF86AudioMute", noctalia("volume-mute"), { locked = true })
+hl.bind("XF86AudioMicMute", noctalia("mic-mute"), { locked = true })
+hl.bind("XF86AudioPlay", noctalia("media toggle"), { locked = true })
+hl.bind("XF86AudioNext", noctalia("media next"), { locked = true })
+hl.bind("XF86AudioPrev", noctalia("media previous"), { locked = true })
