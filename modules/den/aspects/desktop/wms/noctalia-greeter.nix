@@ -7,10 +7,6 @@
           enable = true;
 
           settings = {
-            user = {
-              default = host.system-owner;
-            };
-
             keyboard = {
               layout = host.keyboard.layout or "us";
             };

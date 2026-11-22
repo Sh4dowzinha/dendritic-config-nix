@@ -16,10 +16,10 @@
       core.preservation.enable = true;
       core.preservation-user.enable = true;
 
-      desktop.iwd-frontend.tool = "both";
+      desktop.iwd-frontend.tool = "impala";
 
       core.network = {
-        backend = "networkd";
+        backend = "networkmanager";
         mode = "declarative";
 
         # Ignore router/ISP DNS so systemd-resolved uses Quad9 FallbackDNS from dns.nix
@@ -83,8 +83,7 @@
       hardware.razer
       hardware.gamepad
 
-      desktop.kde
-      desktop.plasma-manager
+      desktop.hyprland
 
       services.network.mullvad-vpn
       services.network.i2pd
