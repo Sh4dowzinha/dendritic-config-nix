@@ -9,105 +9,57 @@
         ...
       }:
       let
-        hasNvidiaPrimeOnLaptop =
-          host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-prime
-          && host.hasAspect den.aspects.hardware.laptop;
+        hasNvidiaPrime = host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-prime;
       in
       {
-        hardware = {
-          steam-hardware.enable = true;
-          graphics.enable32Bit = true;
-        };
+        programs.steam = {
+          enable = true;
+          extest.enable = true;
+          protontricks.enable = true;
+          localNetworkGameTransfers.openFirewall = true;
 
-        programs = {
-          steam = {
-            enable = true;
-            extest.enable = true;
-            protontricks.enable = true;
-
-            package = pkgs.steam.override {
-              extraEnv = {
-                MANGOHUD = true;
-                OBS_VKCAPTURE = true;
-                RADV_TEX_ANISO = 16;
-                PROTON_ENABLE_WAYLAND = true;
-                PROTON_USE_NTSYNC = true;
-                PROTON_USE_WOW64 = true;
-                PULSE_SINK = "Game";
-              }
-              // lib.optionalAttrs hasNvidiaPrimeOnLaptop {
-                NV_PRIME_RENDER_OFFLOAD = "1";
-                "__NV_PRIME_RENDER_OFFLOAD_PROVIDER" = "NVIDIA-G0";
-                "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
-                "__VK_LAYER_NV_optimus" = "NVIDIA_only";
-              };
-              extraPkgs =
-                pkgs':
-                let
-                  inherit (pkgs') lib;
-                  mkDeps =
-                    pkgsSet: with pkgsSet; [
-                      qt6.qtwayland
-                      xdg-utils
-                      libx11
-                      libxext
-                      libxrender
-                      libxi
-                      libxinerama
-                      libxcursor
-                      libxscrnsaver
-                      libsm
-                      libice
-                      libxcb
-                      libxrandr
-                      libxkbcommon
-                      freetype
-                      fontconfig
-                      glib
-                      libpng
-                      libpulseaudio
-                      libvorbis
-                      libkrb5
-                      keyutils
-                      libglvnd
-                      libdrm
-                      vulkan-tools
-                      vulkan-loader
-                      vulkan-validation-layers
-                      vulkan-extension-layer
-                      (lib.getLib stdenv.cc.cc)
-                    ];
-                in
-                mkDeps pkgs';
-
-              extraLibraries =
-                p: with p; [
-                  atk
-                ];
+          package = pkgs.steam.override {
+            extraEnv = {
+              PROTON_ENABLE_WAYLAND = true;
+              PROTON_USE_NTSYNC = true;
+              PROTON_USE_WOW64 = true;
+            }
+            // lib.optionalAttrs hasNvidiaPrime {
+              "__NV_PRIME_RENDER_OFFLOAD" = "1";
+              "__NV_PRIME_RENDER_OFFLOAD_PROVIDER" = "NVIDIA-G0";
+              "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
+              "__VK_LAYER_NV_optimus" = "NVIDIA_only";
             };
 
-            extraCompatPackages = [
-              pkgs.proton-ge-bin
-            ];
-
-            #gamescopeSession = {
-            #  enable = true;
-            #
-            #  args = [
-            #    "-W 1920"
-            #    "-H 1080"
-            #    "-r 60"
-            #  ];
-            #};
+            # Only add packages not already bundled in pkgs.steam's default FHS env
+            extraPkgs =
+              pkgs': with pkgs'; [
+                gamemode
+                libkrb5
+                keyutils
+              ];
           };
+
+          extraCompatPackages = [
+            pkgs.proton-ge-bin
+          ];
         };
       };
 
     homeManager =
       { host, lib, ... }:
+      let
+        hasNvidia =
+          host.hasAspect den.aspects.hardware.gpu.nvidia
+          || host.hasAspect den.aspects.hardware.gpu.nvidia-legacy
+          || host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-prime
+          || host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-primary-legacy;
+      in
       {
         home.sessionVariables = {
           MESA_SHADER_CACHE_MAX_SIZE = "12G";
+        }
+        // lib.optionalAttrs hasNvidia {
           __GL_SHADER_DISK_CACHE_SIZE = "12000000000";
         };
       }
