@@ -139,16 +139,16 @@ in
 
         boot.extraModprobeConfig = "options nvidia ${lib.concatStringsSep " " modprobeOpts}";
 
-        # Priority 900 overrides the default-priority (1000) mkBefore "modesetting" from
+        # Priority 75 overrides normal-priority (100) mkBefore "modesetting" from
         # gpu.intel / gpu.amd while keeping lib.mkForce (50) free for host overrides:
         # - primary (X11 PRIME sync): NixOS expects "nvidia" alone and generates the iGPU section.
         # - AMD + offload: NixOS hardcodes "amdgpu" in xorg.conf when amdgpuBusId is set.
         # - Intel + offload / standalone NVIDIA: appends "nvidia" after "modesetting" (or alone).
         services.xserver.videoDrivers =
           if isPrimary then
-            lib.mkOverride 900 [ "nvidia" ]
+            lib.mkOverride 75 [ "nvidia" ]
           else if isAmdOffload then
-            lib.mkOverride 900 [
+            lib.mkOverride 75 [
               "amdgpu"
               "nvidia"
             ]
