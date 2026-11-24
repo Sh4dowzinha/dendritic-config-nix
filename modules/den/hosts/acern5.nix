@@ -12,6 +12,13 @@
         encrypt = false;
       };
 
+      hardware.gpu.intel.legacy = true;
+      hardware.gpu.nvidia = {
+        branch = "legacy_580";
+        open = false;
+        prime.mode = "primary";
+      };
+
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = true;
@@ -52,8 +59,8 @@
       roles.creative.video
 
       hardware.cpu.intel
-      hardware.gpu.intel-legacy
-      hardware.gpu.optimus.nvidia-primary-legacy
+      hardware.gpu.intel
+      hardware.gpu.nvidia
       hardware.laptop
       hardware.nitrokey3
       hardware.razer

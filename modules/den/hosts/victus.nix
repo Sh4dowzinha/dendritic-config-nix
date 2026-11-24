@@ -12,6 +12,14 @@
         encrypt = true;
       };
 
+      hardware.gpu.nvidia = {
+        dynamicBoost = true;
+        prime = {
+          mode = "offload";
+          finegrained = true;
+        };
+      };
+
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = true;
@@ -76,7 +84,6 @@
       hardware.cpu.amd
       hardware.gpu.amd
       hardware.gpu.nvidia
-      hardware.gpu.optimus.nvidia-prime
       hardware.laptop
       hardware.nbfc-linux
 

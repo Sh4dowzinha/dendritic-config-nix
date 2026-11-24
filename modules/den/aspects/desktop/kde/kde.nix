@@ -1,13 +1,12 @@
-{ den, lib, ... }: {
+{ den, ... }: {
   den.aspects.desktop.kde = {
     includes = with den.aspects; [
       applications.fileManager.dolphin
     ];
 
-    nixos = { host, pkgs, ... }: {
+    nixos = { pkgs, ... }: {
       environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";
-        KWIN_DRM_DEVICES = lib.mkIf (host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-primary-legacy) "/dev/dri/dgpu1:/dev/dri/igpu1";
       };
 
       security.pam.services = {

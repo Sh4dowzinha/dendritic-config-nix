@@ -1,6 +1,6 @@
 {
   den.aspects.hardware.cpu.intel = {
-    nixos = {
+    nixos = _: {
       hardware.cpu.intel.updateMicrocode = true;
       boot.kernelModules = [ "kvm-intel" ];
       boot.kernelParams = [

@@ -2,15 +2,7 @@
 {
   den.aspects.applications.gaming.steam = {
     nixos =
-      {
-        lib,
-        pkgs,
-        host,
-        ...
-      }:
-      let
-        hasNvidiaPrime = host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-prime;
-      in
+      { pkgs, ... }:
       {
         programs.steam = {
           enable = true;
@@ -23,15 +15,8 @@
               PROTON_ENABLE_WAYLAND = true;
               PROTON_USE_NTSYNC = true;
               PROTON_USE_WOW64 = true;
-            }
-            // lib.optionalAttrs hasNvidiaPrime {
-              "__NV_PRIME_RENDER_OFFLOAD" = "1";
-              "__NV_PRIME_RENDER_OFFLOAD_PROVIDER" = "NVIDIA-G0";
-              "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
-              "__VK_LAYER_NV_optimus" = "NVIDIA_only";
             };
 
-            # Only add packages not already bundled in pkgs.steam's default FHS env
             extraPkgs =
               pkgs': with pkgs'; [
                 gamemode
@@ -49,11 +34,7 @@
     homeManager =
       { host, lib, ... }:
       let
-        hasNvidia =
-          host.hasAspect den.aspects.hardware.gpu.nvidia
-          || host.hasAspect den.aspects.hardware.gpu.nvidia-legacy
-          || host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-prime
-          || host.hasAspect den.aspects.hardware.gpu.optimus.nvidia-primary-legacy;
+        hasNvidia = host.hasAspect den.aspects.hardware.gpu.nvidia;
       in
       {
         home.sessionVariables = {

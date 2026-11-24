@@ -12,6 +12,8 @@
         encrypt = false;
       };
 
+      hardware.gpu.intel.legacy = true;
+
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = false;
@@ -29,7 +31,7 @@
       roles.media
 
       hardware.cpu.intel
-      hardware.gpu.intel-legacy
+      hardware.gpu.intel
       hardware.laptop
       hardware.razer
 
