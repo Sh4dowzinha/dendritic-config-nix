@@ -6,6 +6,7 @@
       applications.messaging.telegram
       applications.messaging.zapzap
       applications.messaging.thunderbird
+      applications.messaging.signal
     ];
   };
 }
