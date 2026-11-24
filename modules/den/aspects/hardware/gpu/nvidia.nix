@@ -192,8 +192,10 @@ in
 
         # Compositor-agnostic Wayland primary GPU ordering & client defaults
         environment.sessionVariables =
-          lib.optionalAttrs (!isPrime) {
-            LIBVA_DRIVER_NAME = lib.mkDefault "nvidia";
+          lib.optionalAttrs (!isOffload) {
+            # Priority 900 beats gpu.intel's lib.mkDefault (1000) while keeping normal
+            # host definitions (100) and lib.mkForce (50) free to override.
+            LIBVA_DRIVER_NAME = lib.mkOverride 900 "nvidia";
           }
           // lib.optionalAttrs (isPrime && hasHybridCards) {
             KWIN_DRM_DEVICES = drmOrder;
