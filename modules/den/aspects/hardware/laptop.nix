@@ -1,13 +1,10 @@
 {
   den.aspects.hardware.laptop = {
-
     persist = {
       directories = [
         "/var/lib/upower"
 
-        # Powertop saved parameters and results aren't supposed
-        # to be lost every time the /cache directory is wiped, so
-        # its contents are stored on /persist instead of /cache.
+        # Powertop calibration parameters should survive /cache wipes
         {
           directory = "/var/cache/powertop";
           mode = "0700";
@@ -18,15 +15,10 @@
     nixos =
       { pkgs, lib, ... }:
       {
-        environment.systemPackages = [
-          pkgs.brightnessctl
-          pkgs.powertop
+        environment.systemPackages = with pkgs; [
+          brightnessctl
+          powertop
         ];
-
-        networking.networkmanager.wifi = {
-          powersave = true;
-          macAddress = "stable-ssid";
-        };
 
         services = {
           logind.settings.Login = {
@@ -41,7 +33,8 @@
             HibernateKeyIgnoreInhibited = "yes";
           };
 
-          power-profiles-daemon.enable = false;
+          # tlp-pd implements the power-profiles-daemon D-Bus API for Noctalia & KDE
+          power-profiles-daemon.enable = lib.mkForce false;
           upower.enable = true;
 
           tlp = {

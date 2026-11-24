@@ -1,9 +1,10 @@
 {
   den.aspects.hardware.bluetooth = {
-    nixos = {
+    nixos = _: {
       hardware.bluetooth = {
         enable = true;
         powerOnBoot = false;
+        settings.General.Experimental = true;
       };
     };
 

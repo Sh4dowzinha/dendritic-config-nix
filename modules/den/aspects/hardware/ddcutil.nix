@@ -3,36 +3,21 @@
   den.aspects.hardware.ddcutil = {
     nixos =
       {
-        config,
         pkgs,
-        resolved-users,
+        resolved-users ? [ ],
         ...
       }:
+      let
+        userNames = map (u: u.userName or u.name) resolved-users;
+      in
       {
-        boot = {
-          kernelModules = [
-            "i2c-dev"
-          ];
-          initrd.availableKernelModules = [
-            "i2c-dev"
-          ];
-
-          extraModulePackages = [
-            config.boot.kernelPackages.ddcci-driver
-          ];
-        };
+        hardware.i2c.enable = true;
 
         environment.systemPackages = [
           pkgs.ddcutil
         ];
 
-        services.udev.packages = [
-          pkgs.ddcutil
-        ];
-
-        users.groups.i2c = { };
-
-        users.users = lib.genAttrs (map (u: u.name) resolved-users) (_: {
+        users.users = lib.genAttrs userNames (_: {
           extraGroups = [ "i2c" ];
         });
       };

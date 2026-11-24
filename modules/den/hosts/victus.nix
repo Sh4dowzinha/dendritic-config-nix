@@ -20,6 +20,8 @@
         };
       };
 
+      hardware.nbfc-linux.configId = "HP Victus 15-fb0xxx";
+
       core.system.linux-kernel.flavour = "zen";
       core.preservation.enable = true;
       core.preservation-user.enable = true;
@@ -133,12 +135,6 @@
               endpoint "$(cat ${config.sops.secrets."wireguard/victus/endpoint".path})"
           '';
         };
-
-        environment.etc."nbfc/nbfc.json".text = ''
-          {
-            "SelectedConfigId": "HP Victus 15-fb0xxx"
-          }
-        '';
 
         # WARNING!! DON'T TOUCH THE SYSTEM STATE VERSION IN ANY
         # CIRCUMSTANCE, ONLY IF EXPLICITLY SAID IN THE DOCUMENTATION!

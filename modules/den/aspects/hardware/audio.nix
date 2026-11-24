@@ -1,3 +1,4 @@
+{ den, ... }:
 {
   den.aspects.hardware.audio = {
     nixos =
@@ -9,6 +10,7 @@
       {
         security.rtkit.enable = true;
         services.pulseaudio.enable = lib.mkForce false;
+
         services.pipewire = {
           enable = true;
           alsa = {
@@ -18,7 +20,7 @@
           wireplumber.enable = true;
           pulse.enable = true;
 
-          wireplumber.extraConfig = {
+          wireplumber.extraConfig."10-bluez" = {
             "monitor.bluez.properties" = {
               "bluez5.enable-sbc-xq" = true;
               "bluez5.enable-msbc" = true;
@@ -32,78 +34,59 @@
             };
           };
 
-          extraConfig = {
-            client."10-resample" = {
-              "stream.properties" = {
-                "resample.quality" = 10;
-              };
-            };
-
-            pipewire."99-playback-96khz" = {
-              "context.properties" = {
-                "default.clock.rate" = 48000;
-                "default.clock.allowed-rates" = [
-                  44100
-                  48000
-                  88200
-                  96000
-                  176400
-                  192000
-                ];
-              };
+          extraConfig.pipewire."99-playback-96khz" = {
+            "context.properties" = {
+              "default.clock.rate" = 48000;
+              "default.clock.allowed-rates" = [
+                44100
+                48000
+                88200
+                96000
+                176400
+                192000
+              ];
             };
           };
         };
 
-        environment.sessionVariables =
-          let
-            makePluginPath =
-              format:
-              "$HOME/.${format}:"
-              + (lib.makeSearchPath format [
-                "$HOME/.nix-profile/lib"
-                "/run/current-system/sw/lib"
-                "/etc/profiles/per-user/$USER/lib"
-              ]);
-          in
-          {
-            ALSOFT_DRIVERS = "pulse";
-
-            DSSI_PATH = makePluginPath "dssi";
-            LADSPA_PATH = makePluginPath "ladspa";
-            LV2_PATH = makePluginPath "lv2";
-            LXVST_PATH = makePluginPath "lxvst";
-            VST_PATH = makePluginPath "vst";
-            VST3_PATH = makePluginPath "vst3";
-          };
-
-        environment.systemPackages = [
-          pkgs.alsa-utils
-          pkgs.playerctl
-          pkgs.pavucontrol
-          pkgs.pwvucontrol
-          pkgs.paprefs
-          pkgs.pulsemixer
-          pkgs.cava
-          pkgs.coppwr
-          pkgs.qpwgraph
-          pkgs.openal
-          pkgs.pulseaudio
-          pkgs.yabridge
-          pkgs.yabridgectl
-          pkgs.vital
-          pkgs.odin2
-          pkgs.fire
-          pkgs.decent-sampler
-          pkgs.lsp-plugins
+        environment.systemPackages = with pkgs; [
+          alsa-utils
+          playerctl
+          pwvucontrol
+          qpwgraph
         ];
       };
 
     homeManager =
-      { pkgs, ... }:
       {
-        home.packages = [
-          pkgs.wiremix
+        host,
+        lib,
+        pkgs,
+        ...
+      }:
+      {
+        home.packages = with pkgs; [
+          wiremix
+          cava
+        ];
+      }
+      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+        wayland.windowManager.hyprland.settings.window_rule = lib.mkMerge [
+          [
+            {
+              match.class = "^(com\\.saivert\\.pwvucontrol)$";
+              tag = "+floating";
+            }
+          ]
+          (lib.mkAfter [
+            {
+              match.class = "^(com\\.saivert\\.pwvucontrol)$";
+              size = [
+                760
+                520
+              ];
+            }
+          ])
         ];
       };
 

@@ -1,21 +1,12 @@
 {
   den.aspects.hardware.adb = {
-    nixos =
+    homeManager =
+      { pkgs, ... }:
       {
-        pkgs,
-        resolved-users,
-        lib,
-        ...
-      }:
-      {
-        environment.systemPackages = with pkgs; [
+        home.packages = with pkgs; [
           android-file-transfer
           android-tools
         ];
-
-        users.users = lib.genAttrs (map (u: u.name) resolved-users) (_: {
-          extraGroups = [ "adbusers" ];
-        });
       };
   };
 }
