@@ -25,6 +25,8 @@
 
       desktop.iwd-frontend.tool = "impala";
 
+      applications.media.obs-studio.cudaSupport = true;
+
       core.network = {
         backend = "networkd";
         mode = "declarative";
