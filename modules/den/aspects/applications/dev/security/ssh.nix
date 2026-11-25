@@ -1,29 +1,37 @@
 {
   den.aspects.applications.dev.security.ssh = {
-    homeManager = {
-      programs.ssh = {
-        enable = true;
-        enableDefaultConfig = false;
-        settings = {
-          "*" = {
-            ForwardAgent = false;
-            AddKeysToAgent = "no";
-            Compression = true;
-            ServerAliveInterval = 0;
-            ServerAliveCountMax = 3;
-            HashKnownHosts = true;
-            UserKnownHostsFile = "~/.ssh/known_hosts";
-            ControlMaster = "no";
-            ControlPath = "~/.ssh/master-%r@%n:%p";
-            ControlPersist = "no";
-          };
-          github = {
-            hostname = "github.com";
-            user = "git";
+    homeManager =
+      { lib, ... }:
+      {
+        # Native OpenSSH agent (supports both software ed25519 and FIDO2 -sk keys).
+        # Home Manager's sshAuthSock module exports SSH_AUTH_SOCK to shells and systemd user units.
+        services.ssh-agent = {
+          enable = true;
+          defaultMaximumIdentityLifetime = 43200; # 12h, matches gpg-agent defaultCacheTtl
+        };
+
+        programs.ssh = {
+          enable = true;
+          enableDefaultConfig = false;
+
+          settings = {
+            github = lib.hm.dag.entryBefore [ "*" ] {
+              HostName = "github.com";
+              User = "git";
+            };
+
+            "*" = {
+              ForwardAgent = false;
+              AddKeysToAgent = "yes";
+              Compression = false;
+              ServerAliveInterval = 60;
+              ServerAliveCountMax = 3;
+              HashKnownHosts = true;
+              UserKnownHostsFile = "~/.ssh/known_hosts";
+            };
           };
         };
       };
-    };
 
     persistHome = {
       directories = [

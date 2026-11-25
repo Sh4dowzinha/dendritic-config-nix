@@ -15,7 +15,6 @@
       {
         programs.gpg = {
           enable = true;
-          # Only lock pubring.kbx / trustdb.gpg for users who declare publicKeys
           mutableKeys = config.programs.gpg.publicKeys == [ ];
           mutableTrust = config.programs.gpg.publicKeys == [ ];
 
@@ -41,30 +40,26 @@
           };
         };
 
-        services = {
-          gpg-agent = {
-            enable = true;
-            enableExtraSocket = true;
-            enableSshSupport = true;
+        services.gpg-agent = {
+          enable = true;
+          enableExtraSocket = true;
+          enableSshSupport = false;
 
-            enableBashIntegration = true;
-            enableZshIntegration = true;
-            enableFishIntegration = true;
-            enableNushellIntegration = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+          enableFishIntegration = true;
+          enableNushellIntegration = true;
 
-            defaultCacheTtl = 43200;
-            defaultCacheTtlSsh = 43200;
-            maxCacheTtl = 86400;
-            maxCacheTtlSsh = 86400;
+          defaultCacheTtl = 43200;
+          maxCacheTtl = 86400;
 
-            pinentry.package =
-              if (host.hasAspect den.aspects.desktop.gnome) || (host.hasAspect den.aspects.desktop.hyprland) then
-                pkgs.pinentry-gnome3
-              else if (host.hasAspect den.aspects.desktop.kde) then
-                pkgs.pinentry-qt
-              else
-                pkgs.pinentry-tty;
-          };
+          pinentry.package =
+            if (host.hasAspect den.aspects.desktop.gnome) || (host.hasAspect den.aspects.desktop.hyprland) then
+              pkgs.pinentry-gnome3
+            else if (host.hasAspect den.aspects.desktop.kde) then
+              pkgs.pinentry-qt
+            else
+              pkgs.pinentry-tty;
         };
       };
 

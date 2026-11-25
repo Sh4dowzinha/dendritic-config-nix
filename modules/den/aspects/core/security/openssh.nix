@@ -1,12 +1,30 @@
+{ lib, ... }:
+let
+  inherit (lib) mkOption types;
+in
 {
   den.aspects.core.security.openssh = {
+    settings = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enable the OpenSSH server (sshd).";
+      };
+    };
+
     nixos =
-      {
-        ...
-      }:
+      { host, ... }:
+      let
+        cfg = host.settings.core.security.openssh;
+      in
       {
         services.openssh = {
-          enable = false;
+          enable = cfg.enable;
+          settings = {
+            PasswordAuthentication = false;
+            KbdInteractiveAuthentication = false;
+            PermitRootLogin = "no";
+          };
         };
       };
 

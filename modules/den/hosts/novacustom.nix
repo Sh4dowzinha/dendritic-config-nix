@@ -83,7 +83,8 @@
       hardware.razer
       hardware.gamepad
 
-      desktop.hyprland
+      desktop.kde
+      desktop.plasma-manager
 
       services.network.mullvad-vpn
       services.network.i2pd
