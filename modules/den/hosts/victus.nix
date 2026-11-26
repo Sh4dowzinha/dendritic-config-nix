@@ -23,6 +23,9 @@
       hardware.nbfc-linux.configId = "HP Victus 15-fb0xxx";
 
       core.system.linux-kernel.flavour = "zen";
+
+      core.security.sudo.wheelNeedsPassword = false;
+
       core.preservation.enable = true;
       core.preservation-user.enable = true;
 

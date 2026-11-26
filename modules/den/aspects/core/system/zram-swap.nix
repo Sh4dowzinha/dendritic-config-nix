@@ -1,33 +1,34 @@
+{ lib, ... }:
 {
   den.aspects.core.system.zram-swap = {
     nixos = {
-      zramSwap.enable = true;
-      # zram pages are held in RAM, so the device is not spare capacity — it is
-      # a claim on the same memory it is meant to relieve. At the stock 50% a
-      # host under pressure swaps into its own remaining headroom. Keep the
-      # device small enough that reclaiming into it is still a net win.
-      zramSwap.memoryPercent = 25;
+      zramSwap = {
+        enable = true;
+        # zram pages live in RAM; keep the cap modest so reclaiming into it
+        # remains a net headroom win under memory pressure.
+        memoryPercent = lib.mkDefault 25;
+      };
 
-      # Prevent a single task from freezing the system without relying on the
-      # kernel OOM killer's heuristics.
-      services.earlyoom.enable = true;
+      # Zero-seek zram works best with single-page swap-in and proactive
+      # anonymous page compression.
+      boot.kernel.sysctl = {
+        "vm.page-cluster" = lib.mkDefault 0;
+        "vm.swappiness" = lib.mkDefault 100;
+      };
 
-      # earlyoom acts only when the memory AND the swap condition are both
-      # satisfied. With zram as the only swap, free swap stays high precisely
-      # when memory is exhausted, so the swap arm vetoes every kill and the
-      # policy never fires. Pinning both swap arms at 100% makes that arm a
-      # tautology and leaves the policy purely memory-driven, which is what it
-      # was always meant to be. Hosts that gain a real disk swap should lower
-      # these again rather than keep a condition that cannot discriminate.
-      services.earlyoom.freeSwapThreshold = 100;
-      services.earlyoom.freeSwapKillThreshold = 100;
+      # Prevent a single task from freezing the system without relying solely
+      # on the kernel OOM killer's heuristics.
+      services.earlyoom = {
+        enable = true;
 
-      # Percentages of total RAM, so the same thresholds scale across a small
-      # node and a large workstation. SIGTERM has to land while reclaim can
-      # still make progress; by the time a few percent remain, direct reclaim
-      # is already failing.
-      services.earlyoom.freeMemThreshold = 5;
-      services.earlyoom.freeMemKillThreshold = 2;
+        # With zram as the only swap, pin both swap arms at 100% so the policy
+        # is purely memory-driven. Hosts with disk swap can override via mkDefault.
+        freeSwapThreshold = lib.mkDefault 100;
+        freeSwapKillThreshold = lib.mkDefault 100;
+
+        freeMemThreshold = lib.mkDefault 5;
+        freeMemKillThreshold = lib.mkDefault 2;
+      };
     };
   };
 }

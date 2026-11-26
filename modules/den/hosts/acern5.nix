@@ -20,6 +20,9 @@
       };
 
       core.system.linux-kernel.flavour = "zen";
+
+      core.security.sudo.wheelNeedsPassword = false;
+
       core.preservation.enable = true;
       core.preservation-user.enable = true;
 

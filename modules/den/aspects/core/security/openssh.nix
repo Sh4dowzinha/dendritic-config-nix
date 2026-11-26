@@ -20,6 +20,12 @@ in
       {
         services.openssh = {
           enable = cfg.enable;
+          hostKeys = [
+            {
+              path = "/etc/ssh/ssh_host_ed25519_key";
+              type = "ed25519";
+            }
+          ];
           settings = {
             PasswordAuthentication = false;
             KbdInteractiveAuthentication = false;
@@ -28,6 +34,8 @@ in
         };
       };
 
+    # Kept unconditional even when sshd is disabled so sops-nix can read
+    # /persist/etc/ssh/ssh_host_ed25519_key at boot.
     persist = {
       files = [
         {
@@ -37,16 +45,6 @@ in
         }
         {
           file = "/etc/ssh/ssh_host_ed25519_key.pub";
-          how = "symlink";
-          configureParent = true;
-        }
-        {
-          file = "/etc/ssh/ssh_host_rsa_key";
-          how = "symlink";
-          configureParent = true;
-        }
-        {
-          file = "/etc/ssh/ssh_host_rsa_key.pub";
           how = "symlink";
           configureParent = true;
         }

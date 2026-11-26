@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   den.aspects.core.systemd = {
     nixos = {
@@ -5,8 +6,13 @@
         "d /var/lib/systemd/coredump 0755 root root 7d"
       ];
 
+      systemd.coredump.settings.Coredump = {
+        MaxUse = lib.mkDefault "500M";
+        KeepFree = lib.mkDefault "1G";
+      };
+
       services.journald.settings.Journal = {
-        SystemMaxUse = "100M";
+        SystemMaxUse = lib.mkDefault "100M";
       };
     };
 
@@ -18,10 +24,10 @@
           inInitrd = true;
           configureParent = true;
         }
-        #"/var/lib/systemd/credential.secret"
       ];
       directories = [
         "/var/lib/systemd/timers"
+        "/var/lib/systemd/backlight"
       ];
     };
 
@@ -31,7 +37,7 @@
       ];
       directories = [
         "/var/lib/systemd/coredump"
-        "/var/lib/systemd/backlight"
+        "/var/lib/systemd/pstore"
       ];
     };
   };

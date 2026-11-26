@@ -20,6 +20,8 @@ in
         isLegacy = host.settings.hardware.gpu.intel.legacy or false;
       in
       {
+        boot.initrd.kernelModules = [ "i915" ];
+
         services.xserver.videoDrivers = lib.mkBefore [ "modesetting" ];
 
         hardware.graphics.extraPackages =
