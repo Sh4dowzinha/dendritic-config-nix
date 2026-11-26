@@ -65,6 +65,21 @@
             sopsKey = "wifi/vodafone-psk";
             priority = 100;
           };
+
+          eduroamIST = {
+            ssid = "eduroam";
+            auth = "wpa-eap";
+            sopsKey = "wifi/eduroamIST-password";
+            priority = 80;
+            eap = {
+              method = "peap";
+              phase2Auth = "mschapv2";
+              identitySopsKey = "wifi/eduroamIST-identity";
+              anonymousIdentity = "anonymous@tecnico.ulisboa.pt";
+              domainSuffixMatch = "IST - eduroam";
+              caCert = ./certs/ist-root-ca.pem;
+            };
+          };
         };
       };
     };
