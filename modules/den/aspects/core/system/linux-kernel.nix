@@ -17,10 +17,14 @@
       { host, pkgs, ... }:
       let
         cfg = host.settings.core.system.linux-kernel;
-        kernelName = "linuxPackages_${cfg.flavour}";
+        kernelPackagesMap = {
+          lts = pkgs.linuxPackages;
+          latest = pkgs.linuxPackages_latest;
+          zen = pkgs.linuxPackages_zen;
+        };
       in
       {
-        boot.kernelPackages = (if pkgs ? ${kernelName} then pkgs.${kernelName} else pkgs.linuxPackages);
+        boot.kernelPackages = kernelPackagesMap.${cfg.flavour};
       };
   };
 }

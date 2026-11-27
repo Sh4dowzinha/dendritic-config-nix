@@ -1,20 +1,20 @@
 {
   writeShellApplication,
-  sops,
-  ssh-to-age,
+  coreutils,
+  git,
   gnupg,
   openssh,
-  coreutils,
+  ssh-to-age,
 }:
 writeShellApplication {
   name = "generate-host-keys";
-  meta.description = "Generate and encrypt SSH host keys for a new host";
+  meta.description = "Generate and encrypt an Ed25519 SSH host key for a new host";
   runtimeInputs = [
-    sops
-    ssh-to-age
+    coreutils
+    git
     gnupg
     openssh
-    coreutils
+    ssh-to-age
   ];
   text = builtins.readFile ./generate-host-keys.sh;
 }

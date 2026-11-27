@@ -18,10 +18,9 @@
           enable = true;
           libraries = lib.unique (
             (with pkgs; [
-              # Default base libraries
               zlib
               zstd
-              stdenv.cc.cc
+              stdenv.cc.cc.lib
               curl
               openssl
               attr
@@ -38,10 +37,10 @@
           );
         };
 
-        # 2. Script shebang entrypoint interception
+        # 2. Static bash shebangs without touching NixOS's native /bin/sh or /usr/bin/env
         systemd.tmpfiles.rules = [
-          "L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
-          "L+ /usr/bin/bash - - - - ${pkgs.bash}/bin/bash"
+          "L+ /bin/bash - - - - ${lib.getExe pkgs.bash}"
+          "L+ /usr/bin/bash - - - - ${lib.getExe pkgs.bash}"
         ];
       };
   };
