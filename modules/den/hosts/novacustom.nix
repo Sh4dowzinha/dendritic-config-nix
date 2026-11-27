@@ -13,6 +13,7 @@
       };
 
       core.system.linux-kernel.flavour = "zen";
+      core.system.plymouth.enable = false;
 
       core.security.sudo.wheelNeedsPassword = false;
 
