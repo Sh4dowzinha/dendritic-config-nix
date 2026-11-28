@@ -85,9 +85,23 @@
       {
         lib,
         user,
+        pkgs,
         ...
       }:
-      lib.optionalAttrs (user.hasAspect den.aspects.desktop.plasma-manager) {
+      {
+        xdg.autostart.entries = [
+          (
+            pkgs.makeDesktopItem {
+              name = "vesktop-autostart";
+              desktopName = "Vesktop";
+              exec = "${pkgs.vesktop}/bin/vesktop --start-minimized";
+              icon = "vesktop";
+            }
+            + "/share/applications/vesktop-autostart.desktop"
+          )
+        ];
+      }
+      // lib.optionalAttrs (user.hasAspect den.aspects.desktop.plasma-manager) {
         programs.plasma.input.mice = [
           {
             enable = true;
