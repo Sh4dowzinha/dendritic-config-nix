@@ -59,7 +59,7 @@
 
     homeManager =
       {
-        host,
+        user,
         lib,
         pkgs,
         ...
@@ -70,7 +70,7 @@
           cava
         ];
       }
-      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+      // lib.optionalAttrs (user.hasAspect den.aspects.desktop.hyprland) {
         wayland.windowManager.hyprland.settings.window_rule = lib.mkMerge [
           [
             {

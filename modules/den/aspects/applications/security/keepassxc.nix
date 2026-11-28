@@ -1,7 +1,11 @@
 { den, ... }: {
   den.aspects.applications.security.keepassxc = {
     homeManager =
-      { host, lib, ... }:
+      {
+        user,
+        lib,
+        ...
+      }:
       {
         programs.keepassxc = {
           enable = true;
@@ -29,7 +33,7 @@
           };
         };
       }
-      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+      // lib.optionalAttrs (user.hasAspect den.aspects.desktop.hyprland) {
         wayland.windowManager.hyprland.settings.window_rule = lib.mkMerge [
           [
             {

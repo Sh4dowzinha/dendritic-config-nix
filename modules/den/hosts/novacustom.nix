@@ -108,43 +108,44 @@
     };
 
     homeManager =
-      { lib, host, ... }:
-      lib.mkMerge [
-        (lib.optionalAttrs (host.hasAspect den.aspects.desktop.plasma-manager) {
-          programs.plasma.input.touchpads = [
+      {
+        lib,
+        user,
+        ...
+      }:
+      lib.optionalAttrs (user.hasAspect den.aspects.desktop.plasma-manager) {
+        programs.plasma.input.touchpads = [
+          {
+            accelerationProfile = "default";
+            disableWhileTyping = false;
+            enable = true;
+            leftHanded = false;
+            name = "ELAN0412:00 04F3:3240 Touchpad";
+            naturalScroll = true;
+            productId = "3240";
+            tapToClick = true;
+            vendorId = "04f3";
+          }
+        ];
+      }
+      // lib.optionalAttrs (user.hasAspect den.aspects.desktop.hyprland) {
+        wayland.windowManager.hyprland.settings = {
+          monitor = [
             {
-              accelerationProfile = "default";
-              disableWhileTyping = false;
-              enable = true;
-              leftHanded = false;
-              name = "ELAN0412:00 04F3:3240 Touchpad";
-              naturalScroll = true;
-              productId = "3240";
-              tapToClick = true;
-              vendorId = "04f3";
+              output = "eDP-1";
+              mode = "preferred";
+              position = "auto";
+              scale = 1.2;
             }
           ];
-        })
-
-        (lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
-          wayland.windowManager.hyprland.settings = {
-            monitor = [
-              {
-                output = "eDP-1";
-                mode = "preferred";
-                position = "auto";
-                scale = 1.2;
-              }
-            ];
-            device = [
-              {
-                name = "elan0412:00-04f3:3240-touchpad";
-                accel_profile = "adaptive";
-              }
-            ];
-          };
-        })
-      ];
+          device = [
+            {
+              name = "elan0412:00-04f3:3240-touchpad";
+              accel_profile = "adaptive";
+            }
+          ];
+        };
+      };
 
     sh4dow = {
       includes = with den.aspects; [

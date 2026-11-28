@@ -2,7 +2,7 @@
   den.aspects.applications.gaming.osu-lazer = {
     homeManager =
       {
-        host,
+        user,
         lib,
         inputs',
         ...
@@ -10,7 +10,7 @@
       {
         home.packages = [ inputs'.nix-gaming.packages.osu-lazer-bin ];
       }
-      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+      // lib.optionalAttrs (user.hasAspect den.aspects.desktop.hyprland) {
         wayland.windowManager.hyprland.settings.window_rule = [
           {
             match.class = "^(osu!)$";

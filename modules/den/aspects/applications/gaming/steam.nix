@@ -32,7 +32,12 @@
       };
 
     homeManager =
-      { host, lib, ... }:
+      {
+        host,
+        user,
+        lib,
+        ...
+      }:
       let
         hasNvidia = host.hasAspect den.aspects.hardware.gpu.nvidia;
       in
@@ -44,7 +49,7 @@
           __GL_SHADER_DISK_CACHE_SIZE = "12000000000";
         };
       }
-      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+      // lib.optionalAttrs (user.hasAspect den.aspects.desktop.hyprland) {
         wayland.windowManager.hyprland.settings.window_rule = [
           {
             match.class = "^(steam_app_\\d+|gamescope)$";

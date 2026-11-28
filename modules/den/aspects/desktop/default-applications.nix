@@ -40,7 +40,7 @@ in
           ];
         };
       }
-      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.plasma-manager) {
+      // lib.optionalAttrs (user.hasAspect den.aspects.desktop.plasma-manager) {
         programs.plasma.configFile.kdeglobals = {
           General = lib.mkMerge [
             (lib.optionalAttrs (browser != null) {

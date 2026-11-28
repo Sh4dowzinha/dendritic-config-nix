@@ -82,11 +82,12 @@
     };
 
     homeManager =
-      { lib, host, ... }:
       {
-        # Home Manager options that always apply
-      }
-      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.plasma-manager) {
+        lib,
+        user,
+        ...
+      }:
+      lib.optionalAttrs (user.hasAspect den.aspects.desktop.plasma-manager) {
         programs.plasma.input.mice = [
           {
             enable = true;

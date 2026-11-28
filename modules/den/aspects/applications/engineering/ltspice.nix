@@ -2,7 +2,7 @@
   den.aspects.applications.engineering.ltspice = {
     homeManager =
       {
-        host,
+        user,
         lib,
         pkgs,
         ...
@@ -12,7 +12,7 @@
           pkgs.local.ltspice
         ];
       }
-      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+      // lib.optionalAttrs (user.hasAspect den.aspects.desktop.hyprland) {
         wayland.windowManager.hyprland.settings.window_rule = [
           {
             match.class = "^(ltspice.*)$";

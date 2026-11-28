@@ -21,7 +21,7 @@
 
     homeManager =
       {
-        host,
+        user,
         lib,
         pkgs,
         ...
@@ -31,7 +31,7 @@
           pkgs.local.vivado
         ];
       }
-      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+      // lib.optionalAttrs (user.hasAspect den.aspects.desktop.hyprland) {
         wayland.windowManager.hyprland.settings.window_rule = [
           {
             match.class = "^(Vivado|java-lang-Thread)$";

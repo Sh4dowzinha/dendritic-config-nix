@@ -2,7 +2,7 @@
   den.aspects.roles.cad = {
     homeManager =
       {
-        host,
+        user,
         lib,
         pkgs,
         ...
@@ -16,7 +16,7 @@
           orca-slicer
         ];
       }
-      // lib.optionalAttrs (host.hasAspect den.aspects.desktop.hyprland) {
+      // lib.optionalAttrs (user.hasAspect den.aspects.desktop.hyprland) {
         wayland.windowManager.hyprland.settings.window_rule = [
           {
             match.class = "^(FreeCAD|KiCad)$";
